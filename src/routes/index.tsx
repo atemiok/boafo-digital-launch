@@ -1,40 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   ArrowRight,
   LayoutDashboard,
-  Workflow,
+  Smartphone,
   Leaf,
-  Plug,
-  Compass,
-  Database,
-  CloudUpload,
-  TrendingUp,
-  Code2,
-  Server,
-  Cloud,
-  ShieldCheck,
+  CloudLightning,
   Sparkles,
+  Loader2,
+  Receipt,
+  MessageSquareWarning,
+  FileSpreadsheet,
+  ShieldCheck,
   Mail,
   CheckCircle2,
 } from "lucide-react";
+import { sendContactRequest } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Boafo Solutions — Engineering the Digital Backbone for Modern Enterprises" },
+      { title: "Custom Business Portals & Automation Systems Kenya | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Boafo Solutions builds custom web portals, automated B2B workflows, and smart energy integrations for modern enterprises.",
+          "We build custom web portals, automated business workflows, and green energy software for Kenyan enterprises. Replace spreadsheets with secure, reliable systems.",
       },
-      { property: "og:title", content: "Boafo Solutions — Digital Backbone for Modern Enterprises" },
+      { property: "og:title", content: "Boafo Solutions — Systems that run your business on autopilot" },
       {
         property: "og:description",
         content:
-          "Custom web portals, automated B2B workflows, and smart energy integrations engineered for scale.",
+          "Custom dashboards, M-Pesa & SMS automation, and green energy tracking — built for Kenyan businesses.",
       },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Landing,
 });
@@ -45,10 +46,9 @@ function Landing() {
       <Nav />
       <main>
         <Hero />
+        <PainPoints />
         <Services />
-        <TechStack />
-        <Workflow_ />
-        <CTA />
+        <Contact />
       </main>
       <Footer />
     </div>
@@ -58,9 +58,8 @@ function Landing() {
 /* ---------- Nav ---------- */
 function Nav() {
   const links = [
-    { href: "#services", label: "Services" },
-    { href: "#stack", label: "Stack" },
-    { href: "#process", label: "Process" },
+    { href: "#problem", label: "The Problem" },
+    { href: "#services", label: "What We Build" },
     { href: "#contact", label: "Contact" },
   ];
   return (
@@ -89,7 +88,7 @@ function Nav() {
           href="#contact"
           className="btn-mint hidden rounded-full px-4 py-2 text-sm font-semibold sm:inline-flex"
         >
-          Book Consultation
+          Free System Demo
         </a>
       </div>
     </header>
@@ -110,19 +109,18 @@ function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
-            Enterprise engineering · Available Q3 2026
+            Proudly built in Nairobi for Kenyan businesses
           </div>
 
           <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-            Engineering the{" "}
-            <span className="text-gradient">Digital Backbone</span>
-            <br className="hidden sm:block" /> for Modern Enterprises.
+            We build systems that run your business{" "}
+            <span className="text-gradient">on autopilot.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
-            We build custom web portals, automated business workflows, and smart
-            energy integrations that replace manual friction with scalable
-            code.
+            Stop relying on messy spreadsheets and manual follow-ups. We build
+            custom portals, automated workflows, and green energy tracking tools
+            that save time and stop money leakages.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -130,29 +128,26 @@ function Hero() {
               href="#contact"
               className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
             >
-              Schedule an Architecture Consultation
+              Request a Free System Demo
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#services"
               className="btn-outline inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
             >
-              Explore Core Services
+              See what we build
             </a>
           </div>
 
-          {/* Mini stats */}
           <div className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
             {[
-              { v: "99.99%", l: "Uptime SLA" },
-              { v: "40+", l: "Systems shipped" },
-              { v: "12 wk", l: "Avg. time-to-launch" },
-              { v: "SOC-2", l: "Engineering posture" },
+              { v: "0", l: "Lost payments" },
+              { v: "24/7", l: "Cloud uptime" },
+              { v: "M-Pesa", l: "Auto-matched" },
+              { v: "100%", l: "Yours forever" },
             ].map((s) => (
               <div key={s.l} className="bg-surface px-4 py-5 text-center">
-                <div className="text-xl font-bold text-foreground sm:text-2xl">
-                  {s.v}
-                </div>
+                <div className="text-xl font-bold text-foreground sm:text-2xl">{s.v}</div>
                 <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
                   {s.l}
                 </div>
@@ -165,54 +160,41 @@ function Hero() {
   );
 }
 
-/* ---------- Services ---------- */
-function Services() {
+/* ---------- Pain Points ---------- */
+function PainPoints() {
   const items = [
     {
-      icon: LayoutDashboard,
-      title: "Custom Enterprise Portals",
-      copy: "Role-based multi-tenant web applications, vendor management systems, and client dashboards built for secure data segregation and high-volume performance.",
+      icon: Receipt,
+      title: "Losing track of payments and manual receipts?",
+      copy: "Money comes in on M-Pesa, but no one knows which invoice it matched. Receipts get lost. Customers get billed twice.",
     },
     {
-      icon: Workflow,
-      title: "Workflow Automation & SaaS Infrastructure",
-      copy: "Eliminate manual spreadsheets. We map your internal operations into centralized, cloud-native automated engines with robust validation logic.",
+      icon: MessageSquareWarning,
+      title: "Staff relying on WhatsApp groups for official work?",
+      copy: "Important updates get buried under memes. There's no record, no accountability, and new staff have no idea what's going on.",
     },
     {
-      icon: Leaf,
-      title: "Green Energy & Smart Utility Tech",
-      copy: "Custom dashboards and digital infrastructure for green energy platforms. Track data distribution, manage smart utility reporting, and optimize operational asset metrics seamlessly.",
-    },
-    {
-      icon: Plug,
-      title: "Local API & Infrastructure Integrations",
-      copy: "Deep integrations with regional payment rails, automated reconciliation gateways, SMS notification pipes, and enterprise database systems.",
+      icon: FileSpreadsheet,
+      title: "Important data stuck in offline Excel sheets?",
+      copy: "One laptop crashes and a year of work disappears. Different people keep different versions. Nothing matches at month-end.",
     },
   ];
 
   return (
-    <section id="services" className="relative py-24 sm:py-32">
+    <section id="problem" className="relative py-24 sm:py-32">
       <SectionHeader
-        eyebrow="Core Services"
-        title="Systems built for operational scale."
-        subtitle="Four engineering practices that replace fragile manual processes with software you can grow into."
+        eyebrow="The Problem"
+        title="Are manual workflows holding your business back?"
+        subtitle="If any of these sound familiar, you're losing money every single week — and you probably don't even know how much."
       />
-      <div className="mx-auto mt-14 grid max-w-7xl gap-5 px-5 sm:px-8 md:grid-cols-2">
+      <div className="mx-auto mt-14 grid max-w-7xl gap-5 px-5 sm:px-8 md:grid-cols-3">
         {items.map((s) => (
-          <article key={s.title} className="glass-card group p-7 sm:p-8">
-            <div className="flex items-start gap-5">
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/50">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
-                  {s.copy}
-                </p>
-              </div>
+          <article key={s.title} className="glass-card p-7">
+            <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface text-primary">
+              <s.icon className="h-5 w-5" />
             </div>
+            <h3 className="mt-5 text-lg font-semibold tracking-tight">{s.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.copy}</p>
           </article>
         ))}
       </div>
@@ -220,131 +202,120 @@ function Services() {
   );
 }
 
-/* ---------- Tech Stack ---------- */
-function TechStack() {
-  const layers = [
-    {
-      icon: Code2,
-      tag: "Frontend",
-      title: "React & Next.js",
-      copy: "Type-safe, server-rendered interfaces with edge-cached performance.",
-    },
-    {
-      icon: Server,
-      tag: "Backend",
-      title: "Node.js & Express",
-      copy: "Robust API services, event pipelines, and validation-first business logic.",
-    },
-    {
-      icon: Database,
-      tag: "Data",
-      title: "Supabase & PostgreSQL",
-      copy: "Secure relational schemas, row-level policies, and audit-ready data flow.",
-    },
-    {
-      icon: Cloud,
-      tag: "Infra",
-      title: "AWS & DigitalOcean",
-      copy: "Scalable container deployments with CI/CD and observability baked in.",
-    },
-  ];
+/* ---------- Services (Bento Grid) ---------- */
+function Services() {
   return (
-    <section id="stack" className="relative border-y border-border bg-surface/40 py-24 sm:py-32">
+    <section id="services" className="relative border-y border-border bg-surface/40 py-24 sm:py-32">
       <SectionHeader
-        eyebrow="Core Architecture"
-        title="A modern, developer-first stack."
-        subtitle="The same primitives powering high-scale SaaS — tuned for enterprise workloads, regional integrations, and long-term maintainability."
+        eyebrow="What We Build"
+        title="Real tools for real Kenyan businesses."
+        subtitle="Four core systems we build and customize for your business — one screen, one source of truth."
       />
-      <div className="mx-auto mt-14 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
-        {layers.map((l) => (
-          <div key={l.title} className="glass-card p-6">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-primary">
-              <l.icon className="h-4 w-4" />
-              {l.tag}
-            </div>
-            <h4 className="mt-4 text-lg font-semibold">{l.title}</h4>
-            <p className="mt-2 text-sm text-muted-foreground">{l.copy}</p>
-          </div>
-        ))}
+
+      <div className="mx-auto mt-14 grid max-w-7xl gap-5 px-5 sm:px-8 md:grid-cols-6 md:grid-rows-2">
+        <BentoCard
+          className="md:col-span-4"
+          icon={LayoutDashboard}
+          title="Custom Staff & Client Dashboards"
+          copy="Different staff see different things. Your accountant sees finances, the field agent sees tasks, and you see everything on one live screen."
+          accent
+        />
+        <BentoCard
+          className="md:col-span-2"
+          icon={Smartphone}
+          title="M-Pesa & SMS Automation"
+          copy="Match payments received via M-Pesa to your invoices instantly. Send SMS alerts to your clients — automatically."
+        />
+        <BentoCard
+          className="md:col-span-2"
+          icon={Leaf}
+          title="Green Energy & Smart Asset Tracking"
+          copy="Live dashboards to track your green energy distribution, solar assets, and automated utility reporting."
+        />
+        <BentoCard
+          className="md:col-span-4"
+          icon={CloudLightning}
+          title="Secure, Cloud-Based Operations"
+          copy="Never lose your business data to a broken laptop or a power outage again. Everything is backed up and accessible from anywhere — phone, tablet, or laptop."
+        />
       </div>
 
       <div className="mx-auto mt-10 flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 text-xs font-mono uppercase tracking-widest text-muted-foreground sm:px-8">
-        <span className="inline-flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Type-safe</span>
+        <span className="inline-flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Bank-grade security</span>
         <span>·</span>
-        <span>Observability-first</span>
+        <span>Daily backups</span>
         <span>·</span>
-        <span>RLS by default</span>
+        <span>Built in Kenya</span>
         <span>·</span>
-        <span>CI/CD</span>
-        <span>·</span>
-        <span>Zero-downtime deploys</span>
+        <span>You own the code</span>
       </div>
     </section>
   );
 }
 
-/* ---------- Workflow ---------- */
-function Workflow_() {
-  const steps = [
-    {
-      icon: Compass,
-      title: "Process Mapping & Architecture Discovery",
-      copy: "Stakeholder interviews, system audits, and an actionable architecture blueprint.",
-    },
-    {
-      icon: Database,
-      title: "Custom Multi-Tenant & Schema Engineering",
-      copy: "Data models, role policies, and core services engineered for isolation and growth.",
-    },
-    {
-      icon: CloudUpload,
-      title: "Seamless Cloud Integration & Live Deployment",
-      copy: "Containerized rollouts, integrations with your existing systems, and observability from day one.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Iterative Optimization & Scale Maintenance",
-      copy: "Continuous performance tuning, security review, and roadmap engineering as you grow.",
-    },
-  ];
+function BentoCard({
+  icon: Icon,
+  title,
+  copy,
+  className = "",
+  accent = false,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  copy: string;
+  className?: string;
+  accent?: boolean;
+}) {
   return (
-    <section id="process" className="relative py-24 sm:py-32">
-      <SectionHeader
-        eyebrow="Partnership Workflow"
-        title="A clean pipeline from discovery to scale."
-        subtitle="Four predictable phases that turn ambiguity into a production-grade system."
-      />
-      <div className="mx-auto mt-14 max-w-5xl px-5 sm:px-8">
-        <ol className="relative space-y-5 border-l border-border pl-6 sm:space-y-6 sm:pl-10">
-          {steps.map((s, i) => (
-            <li key={s.title} className="relative">
-              <span className="absolute -left-[34px] grid h-7 w-7 place-items-center rounded-full border border-border bg-surface text-xs font-mono font-semibold text-primary sm:-left-[50px] sm:h-9 sm:w-9 sm:text-sm">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="glass-card p-6">
-                <div className="flex items-start gap-4">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-background text-primary">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-base font-semibold sm:text-lg">
-                      {s.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{s.copy}</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+    <article
+      className={`glass-card group relative overflow-hidden p-7 sm:p-8 ${className}`}
+    >
+      {accent && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-40 blur-3xl"
+          style={{ background: "var(--gradient-mint)" }}
+        />
+      )}
+      <div className="relative flex h-full flex-col">
+        <div className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/60">
+          <Icon className="h-5 w-5" />
+        </div>
+        <h3 className="mt-5 text-lg font-semibold tracking-tight sm:text-xl">{title}</h3>
+        <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+          {copy}
+        </p>
       </div>
-    </section>
+    </article>
   );
 }
 
-/* ---------- CTA / Contact ---------- */
-function CTA() {
-  const [submitted, setSubmitted] = useState(false);
+/* ---------- Contact ---------- */
+function Contact() {
+  const send = useServerFn(sendContactRequest);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ name: "", company: "", phone: "", message: "" });
+
+  const onChange =
+    (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    try {
+      await send({ data: form });
+      toast.success("Request sent — we'll be in touch within one business day.");
+      setForm({ name: "", company: "", phone: "", message: "" });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <section id="contact" className="relative py-24 sm:py-32">
       <div
@@ -355,64 +326,91 @@ function CTA() {
         <div className="glass-card overflow-hidden p-8 sm:p-12">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="min-w-0">
-              <p className="text-xs font-mono uppercase tracking-widest text-primary">
-                Contact
-              </p>
+              <p className="text-xs font-mono uppercase tracking-widest text-primary">Contact</p>
               <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Ready to automate your operations?
+                Let's build a system that fits your exact needs.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Let's co-engineer a system that scales with your operational
-                ambitions. Tell us the shape of the problem — we'll respond
-                within one business day with an architectural perspective.
+                Tell us what's slowing your business down. We'll reply on WhatsApp
+                or email within one business day with a clear, no-pressure plan.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-                {["NDA-friendly intake", "Architectural response, not a sales pitch", "Fixed-scope or retained engagements"].map((t) => (
+                {[
+                  "Free 30-minute discovery call",
+                  "Clear, fixed pricing — no surprises",
+                  "You own everything we build",
+                ].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-primary" />
                     {t}
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Mail className="h-3 w-3" /> hello@boafosolutions.com
+              </p>
             </div>
 
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={onSubmit}
               className="space-y-4 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur"
             >
-              <Field label="Name" id="name" placeholder="Ada Lovelace" />
               <Field
-                label="Corporate Email"
-                id="email"
-                type="email"
-                placeholder="ada@company.com"
+                label="Name"
+                id="name"
+                value={form.name}
+                onChange={onChange("name")}
+                placeholder="Jane Wanjiku"
+              />
+              <Field
+                label="Company Name"
+                id="company"
+                value={form.company}
+                onChange={onChange("company")}
+                placeholder="Acacia Logistics Ltd"
+              />
+              <Field
+                label="Phone Number (WhatsApp)"
+                id="phone"
+                type="tel"
+                value={form.phone}
+                onChange={onChange("phone")}
+                placeholder="+254 7XX XXX XXX"
               />
               <div className="space-y-1.5">
-                <label htmlFor="scope" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Project Scope
+                <label
+                  htmlFor="message"
+                  className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
+                >
+                  What manual process do you want to automate?
                 </label>
                 <textarea
-                  id="scope"
+                  id="message"
                   rows={4}
                   required
-                  placeholder="A short description of the system, integrations, and outcomes you're targeting."
+                  value={form.message}
+                  onChange={onChange("message")}
+                  placeholder="e.g. We track all our deliveries on a WhatsApp group and an Excel sheet…"
                   className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
                 />
               </div>
               <button
                 type="submit"
-                className="btn-mint inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
+                disabled={loading}
+                className="btn-mint inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold disabled:opacity-70"
               >
-                {submitted ? "Received — we'll be in touch" : "Send to Engineering"}
-                {!submitted && <ArrowRight className="h-4 w-4" />}
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    Send Request
+                    <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
               </button>
-              <p className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <Mail className="h-3 w-3" />
-                Or email hello@boafosolutions.com
-              </p>
             </form>
           </div>
         </div>
@@ -426,21 +424,30 @@ function Field({
   id,
   type = "text",
   placeholder,
+  value,
+  onChange,
 }: {
   label: string;
   id: string;
   type?: string;
   placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+      <label
+        htmlFor={id}
+        className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
+      >
         {label}
       </label>
       <input
         id={id}
         type={type}
         required
+        value={value}
+        onChange={onChange}
         placeholder={placeholder}
         className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
       />
@@ -461,27 +468,24 @@ function Footer() {
             <span className="text-base font-bold tracking-tight">Boafo Solutions</span>
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Engineering the digital backbone for modern enterprises — portals,
-            automation, and smart energy systems built to scale.
+            Custom business systems built in Kenya — portals, M-Pesa automation,
+            and green energy tracking that just works.
           </p>
         </div>
+        <FooterCol title="Company" links={["The Problem", "What We Build", "Contact"]} />
         <FooterCol
-          title="Company"
-          links={["Services", "Process", "Stack", "Contact"]}
-        />
-        <FooterCol
-          title="Practice"
+          title="We Build"
           links={[
-            "Enterprise Portals",
-            "Workflow Automation",
-            "Green Energy Tech",
-            "API Integrations",
+            "Staff & Client Dashboards",
+            "M-Pesa & SMS Automation",
+            "Green Energy Tracking",
+            "Cloud Operations",
           ]}
         />
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-8">
-          <p>© {new Date().getFullYear()} Boafo Solutions. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Boafo Solutions. Nairobi, Kenya.</p>
           <p className="font-mono uppercase tracking-widest">boafosolutions.com</p>
         </div>
       </div>
@@ -492,9 +496,7 @@ function Footer() {
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
     <div>
-      <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground">
-        {title}
-      </h4>
+      <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground">{title}</h4>
       <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
         {links.map((l) => (
           <li key={l}>
@@ -520,16 +522,12 @@ function SectionHeader({
 }) {
   return (
     <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-      <p className="text-xs font-mono uppercase tracking-widest text-primary">
-        {eyebrow}
-      </p>
+      <p className="text-xs font-mono uppercase tracking-widest text-primary">{eyebrow}</p>
       <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-pretty text-muted-foreground sm:text-lg">
-          {subtitle}
-        </p>
+        <p className="mt-4 text-pretty text-muted-foreground sm:text-lg">{subtitle}</p>
       )}
     </div>
   );
