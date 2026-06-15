@@ -544,10 +544,10 @@ function Contact() {
                   required
                   value={form.bottleneck}
                   onChange={onChange("bottleneck")}
-                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
                 >
                   {BOTTLENECKS.map((b) => (
-                    <option key={b} value={b} className="bg-white text-foreground">
+                    <option key={b} value={b} className="bg-background text-foreground">
                       {b}
 
                     </option>
