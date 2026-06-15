@@ -400,7 +400,7 @@ function Guarantee() {
       </motion.div>
 
       <div className="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
-        <div className="rounded-2xl border border-border bg-white/70 p-5 text-center text-xs text-muted-foreground shadow-sm sm:text-sm">
+        <div className="rounded-2xl border border-border bg-background/50 p-5 text-center text-xs text-muted-foreground shadow-sm sm:text-sm backdrop-blur">
           Quiet software for loud businesses — <strong className="text-foreground/90">automation that pays for itself</strong>, integrations that hold, and reporting you'll actually open on a Monday.
         </div>
       </div>
