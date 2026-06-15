@@ -12,6 +12,7 @@ import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ThemeProvider, THEME_NO_FLASH_SCRIPT, useTheme } from "../lib/theme";
 
 function NotFoundComponent() {
   return (
