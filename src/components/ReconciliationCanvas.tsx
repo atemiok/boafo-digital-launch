@@ -46,35 +46,41 @@ const BOTTLENECKS: Bottleneck[] = [
   },
 ];
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function ReconciliationCanvas() {
   const [activeId, setActiveId] = useState<string>(BOTTLENECKS[0].id);
   const active = BOTTLENECKS.find((b) => b.id === activeId) ?? BOTTLENECKS[0];
 
   return (
-    <div className="glass-card relative overflow-hidden p-5 sm:p-8">
-      {/* ambient glow */}
+    <div className="solid-card relative overflow-hidden p-5 sm:p-8">
+      {/* ambient tint */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 top-1/2 -z-0 h-72 w-72 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
+        className="pointer-events-none absolute -left-32 top-1/2 -z-0 h-80 w-80 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
         style={{ background: "var(--gradient-mint)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/2 -z-0 h-72 w-72 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
+        className="pointer-events-none absolute -right-32 top-1/2 -z-0 h-80 w-80 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
         style={{ background: "var(--gradient-electric)" }}
       />
 
-      <div className="mb-6 flex items-center justify-between gap-3">
+      <div className="relative mb-6 flex items-center justify-between gap-3">
         <div>
           <p className="text-[11px] font-mono uppercase tracking-widest text-primary">
             Operational Reconciliation Canvas
           </p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
             Click a bottleneck. Watch it become clean data.
           </h3>
         </div>
-        <span className="hidden items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground backdrop-blur sm:inline-flex">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+        <span className="hidden items-center gap-1.5 rounded-full border border-border bg-background/80 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground backdrop-blur sm:inline-flex">
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-primary"
+            animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
           Live Simulator
         </span>
       </div>
@@ -86,23 +92,24 @@ export function ReconciliationCanvas() {
             const isActive = b.id === activeId;
             return (
               <li key={b.id}>
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
                   role="tab"
                   aria-selected={isActive}
                   aria-controls={`output-${b.id}`}
                   onClick={() => setActiveId(b.id)}
-                  className={`group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-sm transition-all ${
+                  className={`group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-sm transition-all duration-300 ${
                     isActive
-                      ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_0_0_1px_var(--primary)/0.25,0_10px_30px_-15px_var(--primary)]"
-                      : "border-border bg-surface/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                      ? "border-primary/50 bg-primary/8 text-foreground shadow-[0_10px_24px_-14px_oklch(0.7_0.16_162/0.45)]"
+                      : "border-border bg-background/60 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-background"
                   }`}
                 >
                   <span className="flex items-center gap-2.5">
                     <span
                       className={`grid h-8 w-8 place-items-center rounded-lg border transition-colors ${
                         isActive
-                          ? "border-primary/60 bg-primary/15 text-primary"
-                          : "border-border bg-background/60 text-muted-foreground"
+                          ? "border-primary/50 bg-primary/10 text-primary"
+                          : "border-border bg-background text-muted-foreground"
                       }`}
                     >
                       <b.icon className="h-4 w-4" />
@@ -114,7 +121,7 @@ export function ReconciliationCanvas() {
                       isActive ? "translate-x-0 text-primary" : "-translate-x-1 text-muted-foreground/50"
                     }`}
                   />
-                </button>
+                </motion.button>
               </li>
             );
           })}
@@ -122,14 +129,13 @@ export function ReconciliationCanvas() {
 
         {/* CENTER — engine */}
         <div className="relative flex items-center justify-center py-6 md:py-0">
-          {/* connector lines (desktop) */}
           <svg
             aria-hidden
             className="absolute left-0 top-1/2 hidden h-px w-[calc(50%-2.25rem)] -translate-y-1/2 md:block"
             viewBox="0 0 100 2"
             preserveAspectRatio="none"
           >
-            <line x1="0" y1="1" x2="100" y2="1" stroke="oklch(1 0 0 / 0.12)" strokeDasharray="3 3" />
+            <line x1="0" y1="1" x2="100" y2="1" stroke="oklch(0.22 0.04 260 / 0.18)" strokeDasharray="3 3" />
           </svg>
           <svg
             aria-hidden
@@ -137,36 +143,34 @@ export function ReconciliationCanvas() {
             viewBox="0 0 100 2"
             preserveAspectRatio="none"
           >
-            <line x1="0" y1="1" x2="100" y2="1" stroke="oklch(1 0 0 / 0.12)" strokeDasharray="3 3" />
+            <line x1="0" y1="1" x2="100" y2="1" stroke="oklch(0.22 0.04 260 / 0.18)" strokeDasharray="3 3" />
           </svg>
 
-          {/* animated packet */}
           <AnimatePresence mode="wait">
             <motion.span
               key={`packet-${activeId}`}
               initial={{ x: -90, opacity: 0 }}
               animate={{ x: 90, opacity: [0, 1, 1, 0] }}
               transition={{ duration: 1.1, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 hidden h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_16px_var(--primary)] md:block"
+              className="absolute left-1/2 top-1/2 hidden h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_14px_oklch(0.7_0.16_162/0.8)] md:block"
               aria-hidden
             />
           </AnimatePresence>
 
-          {/* engine node */}
           <motion.div
             key={`engine-${activeId}`}
-            initial={{ scale: 0.96 }}
-            animate={{ scale: [0.96, 1.04, 1] }}
-            transition={{ duration: 0.6 }}
-            className="relative grid h-20 w-20 place-items-center rounded-2xl border border-primary/40 bg-background/80 backdrop-blur-md sm:h-24 sm:w-24"
-            style={{ boxShadow: "0 0 60px -10px var(--primary)" }}
+            initial={{ scale: 0.94 }}
+            animate={{ scale: [0.94, 1.05, 1] }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="relative grid h-20 w-20 place-items-center rounded-2xl border border-primary/30 bg-white sm:h-24 sm:w-24"
+            style={{ boxShadow: "var(--shadow-emerald)" }}
           >
             <motion.div
               aria-hidden
               className="absolute inset-0 rounded-2xl"
-              style={{ background: "var(--gradient-electric)", opacity: 0.18 }}
-              animate={{ opacity: [0.12, 0.3, 0.12] }}
-              transition={{ duration: 2.2, repeat: Infinity }}
+              style={{ background: "var(--gradient-electric)", opacity: 0.12 }}
+              animate={{ opacity: [0.08, 0.2, 0.08] }}
+              transition={{ duration: 2.4, repeat: Infinity }}
             />
             <Cpu className="relative h-7 w-7 text-primary sm:h-8 sm:w-8" />
             <span className="absolute -bottom-7 whitespace-nowrap text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -182,15 +186,15 @@ export function ReconciliationCanvas() {
               key={`out-${activeId}`}
               id={`output-${activeId}`}
               role="tabpanel"
-              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              initial={{ opacity: 0, y: 12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.99 }}
-              transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-              className="rounded-2xl border border-primary/40 bg-surface/80 p-5 backdrop-blur"
-              style={{ boxShadow: "var(--shadow-glow)" }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="rounded-2xl border border-primary/25 bg-white p-5"
+              style={{ boxShadow: "var(--shadow-lg)" }}
             >
               <div className="flex items-center gap-2.5">
-                <span className="grid h-9 w-9 place-items-center rounded-lg border border-primary/40 bg-primary/15 text-primary">
+                <span className="grid h-9 w-9 place-items-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
                   <active.output.icon className="h-4 w-4" />
                 </span>
                 <p className="text-[11px] font-mono uppercase tracking-widest text-primary">
@@ -201,16 +205,12 @@ export function ReconciliationCanvas() {
                 {active.output.label}
               </p>
               <div className="mt-4 space-y-2">
-                {[
-                  "Parsed",
-                  "Validated",
-                  "Posted to ledger",
-                ].map((step, i) => (
+                {["Parsed", "Validated", "Posted to ledger"].map((step, i) => (
                   <motion.div
                     key={step}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + i * 0.12, duration: 0.35 }}
+                    transition={{ delay: 0.15 + i * 0.12, duration: 0.4, ease: EASE }}
                     className="flex items-center gap-2 text-xs text-muted-foreground"
                   >
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
