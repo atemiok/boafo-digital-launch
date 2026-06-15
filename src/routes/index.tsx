@@ -195,7 +195,7 @@ function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
+          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
         >
           <motion.span
             className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_oklch(0.7_0.16_162/0.7)]"
