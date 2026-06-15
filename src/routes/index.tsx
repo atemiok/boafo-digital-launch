@@ -9,12 +9,10 @@ import {
   Loader2,
   CreditCard,
   Users,
-  Sparkles,
   Lock,
   LifeBuoy,
   Mail,
   Phone,
-  MapPin,
   CheckCircle2,
   Leaf,
   Building2,
@@ -122,13 +120,6 @@ const cardHover = {
   hover: { y: -6, transition: { duration: 0.4, ease: EASE } },
 };
 
-const float: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 1.2, ease: EASE },
-  },
-};
 
 /* ---------- Page ---------- */
 function Landing() {
