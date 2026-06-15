@@ -669,15 +669,21 @@ function Footer() {
         <FooterCol
           title="Verticals"
           links={[
-            "Role-Based Portals",
-            "M-Pesa Integration",
-            "Green Energy Infrastructure",
-            "Property Management",
+            { label: "Role-Based Portals", href: "#verticals" },
+            { label: "M-Pesa Integration", href: "#verticals" },
+            { label: "Green Energy Infrastructure", href: "#verticals" },
+            { label: "Property Management", href: "#verticals" },
           ]}
         />
         <FooterCol
           title="Company"
-          links={["Why Boafo", "Engagement Process", "Case Studies", "Contact"]}
+          links={[
+            { label: "Why Boafo", href: "#guarantee" },
+            { label: "Live Simulator", href: "#top" },
+            { label: "Book Discovery", href: "#contact" },
+            { label: "WhatsApp Us", href: "https://wa.me/254737575156" },
+            { label: "Email", href: "mailto:info@boafosolutions.com" },
+          ]}
         />
       </div>
 
@@ -692,7 +698,13 @@ function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
   return (
     <div>
       <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground">
@@ -700,9 +712,15 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
       </h4>
       <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
         {links.map((l) => (
-          <li key={l}>
-            <a href="#" className="transition-colors hover:text-foreground">
-              {l}
+          <li key={l.label}>
+            <a
+              href={l.href}
+              className="transition-colors hover:text-foreground"
+              {...(l.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {l.label}
             </a>
           </li>
         ))}
