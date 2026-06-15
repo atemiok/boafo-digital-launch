@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -77,11 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Boafo Solutions — Digital Backbone for Modern Enterprises" },
-      { name: "description", content: "Custom web portals, automated B2B workflows, and smart energy integrations engineered for scale." },
+      { title: "Custom Business Portals & Automation Systems Kenya | Boafo Solutions" },
+      { name: "description", content: "We build custom web portals, automated business workflows, and green energy software for Kenyan enterprises. Replace spreadsheets with secure, reliable systems." },
       { name: "author", content: "Boafo Solutions" },
-      { property: "og:title", content: "Boafo Solutions — Digital Backbone for Modern Enterprises" },
-      { property: "og:description", content: "Custom web portals, automated B2B workflows, and smart energy integrations engineered for scale." },
+      { property: "og:title", content: "Custom Business Portals & Automation Systems Kenya | Boafo Solutions" },
+      { property: "og:description", content: "We build custom web portals, automated business workflows, and green energy software for Kenyan enterprises." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@boafosolutions" },
@@ -120,6 +121,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Toaster theme="dark" position="top-center" richColors />
     </QueryClientProvider>
   );
 }
