@@ -6,7 +6,8 @@ const ContactSchema = z.object({
   company: z.string().trim().min(1, "Company required").max(150),
   email: z.string().trim().email("Valid email required").max(200),
   phone: z.string().trim().min(7, "Phone required").max(30),
-  message: z.string().trim().min(5, "Tell us a bit more").max(2000),
+  bottleneck: z.string().trim().min(1, "Pick a bottleneck").max(80),
+  message: z.string().trim().max(2000).optional().default(""),
 });
 
 export const sendContactRequest = createServerFn({ method: "POST" })
@@ -15,15 +16,15 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL ?? "hello@boafosolutions.com";
 
-    const subject = `New project estimate request — ${data.company}`;
+    const subject = `New architecture discovery — ${data.company}`;
     const html = `
-      <h2>New Project Estimate Request</h2>
+      <h2>New Architecture Discovery Request</h2>
       <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
       <p><strong>Company:</strong> ${escapeHtml(data.company)}</p>
       <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
-      <p><strong>Project details:</strong></p>
-      <p>${escapeHtml(data.message).replace(/\n/g, "<br/>")}</p>
+      <p><strong>Phone (WhatsApp):</strong> ${escapeHtml(data.phone)}</p>
+      <p><strong>Primary system bottleneck:</strong> ${escapeHtml(data.bottleneck)}</p>
+      ${data.message ? `<p><strong>Notes:</strong></p><p>${escapeHtml(data.message).replace(/\n/g, "<br/>")}</p>` : ""}
     `;
 
     // If Resend isn't configured yet, accept the lead so the UI works
