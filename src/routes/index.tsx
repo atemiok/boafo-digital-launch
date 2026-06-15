@@ -7,21 +7,23 @@ import {
   ArrowRight,
   ShieldCheck,
   Loader2,
-  Workflow,
   CreditCard,
-  BarChart3,
   Users,
   Sparkles,
-  Bot,
   Lock,
   LifeBuoy,
   Mail,
   Phone,
   MapPin,
   CheckCircle2,
+  Leaf,
+  Building2,
+  PlugZap,
+  BarChart3,
 } from "lucide-react";
 import { sendContactRequest } from "@/lib/contact.functions";
 import { BoafoLogo } from "@/components/BoafoLogo";
+import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,6 +57,43 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Boafo Solutions",
+          url: "https://boafosolutions.com",
+          description:
+            "Premium custom software and web portal development agency in Nairobi, Kenya. Specialists in M-Pesa integration, role-based platforms, property management software, and business automation.",
+          areaServed: [
+            { "@type": "Country", name: "Kenya" },
+            { "@type": "Place", name: "East Africa" },
+          ],
+          serviceType: [
+            "Custom software development",
+            "Web portal development",
+            "M-Pesa API integration",
+            "Property management software",
+            "Business automation software",
+          ],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Nairobi",
+            addressCountry: "KE",
+          },
+          email: "hello@boafosolutions.com",
+          knowsAbout: [
+            "Role-based access control",
+            "M-Pesa Daraja API",
+            "Property management portals",
+            "Green energy asset tracking",
+            "Enterprise reporting dashboards",
+          ],
+        }),
+      },
+    ],
   }),
   component: Landing,
 });
@@ -81,7 +120,7 @@ function Landing() {
       <Nav />
       <main>
         <Hero />
-        <Capabilities />
+        <Verticals />
         <Guarantee />
         <Contact />
       </main>
@@ -93,8 +132,8 @@ function Landing() {
 /* ---------- Floating Nav ---------- */
 function Nav() {
   const links = [
-    { href: "#capabilities", label: "Capabilities" },
-    { href: "#guarantee", label: "Why Boafo" },
+    { href: "#verticals", label: "Verticals" },
+    { href: "#guarantee", label: "Guarantee" },
     { href: "#contact", label: "Contact" },
   ];
   return (
@@ -121,10 +160,10 @@ function Nav() {
         </nav>
         <a
           href="#contact"
-          aria-label="Request a project estimate"
+          aria-label="Initiate architecture discovery"
           className="btn-mint inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold"
         >
-          Get Estimate
+          Discovery
           <ArrowRight className="h-3.5 w-3.5" />
         </a>
       </motion.div>
@@ -132,18 +171,11 @@ function Nav() {
   );
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero + Reconciliation Canvas ---------- */
 function Hero() {
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden pt-36 pb-24 sm:pt-44 sm:pb-32"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{ background: "var(--gradient-hero)" }}
-      />
+    <section id="top" className="relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
 
       <motion.div
@@ -157,24 +189,24 @@ function Hero() {
           className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
-          Engineered in Nairobi, Kenya
+          Engineered in Nairobi for the African enterprise
         </motion.div>
 
         <motion.h1
           variants={fadeUp}
           className="text-balance text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
         >
-          We build great websites and{" "}
-          <span className="text-gradient">custom webapps.</span>
+          We build great websites, custom webapps, and{" "}
+          <span className="text-gradient">autonomous business engines.</span>
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
           className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
         >
-          From stunning marketing sites to complex, role-based secure platforms.
-          We engineer business automation software and custom web solutions that
-          scale Kenyan enterprises.
+          From high-conversion corporate web solutions to complex, role-based
+          secure platforms. We replace manual friction with bulletproof software
+          engineered for the African enterprise landscape.
         </motion.p>
 
         <motion.div
@@ -183,84 +215,70 @@ function Hero() {
         >
           <a
             href="#contact"
-            aria-label="Request a project estimate"
+            aria-label="Initiate architecture discovery"
             className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
           >
-            Request a Project Estimate
+            Initiate Architecture Discovery
             <ArrowRight className="h-4 w-4" />
           </a>
           <a
-            href="#capabilities"
+            href="#verticals"
             className="btn-outline inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
           >
-            See what we build
+            Explore Core Verticals
           </a>
         </motion.div>
+      </motion.div>
 
-        <motion.div
-          variants={fadeUp}
-          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4"
-        >
-          {[
-            { v: "M-Pesa", l: "Native integration" },
-            { v: "Role-Based", l: "Multi-tenant access" },
-            { v: "Cloud", l: "99.9% uptime" },
-            { v: "Owned", l: "Code is yours" },
-          ].map((s) => (
-            <div key={s.l} className="bg-surface px-4 py-5 text-center">
-              <div className="text-xl font-bold text-foreground sm:text-2xl">
-                {s.v}
-              </div>
-              <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
-                {s.l}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+      {/* Interactive cornerstone */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+        className="mx-auto mt-14 max-w-6xl px-5 sm:px-8"
+      >
+        <ReconciliationCanvas />
       </motion.div>
     </section>
   );
 }
 
-/* ---------- Capabilities (Bento Grid) ---------- */
-function Capabilities() {
+/* ---------- Core Engineering Verticals (Bento) ---------- */
+function Verticals() {
   const items = [
     {
       icon: Users,
-      title: "Role-Based Access Platforms",
-      copy: "Secure, multi-tenant dashboards where admins, staff, and clients see exactly what they need — nothing more.",
+      title: "Role-Based Secure Platforms & Portals",
+      copy: "Granular role-based access control (RBAC). Your field agents log operational updates, your accountants reconcile numbers, and you monitor everything from an executive command center. Complete data isolation with bank-grade security.",
       span: "md:col-span-4",
       accent: true,
     },
     {
       icon: CreditCard,
-      title: "M-Pesa & API Workflows",
-      copy: "Seamless M-Pesa payments and reconciliation, plus third-party API integrations (SMS, CRB, ERPs).",
+      title: "M-Pesa & API Workflow Choreography",
+      copy: "Real-time payment reconciliation. Our engines plug directly into local payment switches to automatically capture, validate, and post transactions straight to your internal ledgers — ending manual tracking forever.",
       span: "md:col-span-2",
     },
     {
-      icon: BarChart3,
-      title: "Management Reporting",
-      copy: "Live, automated analytics and data visualization to track your business health at a glance.",
+      icon: Leaf,
+      title: "Green Energy & Smart Asset Infrastructure",
+      copy: "Custom web solutions for utility tracking and green energy distribution. Monitor smart assets, automate consumption reporting, and manage complex multi-tenant billing models effortlessly.",
       span: "md:col-span-2",
     },
     {
-      icon: Workflow,
-      title: "Customer Self-Service",
-      copy: "Interactive portals letting your clients manage their own accounts, requests, and documents.",
+      icon: Building2,
+      title: "Advanced Property Management Software",
+      copy: "Turnkey digital systems for large-scale real estate. Automate utility billing, run tenant self-service portals, generate automated invoice reminders, and view instant portfolio performance metrics.",
       span: "md:col-span-4",
     },
   ];
 
   return (
-    <section
-      id="capabilities"
-      className="relative border-y border-border bg-surface/40 py-24 sm:py-32"
-    >
+    <section id="verticals" className="relative border-y border-border bg-surface/40 py-24 sm:py-32">
       <SectionHeader
-        eyebrow="Core Capabilities"
-        title="The systems behind serious Kenyan businesses."
-        subtitle="Four production-grade building blocks we tailor and ship for property managers, fintechs, logistics operators, and SACCOs."
+        eyebrow="Core Engineering Verticals"
+        title="Four production-grade systems. Engineered for scale."
+        subtitle="Each vertical is a battle-tested foundation we tailor to your operations — shipped fast, owned forever."
       />
 
       <motion.div
@@ -301,32 +319,32 @@ function Capabilities() {
   );
 }
 
-/* ---------- Guarantee ---------- */
+/* ---------- Enterprise Guarantee ---------- */
 function Guarantee() {
   const pillars = [
     {
-      icon: Bot,
-      title: "Complete Business Automation",
-      copy: "Replace manual data entry, spreadsheet juggling, and copy-paste reporting with intelligent, automated systems that just run.",
+      icon: PlugZap,
+      title: "Deep API Integrations",
+      copy: "Seamless connection to CRB bureaus, local SMS aggregators, payment gateways, and existing ERPs — so your stack finally speaks one language.",
     },
     {
-      icon: Lock,
-      title: "Rock-Solid Security",
-      copy: "Bank-grade encryption, hardened authentication, daily off-site backups — your operational data is protected end-to-end.",
+      icon: BarChart3,
+      title: "Management Reporting & Analytics",
+      copy: "Beautifully structured visual data feeds that surface revenue leakages and operational risk before they hit your bottom line.",
     },
     {
       icon: LifeBuoy,
-      title: "Support After Launch",
-      copy: "We don't just hand over the code. We provide continuous maintenance, server monitoring, and feature upgrades.",
+      title: "Uncompromising Support After Launch",
+      copy: "We don't ship and disappear. Continuous server architecture optimization, proactive maintenance, and dedicated lifecycle support.",
     },
   ];
 
   return (
     <section id="guarantee" className="relative py-24 sm:py-32">
       <SectionHeader
-        eyebrow="The Boafo Guarantee"
-        title="Built for Kenya, supported for life."
-        subtitle="We ship systems we'd be proud to run ourselves — and we stay on to look after them long after launch day."
+        eyebrow="The Enterprise Guarantee"
+        title="Built for Kenya. Engineered for the long run."
+        subtitle="The three commitments that separate Boafo from freelancers, agencies, and off-the-shelf templates."
       />
 
       <motion.div
@@ -346,11 +364,30 @@ function Guarantee() {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Trust strip with localized keywords for SEO */}
+      <div className="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
+        <div className="rounded-2xl border border-border bg-surface/40 p-5 text-center text-xs text-muted-foreground sm:text-sm">
+          Trusted as <strong className="text-foreground/90">portal development company Nairobi</strong>, with deep expertise in{" "}
+          <strong className="text-foreground/90">business automation software Kenya</strong> and{" "}
+          <strong className="text-foreground/90">M-Pesa integration</strong>.
+        </div>
+      </div>
     </section>
   );
 }
 
 /* ---------- Contact ---------- */
+const BOTTLENECKS = [
+  "Manual M-Pesa reconciliation",
+  "Spreadsheet-driven operations",
+  "WhatsApp-based workflows",
+  "Disconnected property management",
+  "Smart asset / IoT reporting",
+  "Custom corporate website",
+  "Other",
+];
+
 function Contact() {
   const send = useServerFn(sendContactRequest);
   const [loading, setLoading] = useState(false);
@@ -359,13 +396,17 @@ function Contact() {
     company: "",
     email: "",
     phone: "",
+    bottleneck: BOTTLENECKS[0],
     message: "",
   });
 
   const onChange =
     (k: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setForm((f) => ({ ...f, [k]: e.target.value }));
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -373,11 +414,17 @@ function Contact() {
     setLoading(true);
     try {
       await send({ data: form });
-      toast.success("Request sent — we'll be in touch within one business day.");
-      setForm({ name: "", company: "", email: "", phone: "", message: "" });
+      toast.success("Request received — we'll be in touch within one business day.");
+      setForm({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        bottleneck: BOTTLENECKS[0],
+        message: "",
+      });
     } catch (err) {
-      const msg =
-        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      const msg = err instanceof Error ? err.message : "Something went wrong.";
       toast.error(msg);
     } finally {
       setLoading(false);
@@ -402,21 +449,21 @@ function Contact() {
           <div className="grid gap-10 lg:grid-cols-5 lg:items-start">
             <div className="min-w-0 lg:col-span-2">
               <p className="text-xs font-mono uppercase tracking-widest text-primary">
-                Contact
+                Architecture Discovery
               </p>
               <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
-                Tell us about your project.
+                Tell us where the friction lives.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Whether it's a polished marketing site or a full role-based platform
-                with M-Pesa baked in — share what you have in mind. We'll respond
-                within one business day with a clear, no-pressure plan.
+                One 30-minute call with a senior engineer. We'll diagnose your
+                primary bottleneck and return a clear, fixed-price architecture
+                plan — no pressure, no jargon.
               </p>
               <ul className="mt-6 space-y-2.5 text-sm text-muted-foreground">
                 {[
-                  "Free 30-minute discovery call",
-                  "Clear, fixed pricing — no surprises",
-                  "You own everything we build",
+                  "Senior engineer, not a sales rep",
+                  "Fixed-price scope, no surprises",
+                  "Full source ownership at delivery",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-primary" />
@@ -436,63 +483,61 @@ function Contact() {
 
             <form
               onSubmit={onSubmit}
-              aria-label="Project estimate request form"
+              aria-label="Architecture discovery request form"
               className="space-y-4 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur lg:col-span-3"
             >
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field
-                  label="Name"
-                  id="name"
-                  value={form.name}
-                  onChange={onChange("name")}
-                  placeholder="Jane Wanjiku"
-                />
-                <Field
-                  label="Company"
-                  id="company"
-                  value={form.company}
-                  onChange={onChange("company")}
-                  placeholder="Acacia Logistics Ltd"
-                />
-                <Field
-                  label="Email"
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={onChange("email")}
-                  placeholder="jane@company.co.ke"
-                />
-                <Field
-                  label="Phone"
-                  id="phone"
-                  type="tel"
-                  value={form.phone}
-                  onChange={onChange("phone")}
-                  placeholder="+254 7XX XXX XXX"
-                />
+                <Field label="Name" id="name" value={form.name} onChange={onChange("name")} placeholder="Jane Wanjiku" />
+                <Field label="Company" id="company" value={form.company} onChange={onChange("company")} placeholder="Acacia Holdings Ltd" />
+                <Field label="Corporate Email" id="email" type="email" value={form.email} onChange={onChange("email")} placeholder="jane@company.co.ke" />
+                <Field label="Phone (WhatsApp)" id="phone" type="tel" value={form.phone} onChange={onChange("phone")} placeholder="+254 7XX XXX XXX" />
               </div>
+
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="bottleneck"
+                  className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
+                >
+                  Primary System Bottleneck
+                </label>
+                <select
+                  id="bottleneck"
+                  aria-label="Primary system bottleneck"
+                  required
+                  value={form.bottleneck}
+                  onChange={onChange("bottleneck")}
+                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                >
+                  {BOTTLENECKS.map((b) => (
+                    <option key={b} value={b} className="bg-background text-foreground">
+                      {b}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="space-y-1.5">
                 <label
                   htmlFor="message"
                   className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
                 >
-                  Tell us about your project
+                  Anything else? <span className="normal-case text-muted-foreground/70">(optional)</span>
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
-                  required
-                  aria-label="Project description"
+                  rows={4}
+                  aria-label="Additional notes"
                   value={form.message}
                   onChange={onChange("message")}
-                  placeholder="e.g. We need a tenant portal with M-Pesa rent collection and an admin dashboard for our property managers…"
+                  placeholder="Optional context — current tools, team size, timeline…"
                   className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
                 />
               </div>
+
               <button
                 type="submit"
                 disabled={loading}
-                aria-label="Send project request"
+                aria-label="Send architecture discovery request"
                 className="btn-mint inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold disabled:opacity-70"
               >
                 {loading ? (
@@ -508,8 +553,7 @@ function Contact() {
                 )}
               </button>
               <p className="flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-                <ShieldCheck className="h-3 w-3 text-primary" /> Your details are
-                kept private
+                <ShieldCheck className="h-3 w-3 text-primary" /> Your details are kept private
               </p>
             </form>
           </div>
@@ -580,17 +624,17 @@ function Footer() {
           </div>
         </div>
         <FooterCol
-          title="Capabilities"
+          title="Verticals"
           links={[
             "Role-Based Portals",
             "M-Pesa Integration",
-            "Management Reporting",
-            "Customer Self-Service",
+            "Green Energy Infrastructure",
+            "Property Management",
           ]}
         />
         <FooterCol
           title="Company"
-          links={["Why Boafo", "Process", "Case Studies", "Contact"]}
+          links={["Why Boafo", "Engagement Process", "Case Studies", "Contact"]}
         />
       </div>
 
@@ -600,24 +644,13 @@ function Footer() {
           <p className="text-xs leading-relaxed text-muted-foreground/80">
             <Sparkles className="mr-1.5 inline h-3 w-3 text-primary" />
             Boafo Solutions is a premier{" "}
-            <strong className="text-foreground/90">
-              portal development company in Nairobi
-            </strong>
-            , specializing as{" "}
-            <strong className="text-foreground/90">
-              custom software developers in Kenya
-            </strong>
-            ,{" "}
-            <strong className="text-foreground/90">
-              M-Pesa integration developers
-            </strong>
-            , and creators of advanced{" "}
-            <strong className="text-foreground/90">
-              property management software
-            </strong>
-            . We design role-based web portals, business automation software, and
-            custom web solutions trusted by enterprises across Kenya and East
-            Africa.
+            <strong className="text-foreground/90">portal development company in Nairobi</strong>, recognized as senior{" "}
+            <strong className="text-foreground/90">web portal developers Kenya</strong> and{" "}
+            <strong className="text-foreground/90">custom software developers Kenya</strong>. Our team builds{" "}
+            <strong className="text-foreground/90">business automation software Kenya</strong>, serves as trusted{" "}
+            <strong className="text-foreground/90">M-Pesa integration developers Kenya</strong>, and engineers advanced{" "}
+            <strong className="text-foreground/90">property management software Kenya</strong> alongside bespoke{" "}
+            <strong className="text-foreground/90">custom web solutions</strong> for enterprises across East Africa.
           </p>
         </div>
       </div>
