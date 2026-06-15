@@ -15,13 +15,14 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL ?? "hello@boafosolutions.com";
 
-    const subject = `New demo request — ${data.company}`;
+    const subject = `New project estimate request — ${data.company}`;
     const html = `
-      <h2>New System Demo Request</h2>
+      <h2>New Project Estimate Request</h2>
       <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
       <p><strong>Company:</strong> ${escapeHtml(data.company)}</p>
-      <p><strong>WhatsApp / Phone:</strong> ${escapeHtml(data.phone)}</p>
-      <p><strong>Process to automate:</strong></p>
+      <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
+      <p><strong>Project details:</strong></p>
       <p>${escapeHtml(data.message).replace(/\n/g, "<br/>")}</p>
     `;
 
