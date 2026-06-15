@@ -1,0 +1,189 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, type Variants } from "framer-motion";
+import { ArrowRight, TrendingUp, Clock, Users } from "lucide-react";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+
+export const Route = createFileRoute("/projects")({
+  head: () => ({
+    meta: [
+      { title: "Projects — Business Automation Software Kenya | Boafo Solutions" },
+      {
+        name: "description",
+        content:
+          "Case studies of business automation software Kenya — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch. Real ROI numbers.",
+      },
+      { property: "og:title", content: "Projects — Boafo Solutions" },
+      {
+        property: "og:description",
+        content:
+          "Real ROI from M-Pesa reconciliation, tenant portals, IoT telemetry, and logistics dispatch projects.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/projects" },
+    ],
+    links: [{ rel: "canonical", href: "/projects" }],
+  }),
+  component: ProjectsPage,
+});
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { delay: i * 0.05, duration: 0.65, ease: EASE },
+  }),
+};
+
+const CASES = [
+  {
+    sector: "SACCO · Retail",
+    title: "Auto-reconciled M-Pesa ledger for a 12-branch SACCO",
+    body:
+      "Replaced a WhatsApp + Excel reconciliation workflow with a Daraja-powered ledger. Every Paybill payment now matches to an invoice and posts to the GL in under 2 seconds.",
+    metrics: [
+      { label: "Leakage recovered", value: "KES 80k / mo" },
+      { label: "Daily admin time", value: "3.5h → 0" },
+      { label: "Match rate", value: "99.7%" },
+    ],
+  },
+  {
+    sector: "Real Estate",
+    title: "Tenant self-service portal across 480 units",
+    body:
+      "Prorated billing, STK-push rent payments, automatic receipts, and a board dashboard for occupancy, arrears, and yield — replacing notebooks and shared Excel files.",
+    metrics: [
+      { label: "Late rent", value: "38% → 9%" },
+      { label: "Disputes / mo", value: "22 → 2" },
+      { label: "Report build", value: "7d → instant" },
+    ],
+  },
+  {
+    sector: "Solar / Utilities",
+    title: "Unified IoT telemetry & prepaid token vending",
+    body:
+      "Combined three meter brands into one telemetry feed. Customers vend tokens via M-Pesa; the CFO sees live consumption across every site on one map.",
+    metrics: [
+      { label: "Meter errors", value: "12% → 0.3%" },
+      { label: "Billing cycle", value: "30d → live" },
+      { label: "Monthly site visits", value: "4 → 0" },
+    ],
+  },
+  {
+    sector: "Logistics",
+    title: "Dispatch console for a 40-rider distribution network",
+    body:
+      "Lightweight Android PWA for riders, live dispatch console for HQ, and customer SMS with tracking links — plus auto-calculated commissions.",
+    metrics: [
+      { label: "Stock-outs / wk", value: "12 → 1" },
+      { label: "ETA accuracy", value: "44% → 96%" },
+      { label: "Commission reconciliation", value: "Daily → auto" },
+    ],
+  },
+];
+
+const STATS = [
+  { icon: TrendingUp, value: "32+", label: "production systems shipped" },
+  { icon: Users, value: "14", label: "Kenyan enterprises served" },
+  { icon: Clock, value: "<8wk", label: "average time to first launch" },
+];
+
+function ProjectsPage() {
+  return (
+    <div className="min-h-screen bg-background text-foreground antialiased">
+      <SiteNav />
+      <main className="pt-32 sm:pt-36">
+        <section className="relative overflow-hidden pb-10">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
+          <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">
+            <motion.p variants={fadeUp} initial="hidden" animate="visible" className="text-xs font-mono uppercase tracking-widest text-primary">
+              Projects
+            </motion.p>
+            <motion.h1
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={1}
+              className="mt-3 text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+            >
+              Real systems. <span className="text-gradient">Real ROI.</span>
+            </motion.h1>
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={2}
+              className="mx-auto mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
+            >
+              Snapshots from custom software developers Kenya engagements —
+              property management software Kenya, M-Pesa integration developers
+              Kenya, and IoT operators.
+            </motion.p>
+          </div>
+
+          {/* Stats strip */}
+          <div className="mx-auto mt-8 grid max-w-4xl grid-cols-3 gap-3 px-5 sm:px-8">
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={i}
+                className="solid-card flex flex-col items-center gap-1.5 p-4 text-center"
+              >
+                <s.icon className="h-4 w-4 text-primary" />
+                <p className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">{s.value}</p>
+                <p className="text-[11px] uppercase tracking-wider text-muted-foreground">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pb-20">
+          <div className="mx-auto grid max-w-6xl gap-4 px-5 sm:px-8 md:grid-cols-2">
+            {CASES.map((c, i) => (
+              <motion.article
+                key={c.title}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                custom={i}
+                whileHover={{ y: -5, transition: { duration: 0.35, ease: EASE } }}
+                className="solid-card relative overflow-hidden p-6 sm:p-7"
+              >
+                <p className="text-[10px] font-mono uppercase tracking-widest text-primary">{c.sector}</p>
+                <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground sm:text-xl">{c.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  {c.metrics.map((m) => (
+                    <div key={m.label} className="rounded-lg border border-border bg-background/60 p-2.5">
+                      <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground">{m.label}</p>
+                      <p className="mt-0.5 text-sm font-bold text-primary">{m.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl px-5 text-center sm:px-8">
+            <Link
+              to="/contact"
+              className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+            >
+              Make yours next
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
