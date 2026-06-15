@@ -123,7 +123,7 @@ const cardHover = {
 /* ---------- Page ---------- */
 function Landing() {
   return (
-    <div className="dark min-h-screen bg-background text-foreground antialiased">
+    <div className="min-h-screen bg-background text-foreground antialiased">
       <Nav />
       <main>
         <Hero />
@@ -135,6 +135,7 @@ function Landing() {
     </div>
   );
 }
+
 
 /* ---------- Floating Nav ---------- */
 function Nav() {
@@ -148,8 +149,9 @@ function Nav() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-background/55 px-3 pl-5 backdrop-blur-xl shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)]"
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-white/75 px-3 pl-5 shadow-[0_8px_30px_-12px_oklch(0.22_0.04_260/0.12)] backdrop-blur-xl"
+
       >
         <a href="#top" aria-label="Boafo Solutions home" className="flex items-center">
           <BoafoLogo />
@@ -193,15 +195,16 @@ function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur"
+          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
         >
           <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]"
+            className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_oklch(0.7_0.16_162/0.7)]"
             animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           />
           Built to make hard things effortless
         </motion.div>
+
 
         <motion.h1
           variants={fadeUp}
@@ -285,7 +288,7 @@ function Verticals() {
   ];
 
   return (
-    <section id="verticals" className="relative border-y border-border bg-surface/40 py-24 sm:py-32">
+    <section id="verticals" className="relative border-y border-border bg-secondary/40 py-24 sm:py-32">
       <SectionHeader
         eyebrow="What we build"
         title="Four production-grade systems. Engineered to make your day easier."
@@ -306,26 +309,26 @@ function Verticals() {
             initial="rest"
             whileHover="hover"
             animate="rest"
-            className={`glass-card group relative overflow-hidden p-7 sm:p-8 ${it.span}`}
+            className={`solid-card group relative overflow-hidden p-7 sm:p-8 ${it.span}`}
           >
             <motion.div variants={cardHover} className="relative flex h-full flex-col">
               {it.accent && (
                 <motion.div
                   aria-hidden
-                  className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
+                  className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
                   style={{ background: "var(--gradient-electric)" }}
-                  animate={{ scale: [1, 1.15, 1], opacity: [0.35, 0.55, 0.35] }}
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.35, 0.2] }}
                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 />
               )}
               <motion.div
                 whileHover={{ rotate: -6, scale: 1.08 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/60"
+                className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-primary/8 text-primary transition-colors group-hover:border-primary/50"
               >
                 <it.icon className="h-5 w-5" />
               </motion.div>
-              <h3 className="mt-5 text-lg font-semibold tracking-tight sm:text-xl">
+              <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
                 {it.title}
               </h3>
               <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
@@ -333,6 +336,7 @@ function Verticals() {
               </p>
             </motion.div>
           </motion.article>
+
         ))}
       </motion.div>
     </section>
@@ -379,26 +383,28 @@ function Guarantee() {
             key={p.title}
             variants={fadeUp}
             whileHover={{ y: -6, transition: { duration: 0.4, ease: EASE } }}
-            className="glass-card p-7 sm:p-8"
+            className="solid-card p-7 sm:p-8"
           >
             <motion.div
               whileHover={{ scale: 1.08, rotate: -4 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface text-primary"
+              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/8 text-primary"
             >
               <p.icon className="h-5 w-5" />
             </motion.div>
-            <h3 className="mt-5 text-lg font-semibold tracking-tight">{p.title}</h3>
+            <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground">{p.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.copy}</p>
+
           </motion.div>
         ))}
       </motion.div>
 
       <div className="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
-        <div className="rounded-2xl border border-border bg-surface/40 p-5 text-center text-xs text-muted-foreground sm:text-sm">
+        <div className="rounded-2xl border border-border bg-white/70 p-5 text-center text-xs text-muted-foreground shadow-sm sm:text-sm">
           Quiet software for loud businesses — <strong className="text-foreground/90">automation that pays for itself</strong>, integrations that hold, and reporting you'll actually open on a Monday.
         </div>
       </div>
+
     </section>
   );
 }
@@ -470,7 +476,7 @@ function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-          className="glass-card overflow-hidden p-8 sm:p-12"
+          className="solid-card overflow-hidden p-8 sm:p-12"
         >
           <div className="grid gap-10 lg:grid-cols-5 lg:items-start">
             <div className="min-w-0 lg:col-span-2">
@@ -516,7 +522,7 @@ function Contact() {
             <form
               onSubmit={onSubmit}
               aria-label="Architecture discovery request form"
-              className="space-y-4 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur lg:col-span-3"
+              className="space-y-4 rounded-2xl border border-border bg-secondary/40 p-6 lg:col-span-3"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Name" id="name" value={form.name} onChange={onChange("name")} placeholder="Jane Wanjiku" />
@@ -538,11 +544,12 @@ function Contact() {
                   required
                   value={form.bottleneck}
                   onChange={onChange("bottleneck")}
-                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
                 >
                   {BOTTLENECKS.map((b) => (
-                    <option key={b} value={b} className="bg-background text-foreground">
+                    <option key={b} value={b} className="bg-white text-foreground">
                       {b}
+
                     </option>
                   ))}
                 </select>
@@ -562,7 +569,8 @@ function Contact() {
                   value={form.message}
                   onChange={onChange("message")}
                   placeholder="Optional context — current tools, team size, timeline…"
-                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+
                 />
               </div>
 
@@ -626,7 +634,7 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+        className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
       />
     </div>
   );
@@ -635,7 +643,7 @@ function Field({
 /* ---------- Footer ---------- */
 function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/40">
+    <footer className="border-t border-border bg-secondary/40">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <BoafoLogo />
