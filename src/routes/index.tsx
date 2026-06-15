@@ -21,6 +21,7 @@ import {
 import { sendContactRequest } from "@/lib/contact.functions";
 import { BoafoLogo } from "@/components/BoafoLogo";
 import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -167,14 +168,17 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          aria-label="Initiate architecture discovery"
-          className="btn-mint inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold"
-        >
-          Discovery
-          <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            aria-label="Initiate architecture discovery"
+            className="btn-mint inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold"
+          >
+            Discovery
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </motion.div>
     </header>
   );
