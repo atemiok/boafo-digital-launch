@@ -38,7 +38,7 @@ export function BoafoLogo({ className, showWordmark = true, size = 28 }: Props) 
           rx="10"
           stroke="url(#boafo-grad)"
           strokeWidth="1.6"
-          fill="oklch(1 0 0)"
+          fill="oklch(0.24 0.028 260 / 0.6)"
         />
         <path
           d="M11 27c0-9 7-16 16-16 1.2 0 2.3.1 3.4.3.2 1.1.3 2.2.3 3.4 0 9-7 16-16 16-1.2 0-2.3-.1-3.4-.3-.2-1.1-.3-2.2-.3-3.4Z"
