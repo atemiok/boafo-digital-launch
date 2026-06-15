@@ -9,7 +9,6 @@ import {
   Loader2,
   CreditCard,
   Users,
-  Lock,
   LifeBuoy,
   Mail,
   Phone,
