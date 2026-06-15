@@ -5,8 +5,8 @@ type Props = {
 };
 
 /**
- * Boafo Solutions logo — geometric digital node entwined with a leaf,
- * rendered as an SVG so it scales crisply at any size.
+ * Boafo Solutions logo — geometric digital node entwined with a leaf.
+ * Tuned for the pristine light theme.
  */
 export function BoafoLogo({ className, showWordmark = true, size = 28 }: Props) {
   return (
@@ -22,15 +22,14 @@ export function BoafoLogo({ className, showWordmark = true, size = 28 }: Props) 
       >
         <defs>
           <linearGradient id="boafo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="oklch(0.85 0.18 165)" />
-            <stop offset="100%" stopColor="oklch(0.7 0.18 215)" />
+            <stop offset="0%" stopColor="oklch(0.7 0.16 162)" />
+            <stop offset="100%" stopColor="oklch(0.55 0.22 265)" />
           </linearGradient>
           <linearGradient id="boafo-leaf" x1="10" y1="6" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="oklch(0.9 0.18 165)" />
-            <stop offset="100%" stopColor="oklch(0.62 0.16 170)" />
+            <stop offset="0%" stopColor="oklch(0.78 0.16 162)" />
+            <stop offset="100%" stopColor="oklch(0.6 0.18 175)" />
           </linearGradient>
         </defs>
-        {/* Outer node ring */}
         <rect
           x="2.5"
           y="2.5"
@@ -39,24 +38,21 @@ export function BoafoLogo({ className, showWordmark = true, size = 28 }: Props) 
           rx="10"
           stroke="url(#boafo-grad)"
           strokeWidth="1.6"
-          fill="oklch(0.21 0.028 240)"
+          fill="oklch(1 0 0)"
         />
-        {/* Leaf body */}
         <path
           d="M11 27c0-9 7-16 16-16 1.2 0 2.3.1 3.4.3.2 1.1.3 2.2.3 3.4 0 9-7 16-16 16-1.2 0-2.3-.1-3.4-.3-.2-1.1-.3-2.2-.3-3.4Z"
           fill="url(#boafo-leaf)"
         />
-        {/* Leaf vein */}
         <path
           d="M11 27c5-5 10-10 19-15"
-          stroke="oklch(0.18 0.04 200)"
+          stroke="oklch(1 0 0)"
           strokeWidth="1.4"
           strokeLinecap="round"
-          opacity="0.6"
+          opacity="0.85"
         />
-        {/* Digital node dots */}
-        <circle cx="11" cy="27" r="2.2" fill="oklch(0.7 0.18 215)" />
-        <circle cx="30" cy="11" r="2.2" fill="oklch(0.88 0.18 165)" />
+        <circle cx="11" cy="27" r="2.2" fill="oklch(0.55 0.22 265)" />
+        <circle cx="30" cy="11" r="2.2" fill="oklch(0.7 0.16 162)" />
       </svg>
       {showWordmark && (
         <span className="text-base font-bold tracking-tight text-foreground">
