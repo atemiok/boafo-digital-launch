@@ -150,7 +150,7 @@ function Nav() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-white/75 px-3 pl-5 shadow-[0_8px_30px_-12px_oklch(0.22_0.04_260/0.12)] backdrop-blur-xl"
+        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-background/70 px-3 pl-5 shadow-lg backdrop-blur-xl"
 
       >
         <a href="#top" aria-label="Boafo Solutions home" className="flex items-center">
@@ -195,7 +195,7 @@ function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
+          className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
         >
           <motion.span
             className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_oklch(0.7_0.16_162/0.7)]"
@@ -400,7 +400,7 @@ function Guarantee() {
       </motion.div>
 
       <div className="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
-        <div className="rounded-2xl border border-border bg-white/70 p-5 text-center text-xs text-muted-foreground shadow-sm sm:text-sm">
+        <div className="rounded-2xl border border-border bg-background/50 p-5 text-center text-xs text-muted-foreground shadow-sm sm:text-sm backdrop-blur">
           Quiet software for loud businesses — <strong className="text-foreground/90">automation that pays for itself</strong>, integrations that hold, and reporting you'll actually open on a Monday.
         </div>
       </div>
@@ -544,10 +544,10 @@ function Contact() {
                   required
                   value={form.bottleneck}
                   onChange={onChange("bottleneck")}
-                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
                 >
                   {BOTTLENECKS.map((b) => (
-                    <option key={b} value={b} className="bg-white text-foreground">
+                    <option key={b} value={b} className="bg-background text-foreground">
                       {b}
 
                     </option>
@@ -569,7 +569,7 @@ function Contact() {
                   value={form.message}
                   onChange={onChange("message")}
                   placeholder="Optional context — current tools, team size, timeline…"
-                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
 
                 />
               </div>
@@ -634,7 +634,7 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+        className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
       />
     </div>
   );
@@ -669,15 +669,21 @@ function Footer() {
         <FooterCol
           title="Verticals"
           links={[
-            "Role-Based Portals",
-            "M-Pesa Integration",
-            "Green Energy Infrastructure",
-            "Property Management",
+            { label: "Role-Based Portals", href: "#verticals" },
+            { label: "M-Pesa Integration", href: "#verticals" },
+            { label: "Green Energy Infrastructure", href: "#verticals" },
+            { label: "Property Management", href: "#verticals" },
           ]}
         />
         <FooterCol
           title="Company"
-          links={["Why Boafo", "Engagement Process", "Case Studies", "Contact"]}
+          links={[
+            { label: "Why Boafo", href: "#guarantee" },
+            { label: "Live Simulator", href: "#top" },
+            { label: "Book Discovery", href: "#contact" },
+            { label: "WhatsApp Us", href: "https://wa.me/254737575156" },
+            { label: "Email", href: "mailto:info@boafosolutions.com" },
+          ]}
         />
       </div>
 
@@ -692,7 +698,13 @@ function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
   return (
     <div>
       <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground">
@@ -700,9 +712,15 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
       </h4>
       <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
         {links.map((l) => (
-          <li key={l}>
-            <a href="#" className="transition-colors hover:text-foreground">
-              {l}
+          <li key={l.label}>
+            <a
+              href={l.href}
+              className="transition-colors hover:text-foreground"
+              {...(l.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {l.label}
             </a>
           </li>
         ))}
