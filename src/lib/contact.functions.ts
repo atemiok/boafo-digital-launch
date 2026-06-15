@@ -4,6 +4,7 @@ import { z } from "zod";
 const ContactSchema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
   company: z.string().trim().min(1, "Company required").max(150),
+  email: z.string().trim().email("Valid email required").max(200),
   phone: z.string().trim().min(7, "Phone required").max(30),
   message: z.string().trim().min(5, "Tell us a bit more").max(2000),
 });
@@ -14,13 +15,14 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL ?? "hello@boafosolutions.com";
 
-    const subject = `New demo request — ${data.company}`;
+    const subject = `New project estimate request — ${data.company}`;
     const html = `
-      <h2>New System Demo Request</h2>
+      <h2>New Project Estimate Request</h2>
       <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
       <p><strong>Company:</strong> ${escapeHtml(data.company)}</p>
-      <p><strong>WhatsApp / Phone:</strong> ${escapeHtml(data.phone)}</p>
-      <p><strong>Process to automate:</strong></p>
+      <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+      <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
+      <p><strong>Project details:</strong></p>
       <p>${escapeHtml(data.message).replace(/\n/g, "<br/>")}</p>
     `;
 
