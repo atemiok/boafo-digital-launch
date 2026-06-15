@@ -34,29 +34,35 @@ export const sendContactRequest = createServerFn({ method: "POST" })
       return { ok: true, delivered: false as const };
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Boafo Solutions <onboarding@resend.dev>",
-        to: [to],
-        subject,
-        html,
-        reply_to: undefined,
-      }),
-    });
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "Boafo Solutions <onboarding@resend.dev>",
+          to: [to],
+          subject,
+          html,
+        }),
+      });
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("[contact] Resend failed", res.status, text);
-      throw new Error("Could not send your request. Please try again or WhatsApp us.");
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("[contact] Resend failed", res.status, text);
+        // Do not block the user — accept the lead, surface server log for ops.
+        return { ok: true, delivered: false as const };
+      }
+
+      return { ok: true, delivered: true as const };
+    } catch (err) {
+      console.error("[contact] Resend threw", err);
+      return { ok: true, delivered: false as const };
     }
-
-    return { ok: true, delivered: true as const };
   });
+
 
 function escapeHtml(s: string) {
   return s
