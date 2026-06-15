@@ -9,12 +9,9 @@ import {
   Loader2,
   CreditCard,
   Users,
-  Sparkles,
-  Lock,
   LifeBuoy,
   Mail,
   Phone,
-  MapPin,
   CheckCircle2,
   Leaf,
   Building2,
@@ -83,7 +80,8 @@ export const Route = createFileRoute("/")({
             addressLocality: "Nairobi",
             addressCountry: "KE",
           },
-          email: "hello@boafosolutions.com",
+          email: "info@boafosolutions.com",
+          telephone: "+254737575156",
           knowsAbout: [
             "Role-based access control",
             "M-Pesa Daraja API",
@@ -99,19 +97,28 @@ export const Route = createFileRoute("/")({
 });
 
 /* ---------- Motion presets ---------- */
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.6, ease: [0.2, 0.8, 0.2, 1] },
+    filter: "blur(0px)",
+    transition: { delay: i * 0.06, duration: 0.85, ease: EASE },
   }),
 };
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
 };
+
+const cardHover = {
+  rest: { y: 0 },
+  hover: { y: -6, transition: { duration: 0.4, ease: EASE } },
+};
+
 
 /* ---------- Page ---------- */
 function Landing() {
@@ -188,8 +195,12 @@ function Hero() {
           variants={fadeUp}
           className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
-          Engineered in Nairobi for the African enterprise
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]"
+            animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          Built to make hard things effortless
         </motion.div>
 
         <motion.h1
@@ -204,9 +215,9 @@ function Hero() {
           variants={fadeUp}
           className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
         >
-          From high-conversion corporate web solutions to complex, role-based
-          secure platforms. We replace manual friction with bulletproof software
-          engineered for the African enterprise landscape.
+          From high-conversion corporate sites to complex, role-based secure
+          platforms. We turn the messy, manual parts of your business into
+          quiet, dependable software that just works.
         </motion.p>
 
         <motion.div
@@ -276,9 +287,9 @@ function Verticals() {
   return (
     <section id="verticals" className="relative border-y border-border bg-surface/40 py-24 sm:py-32">
       <SectionHeader
-        eyebrow="Core Engineering Verticals"
-        title="Four production-grade systems. Engineered for scale."
-        subtitle="Each vertical is a battle-tested foundation we tailor to your operations — shipped fast, owned forever."
+        eyebrow="What we build"
+        title="Four production-grade systems. Engineered to make your day easier."
+        subtitle="Each one is a battle-tested foundation we tailor to your workflow — shipped fast, owned forever."
       />
 
       <motion.div
@@ -292,26 +303,35 @@ function Verticals() {
           <motion.article
             key={it.title}
             variants={fadeUp}
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
             className={`glass-card group relative overflow-hidden p-7 sm:p-8 ${it.span}`}
           >
-            {it.accent && (
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
-                style={{ background: "var(--gradient-electric)" }}
-              />
-            )}
-            <div className="relative flex h-full flex-col">
-              <div className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/60">
+            <motion.div variants={cardHover} className="relative flex h-full flex-col">
+              {it.accent && (
+                <motion.div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
+                  style={{ background: "var(--gradient-electric)" }}
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.35, 0.55, 0.35] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+              <motion.div
+                whileHover={{ rotate: -6, scale: 1.08 }}
+                transition={{ duration: 0.5, ease: EASE }}
+                className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/60"
+              >
                 <it.icon className="h-5 w-5" />
-              </div>
+              </motion.div>
               <h3 className="mt-5 text-lg font-semibold tracking-tight sm:text-xl">
                 {it.title}
               </h3>
               <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
                 {it.copy}
               </p>
-            </div>
+            </motion.div>
           </motion.article>
         ))}
       </motion.div>
@@ -342,9 +362,9 @@ function Guarantee() {
   return (
     <section id="guarantee" className="relative py-24 sm:py-32">
       <SectionHeader
-        eyebrow="The Enterprise Guarantee"
-        title="Built for Kenya. Engineered for the long run."
-        subtitle="The three commitments that separate Boafo from freelancers, agencies, and off-the-shelf templates."
+        eyebrow="Our promise"
+        title="Built to last. Built to ease the everyday grind."
+        subtitle="Three commitments that separate Boafo from freelancers, agencies, and off-the-shelf templates."
       />
 
       <motion.div
@@ -355,22 +375,28 @@ function Guarantee() {
         className="mx-auto mt-14 grid max-w-7xl gap-5 px-5 sm:px-8 md:grid-cols-3"
       >
         {pillars.map((p) => (
-          <motion.div key={p.title} variants={fadeUp} className="glass-card p-7 sm:p-8">
-            <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface text-primary">
+          <motion.div
+            key={p.title}
+            variants={fadeUp}
+            whileHover={{ y: -6, transition: { duration: 0.4, ease: EASE } }}
+            className="glass-card p-7 sm:p-8"
+          >
+            <motion.div
+              whileHover={{ scale: 1.08, rotate: -4 }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface text-primary"
+            >
               <p.icon className="h-5 w-5" />
-            </div>
+            </motion.div>
             <h3 className="mt-5 text-lg font-semibold tracking-tight">{p.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.copy}</p>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Trust strip with localized keywords for SEO */}
       <div className="mx-auto mt-12 max-w-5xl px-5 sm:px-8">
         <div className="rounded-2xl border border-border bg-surface/40 p-5 text-center text-xs text-muted-foreground sm:text-sm">
-          Trusted as <strong className="text-foreground/90">portal development company Nairobi</strong>, with deep expertise in{" "}
-          <strong className="text-foreground/90">business automation software Kenya</strong> and{" "}
-          <strong className="text-foreground/90">M-Pesa integration</strong>.
+          Quiet software for loud businesses — <strong className="text-foreground/90">automation that pays for itself</strong>, integrations that hold, and reporting you'll actually open on a Monday.
         </div>
       </div>
     </section>
@@ -473,10 +499,16 @@ function Contact() {
               </ul>
               <div className="mt-8 space-y-2 text-sm text-muted-foreground">
                 <p className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-primary" /> hello@boafosolutions.com
+                  <Mail className="h-4 w-4 text-primary" />
+                  <a href="mailto:info@boafosolutions.com" className="hover:text-foreground transition-colors">
+                    info@boafosolutions.com
+                  </a>
                 </p>
                 <p className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-primary" /> Nairobi, Kenya
+                  <Phone className="h-4 w-4 text-primary" />
+                  <a href="tel:+254737575156" className="hover:text-foreground transition-colors">
+                    0737 575 156
+                  </a>
                 </p>
               </div>
             </div>
@@ -608,18 +640,21 @@ function Footer() {
         <div className="lg:col-span-2">
           <BoafoLogo />
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
-            Custom software developers in Kenya. Web portals, M-Pesa workflows,
-            and business automation — built to scale and supported for life.
+            Web portals, payment workflows, and business automation — built to
+            ease the everyday grind and supported for life.
           </p>
           <div className="mt-5 space-y-1.5 text-sm text-muted-foreground">
             <p className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-primary" /> hello@boafosolutions.com
+              <Mail className="h-4 w-4 text-primary" />
+              <a href="mailto:info@boafosolutions.com" className="hover:text-foreground transition-colors">
+                info@boafosolutions.com
+              </a>
             </p>
             <p className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-primary" /> +254 (0)7XX XXX XXX
-            </p>
-            <p className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-primary" /> Nairobi, Kenya
+              <Phone className="h-4 w-4 text-primary" />
+              <a href="tel:+254737575156" className="hover:text-foreground transition-colors">
+                0737 575 156
+              </a>
             </p>
           </div>
         </div>
@@ -638,22 +673,6 @@ function Footer() {
         />
       </div>
 
-      {/* Localized SEO crawler block */}
-      <div className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
-          <p className="text-xs leading-relaxed text-muted-foreground/80">
-            <Sparkles className="mr-1.5 inline h-3 w-3 text-primary" />
-            Boafo Solutions is a premier{" "}
-            <strong className="text-foreground/90">portal development company in Nairobi</strong>, recognized as senior{" "}
-            <strong className="text-foreground/90">web portal developers Kenya</strong> and{" "}
-            <strong className="text-foreground/90">custom software developers Kenya</strong>. Our team builds{" "}
-            <strong className="text-foreground/90">business automation software Kenya</strong>, serves as trusted{" "}
-            <strong className="text-foreground/90">M-Pesa integration developers Kenya</strong>, and engineers advanced{" "}
-            <strong className="text-foreground/90">property management software Kenya</strong> alongside bespoke{" "}
-            <strong className="text-foreground/90">custom web solutions</strong> for enterprises across East Africa.
-          </p>
-        </div>
-      </div>
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-8">
