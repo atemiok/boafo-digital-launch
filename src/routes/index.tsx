@@ -150,7 +150,7 @@ function Nav() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-white/75 px-3 pl-5 shadow-[0_8px_30px_-12px_oklch(0.22_0.04_260/0.12)] backdrop-blur-xl"
+        className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-background/70 px-3 pl-5 shadow-lg backdrop-blur-xl"
 
       >
         <a href="#top" aria-label="Boafo Solutions home" className="flex items-center">
