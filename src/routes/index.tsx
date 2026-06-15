@@ -21,6 +21,7 @@ import {
 import { sendContactRequest } from "@/lib/contact.functions";
 import { BoafoLogo } from "@/components/BoafoLogo";
 import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
