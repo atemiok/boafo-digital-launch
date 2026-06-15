@@ -569,7 +569,7 @@ function Contact() {
                   value={form.message}
                   onChange={onChange("message")}
                   placeholder="Optional context — current tools, team size, timeline…"
-                  className="w-full rounded-xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
 
                 />
               </div>
