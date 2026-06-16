@@ -109,6 +109,18 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         {/* Prevent theme flash — runs before paint */}
         <script dangerouslySetInnerHTML={{ __html: THEME_NO_FLASH_SCRIPT }} />
+        {/* Google tag (gtag.js) — present on every page */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-51JEWV0C1Z"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-51JEWV0C1Z');
+            `,
+          }}
+        />
         <HeadContent />
       </head>
       <body>
