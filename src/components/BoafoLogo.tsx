@@ -1,11 +1,19 @@
+import { useTheme } from "@/lib/theme";
+
 type Props = {
   className?: string;
 };
 
 export function BoafoLogo({ className }: Props) {
+  const { theme } = useTheme();
+  const src = theme === "dark" ? "/boafo-logo-light.svg" : "/boafo-logo-dark.svg";
+
   return (
-    <span className={`text-lg font-bold tracking-tight text-foreground ${className ?? ""}`}>
-      Boafo<span className="text-primary">.</span>
-    </span>
+    <img
+      src={src}
+      alt="Boafo Solutions"
+      className={`h-7 w-auto select-none ${className ?? ""}`}
+      draggable={false}
+    />
   );
 }
