@@ -506,14 +506,9 @@ function Bento() {
       />
       <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[200px]">
         {SERVICES.map((it, i) => (
-          <motion.article
+          <article
             key={it.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: i * 0.05, duration: 0.55, ease: EASE }}
-            whileHover={{ y: -4, transition: { duration: 0.35, ease: EASE } }}
-            className={`group relative overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all hover:border-primary/45 hover:shadow-xl ${it.span}`}
+            className={`group relative overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-xl ${it.span}`}
           >
             {it.accent && (
               <motion.div
