@@ -111,6 +111,7 @@ function HomePage() {
       <main>
         <Hero />
         <Bento />
+        <Partner />
         <Promise />
       </main>
       <SiteFooter />
@@ -120,7 +121,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16">
+    <section id="top" className="relative overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-12">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
 
@@ -132,7 +133,7 @@ function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
+          className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
         >
           <motion.span
             className="h-1.5 w-1.5 rounded-full bg-primary"
@@ -144,24 +145,23 @@ function Hero() {
 
         <motion.h1
           variants={fadeUp}
-          className="text-balance text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
+          className="text-balance text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
         >
-          We build great websites, custom webapps, and{" "}
+          Websites, custom webapps, and{" "}
           <span className="text-gradient">autonomous business engines.</span>
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
+          className="mx-auto mt-4 max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base"
         >
           From high-conversion corporate sites to complex, role-based secure
-          platforms. We replace manual friction with bulletproof software
-          engineered for the modern enterprise landscape.
+          platforms — engineered to replace manual friction with bulletproof software.
         </motion.p>
 
         <motion.div
           variants={fadeUp}
-          className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <Link
             to="/contact"
@@ -179,12 +179,12 @@ function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Interactive cornerstone */}
+      {/* Interactive cornerstone — visible above the fold */}
       <motion.div
-        initial={{ opacity: 0, y: 32 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
-        className="mx-auto mt-10 max-w-5xl px-5 sm:px-8"
+        transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
+        className="mx-auto mt-7 max-w-5xl px-5 sm:px-8"
       >
         <ReconciliationCanvas />
       </motion.div>
