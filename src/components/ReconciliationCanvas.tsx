@@ -197,7 +197,7 @@ export function ReconciliationCanvas() {
             Live Operations Simulator · {active.industry}
           </p>
           <h3 className="mt-1 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-            Pick a real Kenyan business pain. Watch Boafo dissolve it.
+            Pick a real business pain. Watch Boafo dissolve it.
           </h3>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground backdrop-blur">

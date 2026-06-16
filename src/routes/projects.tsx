@@ -7,11 +7,11 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Business Automation Software Kenya | Boafo Solutions" },
+      { title: "Projects — Business Automation Software | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Case studies of business automation software Kenya — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch. Real ROI numbers.",
+          "Case studies of business automation software — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch. Real ROI numbers.",
       },
       { property: "og:title", content: "Projects — Boafo Solutions" },
       {
@@ -87,7 +87,7 @@ const CASES = [
 
 const STATS = [
   { icon: TrendingUp, value: "32+", label: "production systems shipped" },
-  { icon: Users, value: "14", label: "Kenyan enterprises served" },
+  { icon: Users, value: "14", label: "enterprises served" },
   { icon: Clock, value: "<8wk", label: "average time to first launch" },
 ];
 
@@ -118,9 +118,8 @@ function ProjectsPage() {
               custom={2}
               className="mx-auto mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
             >
-              Snapshots from custom software developers Kenya engagements —
-              property management software Kenya, M-Pesa integration developers
-              Kenya, and IoT operators.
+              Snapshots from our custom software engagements — property
+              management platforms, M-Pesa integrations, and IoT operators.
             </motion.p>
           </div>
 

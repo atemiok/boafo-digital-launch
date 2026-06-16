@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, Phone, MessageCircle } from "lucide-react";
+import { CheckCircle2, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
@@ -8,17 +8,17 @@ import { ContactForm } from "@/components/ContactForm";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — M-Pesa Integration Developers Kenya | Boafo Solutions" },
+      { title: "Contact — M-Pesa Integration Developers | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Talk to M-Pesa integration developers Kenya. Book a 30-minute architecture discovery with Boafo Solutions in Nairobi. WhatsApp 0737 575 156.",
+          "Talk to M-Pesa integration developers. Book a 30-minute architecture discovery with Boafo Solutions. WhatsApp 0737 575 156.",
       },
       { property: "og:title", content: "Contact — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers in Nairobi, Kenya.",
+          "Book a 30-minute architecture discovery with Boafo Solutions.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/contact" },
@@ -93,6 +93,10 @@ function ContactPage() {
                       >
                         WhatsApp us instantly
                       </a>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>Ngong 5th Ave, Upperhill, Nairobi, Kenya</span>
                     </p>
                   </div>
                 </div>

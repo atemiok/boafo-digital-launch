@@ -16,17 +16,17 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Custom Software Developers Kenya | Boafo Solutions" },
+      { title: "Services — Custom Software Developers | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Custom software developers Kenya — role-based portals, M-Pesa integration, property management software, IoT telemetry, and management reporting. Built in Nairobi.",
+          "Custom software developers — role-based portals, M-Pesa integration, property management software, IoT telemetry, and management reporting.",
       },
       { property: "og:title", content: "Services — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Role-based portals, M-Pesa integration, property management software, IoT telemetry, and management reporting — engineered in Nairobi.",
+          "Role-based portals, M-Pesa integration, property management software, IoT telemetry, and management reporting.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/services" },
@@ -68,7 +68,7 @@ const SERVICES = [
     points: [
       "Daraja C2B, STK Push, B2C disbursements",
       "Automatic invoice matching (>99% accuracy)",
-      "Africa's Talking SMS + WhatsApp receipts",
+      "SMS + WhatsApp receipts",
       "ERP / Xero / QuickBooks sync",
     ],
   },
@@ -149,8 +149,8 @@ function ServicesPage() {
               custom={2}
               className="mx-auto mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
             >
-              Portal development company Nairobi — we build, integrate, and
-              support every layer of your operational software, from M-Pesa
+              Full-stack portal development company — we build, integrate,
+              and support every layer of your operational software, from M-Pesa
               callbacks to executive dashboards.
             </motion.p>
           </div>
