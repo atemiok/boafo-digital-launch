@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Smartphone,
@@ -429,13 +430,13 @@ export function ReconciliationCanvas() {
           See your own bottleneck modelled —{" "}
           <span className="text-foreground/90">free 30-min architecture call.</span>
         </p>
-        <a
-          href="#contact"
+        <Link
+          to="/contact"
           className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/25"
         >
           Book it
           <ArrowRight className="h-3 w-3" />
-        </a>
+        </Link>
       </div>
     </div>
   );
