@@ -671,16 +671,10 @@ function FooterCTA() {
    ──────────────────────────────────────────────────────────────── */
 function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.55, ease: EASE }}
-      className="mx-auto max-w-3xl px-5 text-center sm:px-8"
-    >
+    <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
       <p className="text-xs font-mono uppercase tracking-[0.22em] text-primary-glow">{eyebrow}</p>
       <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight sm:text-5xl">{title}</h2>
       {subtitle && <p className="mt-4 text-pretty text-muted-foreground sm:text-lg">{subtitle}</p>}
-    </motion.div>
+    </div>
   );
 }
