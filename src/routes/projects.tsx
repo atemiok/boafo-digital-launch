@@ -7,24 +7,24 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Business Automation Software in Kenya | Boafo Solutions" },
+      { title: "Projects — Business Automation Software | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Case studies from Boafo Solutions Nairobi — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch built for Kenyan enterprises.",
+          "Case studies from Boafo Solutions — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch built for enterprises.",
       },
       {
         name: "keywords",
         content:
-          "Business automation software Kenya, M-Pesa reconciliation Kenya, Property management portal Kenya, IoT telemetry Kenya, Logistics dispatch software Kenya, SACCO automation, Nairobi software case studies",
+          "Business automation software, M-Pesa reconciliation, Property management portal, IoT telemetry, Logistics dispatch software, SACCO automation, Boafo Solutions case studies",
       },
-      { property: "og:title", content: "Projects — Boafo Solutions Kenya" },
+      { property: "og:title", content: "Projects — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Real ROI from M-Pesa reconciliation, tenant portals, IoT telemetry, and logistics dispatch projects across Kenya.",
+          "Real ROI from M-Pesa reconciliation, tenant portals, IoT telemetry, and logistics dispatch projects across Africa.",
       },
-      { property: "og:locale", content: "en_KE" },
+      { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/projects" },
     ],

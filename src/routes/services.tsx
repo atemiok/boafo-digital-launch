@@ -16,24 +16,24 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Custom Software Developers in Kenya | Boafo Solutions" },
+      { title: "Services — Custom Software Developers | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Custom software developers in Kenya — role-based portals, M-Pesa & Daraja integration, property management software, IoT telemetry, and management reporting. Based in Nairobi.",
+          "Custom software developers — role-based portals, M-Pesa & Daraja integration, property management software, IoT telemetry, and management reporting.",
       },
       {
         name: "keywords",
         content:
-          "Custom software developers Kenya, Web portal developers Kenya, M-Pesa integration Kenya, Daraja API developers, Property management software Kenya, SACCO software Kenya, IoT developers Kenya, Business automation Kenya, Nairobi software company",
+          "Custom software developers, Web portal developers, M-Pesa integration, Daraja API developers, Property management software, SACCO software, IoT developers, Business automation, Boafo Solutions",
       },
-      { property: "og:title", content: "Services — Boafo Solutions Kenya" },
+      { property: "og:title", content: "Services — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Role-based portals, M-Pesa integration, property management software, IoT telemetry, and reporting — built in Nairobi.",
+          "Role-based portals, M-Pesa integration, property management software, IoT telemetry, and reporting.",
       },
-      { property: "og:locale", content: "en_KE" },
+      { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/services" },
     ],
