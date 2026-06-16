@@ -185,8 +185,13 @@
     transition: background-color 0.35s ease, color 0.35s ease;
   }
 
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
   ::selection {
-    background-color: oklch(0.78 0.17 162 / 0.3);
+    background-color: oklch(0.62 0.21 275 / 0.35);
     color: var(--color-foreground);
   }
 }
