@@ -352,7 +352,7 @@ function Simulator() {
               <Timeline />
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-card p-5 sm:flex-row sm:p-6">
           <p className="text-pretty text-center text-sm text-muted-foreground sm:text-left">
