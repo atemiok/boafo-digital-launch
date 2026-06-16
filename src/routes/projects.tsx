@@ -87,7 +87,7 @@ const CASES = [
 
 const STATS = [
   { icon: TrendingUp, value: "32+", label: "production systems shipped" },
-  { icon: Users, value: "14", label: "Kenyan enterprises served" },
+  { icon: Users, value: "14", label: "enterprises served" },
   { icon: Clock, value: "<8wk", label: "average time to first launch" },
 ];
 
