@@ -68,7 +68,7 @@ const SERVICES = [
     points: [
       "Daraja C2B, STK Push, B2C disbursements",
       "Automatic invoice matching (>99% accuracy)",
-      "Africa's Talking SMS + WhatsApp receipts",
+      "SMS + WhatsApp receipts",
       "ERP / Xero / QuickBooks sync",
     ],
   },
