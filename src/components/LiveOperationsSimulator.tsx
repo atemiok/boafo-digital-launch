@@ -13,8 +13,8 @@ import {
   Sun,
   Truck,
   Banknote,
-  Clock,
   Sparkles,
+
 } from "lucide-react";
 
 /* ────────────────────────────────────────────────────────────────
