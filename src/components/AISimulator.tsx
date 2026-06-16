@@ -27,7 +27,7 @@ function deriveBlueprint(input: string): Blueprint {
       title: "Auto-Reconciled M-Pesa Ledger",
       summary:
         "Boafo connects your Paybill directly to a custom ledger dashboard, matches every transaction to an invoice, and texts the customer a branded receipt — closing your books in real time.",
-      stack: ["Safaricom Daraja C2B", "Next.js Ledger Dashboard", "Postgres + RBAC", "Africa's Talking SMS"],
+      stack: ["Safaricom Daraja C2B", "Next.js Ledger Dashboard", "Postgres + RBAC", "SMS Notifications"],
       workflow: [
         "Daraja callback ingested & validated",
         "Auto-matched to open invoice (99.7%)",
