@@ -393,11 +393,9 @@ function AfterPane({ v }: { v: Vertical }) {
             <Sparkles className="h-3 w-3" />
             After · Boafo Engine
           </span>
-          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
-            <Activity className="h-3 w-3" />
-            Streaming
-          </span>
+          <LiveTicker />
         </div>
+
 
         <AnimatePresence mode="wait">
           <motion.p
