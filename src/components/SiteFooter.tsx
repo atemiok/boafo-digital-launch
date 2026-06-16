@@ -10,7 +10,7 @@ export function SiteFooter() {
           <BoafoLogo />
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
             Custom web portals, M-Pesa integration, and business automation for
-            Kenyan enterprises — built to ease the everyday grind and supported
+            modern enterprises — built to ease the everyday grind and supported
             for life.
           </p>
           <div className="mt-5 space-y-1.5 text-sm text-muted-foreground">
