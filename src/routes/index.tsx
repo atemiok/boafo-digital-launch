@@ -531,7 +531,7 @@ function Bento() {
               </p>
               <div aria-hidden className="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100" />
             </div>
-          </motion.article>
+          </article>
         ))}
       </div>
 
