@@ -112,37 +112,28 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-60" />
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
-        <motion.div variants={container} initial="hidden" animate="visible" className="min-w-0">
-          <motion.div
-            variants={fadeUp}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary-glow"
-          >
+        <div className="min-w-0">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary-glow">
             <motion.span
               className="h-1.5 w-1.5 rounded-full bg-primary"
               animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
             Engineered for the modern enterprise
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeUp}
-            className="mt-6 text-balance text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl"
-          >
+          <h1 className="mt-6 text-balance text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">
             We build great websites, custom webapps, and{" "}
             <span className="text-gradient">autonomous business engines.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground"
-          >
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
             From high-conversion corporate sites to complex, role-based secure platforms.
             We replace manual friction with bulletproof software engineered for the modern
             enterprise landscape.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/contact"
               className="btn-mint inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
@@ -156,8 +147,8 @@ function Hero() {
             >
               Explore Core Verticals
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         <HeroTerminal />
       </div>
