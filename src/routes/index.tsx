@@ -80,7 +80,7 @@ function HomePage() {
       <SiteNav />
       <main>
         <Hero />
-        <Simulator />
+        <LiveOperationsSimulator />
         <Bento />
         <Promise />
         <FooterCTA />
