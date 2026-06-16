@@ -4,7 +4,7 @@ import { ArrowRight, TrendingUp, Clock, Users } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
       { title: "Projects — Business Automation Software | Boafo Solutions" },
