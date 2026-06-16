@@ -581,15 +581,8 @@ function Promise() {
         subtitle="Three commitments that separate Boafo from freelancers and off-the-shelf templates."
       />
       <div className="mx-auto mt-12 grid max-w-6xl gap-8 px-5 sm:px-8 md:grid-cols-3 md:gap-12">
-        {pillars.map((p, i) => (
-          <motion.div
-            key={p.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: i * 0.08, duration: 0.55, ease: EASE }}
-            className="group"
-          >
+        {pillars.map((p) => (
+          <div key={p.title} className="group">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs font-semibold tracking-widest text-primary-glow">{p.n}</span>
               <div className="h-px flex-1 bg-border" />
@@ -599,7 +592,7 @@ function Promise() {
             </div>
             <h3 className="mt-5 text-xl font-bold tracking-tight text-foreground">{p.title}</h3>
             <p className="mt-2 leading-relaxed text-muted-foreground">{p.copy}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
