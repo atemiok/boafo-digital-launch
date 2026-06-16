@@ -118,9 +118,8 @@ function ProjectsPage() {
               custom={2}
               className="mx-auto mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
             >
-              Snapshots from custom software developers Kenya engagements —
-              property management software Kenya, M-Pesa integration developers
-              Kenya, and IoT operators.
+              Snapshots from our custom software engagements — property
+              management platforms, M-Pesa integrations, and IoT operators.
             </motion.p>
           </div>
 
