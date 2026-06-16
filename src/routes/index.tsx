@@ -158,12 +158,7 @@ function Hero() {
 
 function HeroTerminal() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 0.25, ease: EASE }}
-      className="relative"
-    >
+    <div className="relative">
       <div aria-hidden className="absolute -inset-0.5 -z-10 rounded-3xl bg-gradient-to-br from-primary/40 via-primary/0 to-primary/30 opacity-50 blur-2xl" />
 
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
