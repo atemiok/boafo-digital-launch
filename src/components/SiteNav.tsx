@@ -8,7 +8,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
-  { to: "/projects", label: "Projects" },
+  { to: "/work", label: "Work" },
+  { to: "/company", label: "Company" },
   { to: "/contact", label: "Contact" },
 ] as const;
 

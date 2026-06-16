@@ -4,10 +4,10 @@ import { ArrowRight, TrendingUp, Clock, Users } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Projects — Business Automation Software | Boafo Solutions" },
+      { title: "Work — Business Automation Case Studies | Boafo Solutions" },
       {
         name: "description",
         content:
@@ -18,19 +18,19 @@ export const Route = createFileRoute("/projects")({
         content:
           "Business automation software, M-Pesa reconciliation, Property management portal, IoT telemetry, Logistics dispatch software, SACCO automation, Boafo Solutions case studies",
       },
-      { property: "og:title", content: "Projects — Boafo Solutions" },
+      { property: "og:title", content: "Work — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Real ROI from M-Pesa reconciliation, tenant portals, IoT telemetry, and logistics dispatch projects across Africa.",
+          "Business friction, eliminated. See the systems Boafo Solutions has shipped to production.",
       },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/projects" },
+      { property: "og:url", content: "/work" },
     ],
-    links: [{ rel: "canonical", href: "/projects" }],
+    links: [{ rel: "canonical", href: "/work" }],
   }),
-  component: ProjectsPage,
+  component: WorkPage,
 });
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -97,7 +97,7 @@ const STATS = [
   { icon: Clock, value: "<8wk", label: "average time to first launch" },
 ];
 
-function ProjectsPage() {
+function WorkPage() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
@@ -106,7 +106,7 @@ function ProjectsPage() {
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
           <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">
             <motion.p variants={fadeUp} initial="hidden" animate="visible" className="text-xs font-mono uppercase tracking-widest text-primary">
-              Projects
+              Work · Case Studies
             </motion.p>
             <motion.h1
               variants={fadeUp}
