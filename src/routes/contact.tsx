@@ -8,28 +8,24 @@ import { ContactForm } from "@/components/ContactForm";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — M-Pesa Integration Developers in Nairobi, Kenya | Boafo Solutions" },
+      { title: "Contact — M-Pesa Integration Developers | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Talk to M-Pesa integration developers in Nairobi, Kenya. Boafo Solutions — Ngong 5th Ave, Upperhill. Book a 30-minute architecture discovery. WhatsApp 0737 575 156.",
+          "Talk to M-Pesa integration developers. Boafo Solutions — Ngong 5th Ave, Upperhill. Book a 30-minute architecture discovery. WhatsApp 0737 575 156.",
       },
       {
         name: "keywords",
         content:
-          "Software developers Nairobi, M-Pesa integration Kenya, Custom software company Nairobi, Boafo Solutions contact, Upperhill software developer",
+          "Software developers, M-Pesa integration, Custom software company, Boafo Solutions contact, Upperhill software developer",
       },
-      { name: "geo.region", content: "KE-30" },
-      { name: "geo.placename", content: "Nairobi" },
-      { name: "geo.position", content: "-1.2921;36.8219" },
-      { name: "ICBM", content: "-1.2921, 36.8219" },
-      { property: "og:title", content: "Contact Boafo Solutions — Nairobi, Kenya" },
+      { property: "og:title", content: "Contact Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers in Nairobi, Kenya.",
+          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers.",
       },
-      { property: "og:locale", content: "en_KE" },
+      { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/contact" },
     ],
@@ -106,7 +102,7 @@ function ContactPage() {
                     </p>
                     <p className="flex items-start gap-2">
                       <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                      <span>Ngong 5th Ave, Upperhill, Nairobi, Kenya</span>
+                      <span>Ngong 5th Ave, Upperhill, Nairobi</span>
                     </p>
                   </div>
                 </div>
