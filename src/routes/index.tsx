@@ -72,19 +72,6 @@ export const Route = createFileRoute("/")({
 });
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { delay: i * 0.05, duration: 0.7, ease: EASE },
-  }),
-};
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.04 } },
-};
 
 function HomePage() {
   return (
