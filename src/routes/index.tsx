@@ -617,13 +617,7 @@ function Promise() {
 function FooterCTA() {
   return (
     <section className="px-5 pb-16 pt-8 sm:px-8 sm:pb-20">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: EASE }}
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-primary/40 bg-gradient-to-br from-primary/95 via-primary to-[oklch(0.45_0.22_290)] p-10 text-primary-foreground sm:p-16 lg:p-20"
-      >
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-primary/40 bg-gradient-to-br from-primary/95 via-primary to-[oklch(0.45_0.22_290)] p-10 text-primary-foreground sm:p-16 lg:p-20">
         <div aria-hidden className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
         <div aria-hidden className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-black/20 blur-3xl" />
 
