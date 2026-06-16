@@ -414,23 +414,11 @@ function Timeline() {
       </div>
       <div className="relative">
         <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-border" />
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: "100%" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.4, ease: EASE }}
-          className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-primary"
-        />
+        <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-primary/60" />
         <div className="relative flex justify-between">
-          {steps.map((s, i) => (
+          {steps.map((s) => (
             <div key={s.t} className="flex flex-col items-center">
-              <motion.span
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 + i * 0.25, duration: 0.3, ease: EASE }}
-                className="block h-3 w-3 rounded-full border-2 border-background bg-primary shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_30%,transparent)]"
-              />
+              <span className="block h-3 w-3 rounded-full border-2 border-background bg-primary shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_30%,transparent)]" />
               <div className="mt-2 text-[10px] font-mono text-muted-foreground">{s.t}</div>
               <div className="text-[10px] text-foreground/80">{s.label}</div>
             </div>
