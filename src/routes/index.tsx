@@ -134,7 +134,7 @@ function Hero() {
         >
           From high-conversion corporate sites to complex, role-based secure
           platforms. We replace manual friction with bulletproof software
-          engineered for the African enterprise landscape.
+          engineered for the modern enterprise landscape.
         </motion.p>
 
         <motion.div
