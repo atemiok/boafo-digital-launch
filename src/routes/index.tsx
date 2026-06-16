@@ -117,7 +117,7 @@ function Hero() {
             animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           />
-          Built in Nairobi for the African enterprise
+          Engineered for the modern enterprise
         </motion.div>
 
         <motion.h1
