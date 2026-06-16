@@ -14,7 +14,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ContactSchema.parse(input))
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_TO_EMAIL ?? "hello@boafosolutions.com";
+    const to = "boafosolutions@outlook.com";
     const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <noreply@updates.boafosolutions.com>";
 
     const internalSubject = `New architecture discovery — ${data.company}`;
