@@ -39,8 +39,12 @@ export function ContactForm() {
     if (loading) return;
     setLoading(true);
     try {
-      await send({ data: form });
-      toast.success("Request received — we'll be in touch within one business day.");
+      const result = await send({ data: form });
+      if (result.delivered) {
+        toast.success(result.message);
+      } else {
+        toast.success(result.message, { duration: 6000 });
+      }
       setForm({
         name: "",
         company: "",
