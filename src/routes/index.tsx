@@ -11,12 +11,10 @@ import {
   Building2,
   BarChart3,
   Headphones,
-  Handshake,
-  Briefcase,
-  TrendingUp,
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -113,7 +111,6 @@ function HomePage() {
       <main>
         <Hero />
         <Bento />
-        <Partner />
         <Promise />
       </main>
       <SiteFooter />
@@ -123,7 +120,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-20">
+    <section id="top" className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
 
@@ -135,7 +132,7 @@ function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
+          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
         >
           <motion.span
             className="h-1.5 w-1.5 rounded-full bg-primary"
@@ -147,23 +144,24 @@ function Hero() {
 
         <motion.h1
           variants={fadeUp}
-          className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+          className="text-balance text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
         >
-          Websites, custom webapps, and{" "}
+          We build great websites, custom webapps, and{" "}
           <span className="text-gradient">autonomous business engines.</span>
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="mx-auto mt-4 max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base"
+          className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
         >
           From high-conversion corporate sites to complex, role-based secure
-          platforms — engineered to replace manual friction with bulletproof software.
+          platforms. We replace manual friction with bulletproof software
+          engineered for the modern enterprise landscape.
         </motion.p>
 
         <motion.div
           variants={fadeUp}
-          className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <Link
             to="/contact"
@@ -179,6 +177,16 @@ function Hero() {
             Explore Core Verticals
           </Link>
         </motion.div>
+      </motion.div>
+
+      {/* Interactive cornerstone */}
+      <motion.div
+        initial={{ opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
+        className="mx-auto mt-10 max-w-5xl px-5 sm:px-8"
+      >
+        <ReconciliationCanvas />
       </motion.div>
     </section>
   );
@@ -281,98 +289,6 @@ function Bento() {
     </section>
   );
 }
-
-const PARTNER_TRACKS = [
-  {
-    icon: Briefcase,
-    title: "Bring us business",
-    copy: "Refer a client we close, earn a generous referral commission on the engagement value. Paid on milestone, transparent reporting, no chasing.",
-    cta: "Become a referral partner",
-  },
-  {
-    icon: Handshake,
-    title: "Partner with us",
-    copy: "Agencies, consultancies, and resellers — white-label our engineering bench under your brand. Joint discovery, shared roadmap, co-owned delivery.",
-    cta: "Open a partnership",
-  },
-  {
-    icon: TrendingUp,
-    title: "Sales & growth",
-    copy: "Experienced sales / BD with an enterprise network in Kenya? Earn recurring upside on every deal you originate. Generous, performance-led.",
-    cta: "Apply to sell with us",
-  },
-];
-
-function Partner() {
-  return (
-    <section id="partner" className="relative border-y border-border bg-secondary/40 py-16 sm:py-20">
-      <SectionHeader
-        eyebrow="Work with us"
-        title="Bring us business. Partner with us. Grow together."
-        subtitle="We're actively looking for referral partners, agencies, and sales talent to expand into more enterprise rooms across the region."
-      />
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        className="mx-auto mt-10 grid max-w-6xl gap-4 px-5 sm:px-8 md:grid-cols-3"
-      >
-        {PARTNER_TRACKS.map((t) => (
-          <motion.div
-            key={t.title}
-            variants={fadeUp}
-            whileHover={{ y: -5, transition: { duration: 0.35, ease: EASE } }}
-            className="solid-card group flex flex-col p-6"
-          >
-            <motion.div
-              whileHover={{ scale: 1.08, rotate: -4 }}
-              transition={{ duration: 0.45, ease: EASE }}
-              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/10 text-primary"
-            >
-              <t.icon className="h-5 w-5" />
-            </motion.div>
-            <h3 className="mt-4 text-base font-semibold text-foreground">{t.title}</h3>
-            <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">{t.copy}</p>
-            <Link
-              to="/contact"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-            >
-              {t.cta}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <div className="mx-auto mt-10 max-w-4xl px-5 sm:px-8">
-        <div className="solid-card flex flex-wrap items-center justify-between gap-4 p-5">
-          <div className="flex items-start gap-3">
-            <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <p className="text-sm text-muted-foreground">
-              Prefer a direct conversation?{" "}
-              <span className="text-foreground/90">
-                Reach the partnerships desk at{" "}
-                <a href="mailto:partners@boafosolutions.com" className="text-primary hover:underline">
-                  partners@boafosolutions.com
-                </a>
-                .
-              </span>
-            </p>
-          </div>
-          <Link
-            to="/contact"
-            className="btn-mint inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold"
-          >
-            Start a conversation
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 
 function Promise() {
   const pillars = [
