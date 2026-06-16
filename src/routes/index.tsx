@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { LiveOperationsSimulator } from "@/components/LiveOperationsSimulator";
 
 export const Route = createFileRoute("/")({
   head: () => ({
