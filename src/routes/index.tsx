@@ -1,20 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowRight,
   ShieldCheck,
   CreditCard,
   Users,
   LifeBuoy,
-  CheckCircle2,
   Leaf,
   Building2,
   BarChart3,
   Headphones,
+  CheckCircle2,
+  XCircle,
+  Zap,
+  Activity,
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,20 +26,19 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Boafo Solutions — custom software and web portal developers. M-Pesa integration, business automation, and property management software for global enterprises.",
+          "Boafo Solutions — custom software and web portal developers. M-Pesa integration, business automation, and property management software for the modern enterprise.",
       },
       {
         name: "keywords",
         content:
-          "Software development company, Custom software developers, Web portal developers, Portal development company, M-Pesa integration developers, Daraja API integration, Business automation software, Property management software, SACCO software, ERP developers, IoT developers, Boafo Solutions",
+          "Custom software developers, Web portal developers, M-Pesa integration, Daraja API, Business automation, Property management software, SACCO software, Boafo Solutions",
       },
       { property: "og:title", content: "Boafo Solutions | Custom Software & Web Portal Developers" },
       {
         property: "og:description",
         content:
-          "Custom software, M-Pesa integration, and business automation for global enterprises.",
+          "Custom software, M-Pesa integration, and business automation for the modern enterprise.",
       },
-      { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { property: "og:site_name", content: "Boafo Solutions" },
@@ -52,10 +54,7 @@ export const Route = createFileRoute("/")({
           name: "Boafo Solutions",
           url: "https://boafosolutions.com",
           description:
-            "Custom software, web portal development, and M-Pesa integration agency.",
-          areaServed: [
-            { "@type": "City", name: "Nairobi" },
-          ],
+            "Custom software, web portal development, and M-Pesa integration for the modern enterprise.",
           serviceType: [
             "Custom software development",
             "Web portal development",
@@ -63,18 +62,6 @@ export const Route = createFileRoute("/")({
             "Property management software",
             "Business automation software",
           ],
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Ngong 5th Ave, Upperhill",
-            addressLocality: "Nairobi",
-            addressRegion: "Nairobi",
-            addressCountry: "KE",
-          },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: -1.2921,
-            longitude: 36.8219,
-          },
           email: "info@boafosolutions.com",
           telephone: "+254737575156",
         }),
@@ -85,19 +72,6 @@ export const Route = createFileRoute("/")({
 });
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { delay: i * 0.05, duration: 0.75, ease: EASE },
-  }),
-};
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
-};
 
 function HomePage() {
   return (
@@ -105,107 +79,352 @@ function HomePage() {
       <SiteNav />
       <main>
         <Hero />
+        <Simulator />
         <Bento />
         <Promise />
+        <FooterCTA />
       </main>
       <SiteFooter />
     </div>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+   HERO
+   ──────────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16">
+    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-60" />
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className="mx-auto max-w-5xl px-5 text-center sm:px-8"
-      >
-        <motion.div
-          variants={fadeUp}
-          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur"
-        >
-          <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-primary"
-            animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          />
-          Engineered for the modern enterprise
-        </motion.div>
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+        <div className="min-w-0">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary-glow">
+            <motion.span
+              className="h-1.5 w-1.5 rounded-full bg-primary"
+              animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            Engineered for the modern enterprise
+          </div>
 
-        <motion.h1
-          variants={fadeUp}
-          className="text-balance text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
-        >
-          We build great websites, custom webapps, and{" "}
-          <span className="text-gradient">autonomous business engines.</span>
-        </motion.h1>
+          <h1 className="mt-6 text-balance text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">
+            We build great websites, custom webapps, and{" "}
+            <span className="text-gradient">autonomous business engines.</span>
+          </h1>
 
-        <motion.p
-          variants={fadeUp}
-          className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
-        >
-          From high-conversion corporate sites to complex, role-based secure
-          platforms. We replace manual friction with bulletproof software
-          engineered for the modern enterprise landscape.
-        </motion.p>
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+            From high-conversion corporate sites to complex, role-based secure platforms.
+            We replace manual friction with bulletproof software engineered for the modern
+            enterprise landscape.
+          </p>
 
-        <motion.div
-          variants={fadeUp}
-          className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row"
-        >
-          <Link
-            to="/contact"
-            className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-          >
-            Initiate Architecture Discovery
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            to="/services"
-            className="btn-outline inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
-          >
-            Explore Core Verticals
-          </Link>
-        </motion.div>
-      </motion.div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/contact"
+              className="btn-mint inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
+            >
+              Initiate Architecture Discovery
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/services"
+              className="btn-outline inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
+            >
+              Explore Core Verticals
+            </Link>
+          </div>
+        </div>
 
-      {/* Interactive cornerstone */}
-      <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
-        className="mx-auto mt-10 max-w-5xl px-5 sm:px-8"
-      >
-        <ReconciliationCanvas />
-      </motion.div>
+        <HeroTerminal />
+      </div>
     </section>
   );
 }
 
+function HeroTerminal() {
+  return (
+    <div className="relative">
+      <div aria-hidden className="absolute -inset-0.5 -z-10 rounded-3xl bg-gradient-to-br from-primary/40 via-primary/0 to-primary/30 opacity-50 blur-2xl" />
+
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
+        {/* chrome */}
+        <div className="flex items-center justify-between border-b border-border bg-surface-elevated/60 px-4 py-3">
+          <div className="flex gap-1.5">
+            <span className="h-3 w-3 rounded-full bg-destructive/40" />
+            <span className="h-3 w-3 rounded-full bg-amber-400/40" />
+            <span className="h-3 w-3 rounded-full bg-primary/60" />
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            core_engine.v3 · live
+          </div>
+          <Activity className="h-3.5 w-3.5 text-primary" />
+        </div>
+
+        {/* body */}
+        <div className="space-y-3 p-5 font-mono text-[13px]">
+          <div className="flex items-center gap-3">
+            <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-bold text-primary-glow">GET</span>
+            <span className="text-muted-foreground">/api/v1/ledger/reconcile</span>
+          </div>
+
+          {[
+            { dot: "bg-emerald-400", pulse: true, label: "M-Pesa callback received", value: "+KES 4,200.00", tone: "text-emerald-300" },
+            { dot: "bg-primary", pulse: false, label: "Tenant invoice matched", value: "INV-08412", tone: "text-primary-glow" },
+            { dot: "bg-amber-400", pulse: false, label: "SMS receipt dispatched", value: "0.42s", tone: "text-amber-200" },
+            { dot: "bg-emerald-400", pulse: true, label: "Ledger posted · 12,402 rows", value: "OK", tone: "text-emerald-300" },
+          ].map((row) => (
+            <div
+              key={row.label}
+              className="flex items-center justify-between rounded-md border border-border/70 bg-background/60 px-3 py-2.5"
+            >
+              <div className="flex items-center gap-3">
+                <span className={`h-2 w-2 rounded-full ${row.dot} ${row.pulse ? "animate-pulse" : ""}`} />
+                <span className="text-xs text-muted-foreground">{row.label}</span>
+              </div>
+              <span className={`text-xs font-semibold ${row.tone}`}>{row.value}</span>
+            </div>
+          ))}
+
+          <div className="!mt-5 flex items-center justify-between border-t border-border/70 pt-4">
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">latency</div>
+            <div className="font-mono text-xs text-primary-glow">42ms · p99</div>
+          </div>
+        </div>
+      </div>
+
+      {/* floating stat chip */}
+      <div className="absolute -bottom-5 -right-4 rounded-2xl border border-border bg-card px-5 py-3 shadow-xl sm:-right-6">
+        <div className="font-display text-2xl font-bold tracking-tight">99.99%</div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Uptime SLA</div>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   LIVE OPERATIONS SIMULATOR
+   ──────────────────────────────────────────────────────────────── */
+const VERTICALS = [
+  {
+    id: "retail",
+    label: "Retail / SACCO",
+    before:
+      "Accountant hunts M-Pesa payments in a WhatsApp group. Customers pay via Paybill, send screenshots, and your team types each one into Excel. Reconciliation closes 4 days late, and KES 80k goes missing every month.",
+    after:
+      "Auto-reconciled Daraja ledger with instant SMS receipts. Boafo plugs into Daraja C2B, matches every transaction to an invoice, posts it to your ledger, and texts the customer a branded receipt — all in under 2 seconds.",
+    beforeStat: { a: "3.5 hrs", aLabel: "Time per day", b: "~KES 80k", bLabel: "Monthly leakage" },
+    afterStat: { a: "0 min", aLabel: "Time per day", b: "99.7%", bLabel: "Match rate" },
+  },
+  {
+    id: "real-estate",
+    label: "Real Estate",
+    before:
+      "Caretakers chase rent over phone, deposits land in the wrong account, and the landlord only sees a partial picture mid-month. Vacancies linger because nobody owns the funnel.",
+    after:
+      "Tenant portals collect rent on time, deposits auto-route to the right unit, and a live dashboard surfaces arrears, vacancies, and maintenance load by property.",
+    beforeStat: { a: "12 days", aLabel: "Avg arrears age", b: "18%", bLabel: "Late payments" },
+    afterStat: { a: "1 day", aLabel: "Avg arrears age", b: "97%", bLabel: "On-time rent" },
+  },
+  {
+    id: "solar",
+    label: "Solar / Utilities",
+    before:
+      "Field agents read meters on paper, billing runs a week behind, and disconnections happen for accounts that have already paid. Customer trust erodes every cycle.",
+    after:
+      "IoT telemetry streams consumption into a multi-tenant billing engine. Customers self-top-up, you see asset health in real time, and disconnections are policy-driven, not manual.",
+    beforeStat: { a: "7 days", aLabel: "Billing lag", b: "22%", bLabel: "Disputes" },
+    afterStat: { a: "real-time", aLabel: "Billing lag", b: "<2%", bLabel: "Disputes" },
+  },
+  {
+    id: "logistics",
+    label: "Logistics / Distribution",
+    before:
+      "Dispatch lives in WhatsApp, proof-of-delivery is a blurry photo, and stock variances surface only at quarterly audit. Routes are 'optimised' by whoever shouts loudest.",
+    after:
+      "Driver app captures signed POD, stock moves are logged at scan time, and route plans are generated from live order density — not yesterday's guess.",
+    beforeStat: { a: "62%", aLabel: "POD compliance", b: "9%", bLabel: "Stock variance" },
+    afterStat: { a: "99%", aLabel: "POD compliance", b: "<1%", bLabel: "Stock variance" },
+  },
+];
+
+function Simulator() {
+  const [active, setActive] = useState(VERTICALS[0].id);
+  const v = VERTICALS.find((x) => x.id === active)!;
+
+  return (
+    <section id="simulator" className="relative border-y border-border bg-surface/40 py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:mb-12 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="text-xs font-mono uppercase tracking-[0.22em] text-primary-glow">
+              Interactive · live
+            </p>
+            <h2 className="mt-2 text-balance text-4xl font-bold tracking-tight sm:text-5xl">
+              Live Operations Simulator
+            </h2>
+            <p className="mt-3 text-pretty text-muted-foreground">
+              Compare manual overhead against a Boafo-engineered workflow. Switch verticals to model your own bottleneck.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-1 rounded-xl border border-border bg-background/60 p-1 backdrop-blur">
+            {VERTICALS.map((opt) => (
+              <button
+                key={opt.id}
+                onClick={() => setActive(opt.id)}
+                className={`rounded-lg px-3.5 py-2 text-xs font-semibold transition-all sm:text-sm ${
+                  active === opt.id
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div
+          key={v.id}
+          className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-2"
+        >
+          {/* BEFORE */}
+          <div className="bg-card p-7 sm:p-10">
+            <div className="mb-4 flex items-center gap-2">
+              <XCircle className="h-4 w-4 text-destructive" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-destructive">
+                Before · The Problem
+              </span>
+            </div>
+            <p className="text-pretty text-base leading-relaxed text-muted-foreground">{v.before}</p>
+
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              <StatBlock variant="danger" value={v.beforeStat.a} label={v.beforeStat.aLabel} />
+              <StatBlock variant="danger" value={v.beforeStat.b} label={v.beforeStat.bLabel} />
+            </div>
+          </div>
+
+          {/* AFTER */}
+          <div className="relative overflow-hidden bg-card p-7 sm:p-10">
+            <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" />
+            <div className="relative">
+              <div className="mb-4 flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-primary-glow" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary-glow">
+                  After · Boafo Ships
+                </span>
+              </div>
+              <p className="text-pretty text-base leading-relaxed text-muted-foreground">{v.after}</p>
+
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <StatBlock variant="success" value={v.afterStat.a} label={v.afterStat.aLabel} />
+                <StatBlock variant="success" value={v.afterStat.b} label={v.afterStat.bLabel} />
+              </div>
+
+              <Timeline />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-card p-5 sm:flex-row sm:p-6">
+          <p className="text-pretty text-center text-sm text-muted-foreground sm:text-left">
+            See your own bottleneck modelled —{" "}
+            <span className="font-semibold text-foreground">free 30-min architecture call.</span>
+          </p>
+          <Link
+            to="/contact"
+            className="btn-mint inline-flex items-center gap-2 whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-semibold"
+          >
+            Book it
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatBlock({
+  variant,
+  value,
+  label,
+}: {
+  variant: "danger" | "success";
+  value: string;
+  label: string;
+}) {
+  const styles =
+    variant === "danger"
+      ? "border-destructive/25 bg-destructive/5 text-destructive"
+      : "border-primary/30 bg-primary/10 text-primary-glow";
+  return (
+    <div className={`rounded-xl border ${styles} p-4`}>
+      <div className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+        {value}
+      </div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function Timeline() {
+  const steps = [
+    { t: "0.0s", label: "C2B push" },
+    { t: "0.3s", label: "Daraja callback" },
+    { t: "0.7s", label: "Invoice match" },
+    { t: "1.0s", label: "SMS receipt" },
+  ];
+  return (
+    <div className="mt-8 rounded-xl border border-border/70 bg-background/60 p-4">
+      <div className="mb-3 flex items-center gap-2">
+        <Zap className="h-3.5 w-3.5 text-primary-glow" />
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          1.0s Daraja callback timeline
+        </span>
+      </div>
+      <div className="relative">
+        <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-border" />
+        <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-primary/60" />
+        <div className="relative flex justify-between">
+          {steps.map((s) => (
+            <div key={s.t} className="flex flex-col items-center">
+              <span className="block h-3 w-3 rounded-full border-2 border-background bg-primary shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_30%,transparent)]" />
+              <div className="mt-2 text-[10px] font-mono text-muted-foreground">{s.t}</div>
+              <div className="text-[10px] text-foreground/80">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   BENTO SERVICES
+   ──────────────────────────────────────────────────────────────── */
 const SERVICES = [
   {
     icon: Users,
     title: "Role-Based Access Platforms",
     copy: "Granular control for field agents, accountants, and executives — with full data isolation and bank-grade security.",
-    span: "md:col-span-4",
+    span: "md:col-span-2 md:row-span-2",
     accent: true,
   },
   {
     icon: CreditCard,
     title: "M-Pesa & API Workflow Choreography",
     copy: "Real-time payment reconciliation, automated SMS receipts, and direct posting to your internal ledger.",
-    span: "md:col-span-2",
+    span: "",
   },
   {
     icon: Leaf,
     title: "Green Energy & Smart Assets",
     copy: "Custom utility tracking, consumption reporting, and multi-tenant billing for solar and IoT operators.",
-    span: "md:col-span-2",
+    span: "",
   },
   {
     icon: Building2,
@@ -217,65 +436,59 @@ const SERVICES = [
     icon: Headphones,
     title: "Customer Self-Service Portals",
     copy: "Interactive portals letting your clients manage their own accounts, statements, and requests — 24/7.",
-    span: "md:col-span-2",
+    span: "",
   },
   {
     icon: BarChart3,
     title: "Management Reporting",
     copy: "Live, automated analytics that surface revenue leakages and operational risk before they hit the bottom line.",
-    span: "md:col-span-2",
+    span: "",
   },
 ];
 
 function Bento() {
   return (
-    <section id="services" className="relative border-y border-border bg-secondary/40 py-16 sm:py-20">
+    <section id="services" className="relative py-20 sm:py-24">
       <SectionHeader
         eyebrow="What we build"
         title="Six production-grade systems. Tailored to your workflow."
         subtitle="Battle-tested foundations we ship fast — and you own forever."
       />
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        className="mx-auto mt-10 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-6"
-      >
-        {SERVICES.map((it) => (
-          <motion.article
+      <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[200px]">
+        {SERVICES.map((it, i) => (
+          <article
             key={it.title}
-            variants={fadeUp}
-            whileHover={{ y: -5, transition: { duration: 0.35, ease: EASE } }}
-            className={`solid-card group relative overflow-hidden p-6 ${it.span}`}
+            className={`group relative overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-xl ${it.span}`}
           >
             {it.accent && (
               <motion.div
                 aria-hidden
-                className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full opacity-25 blur-3xl"
+                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-30 blur-3xl"
                 style={{ background: "var(--gradient-electric)" }}
-                animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.32, 0.18] }}
+                animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
             )}
-            <motion.div
-              whileHover={{ rotate: -6, scale: 1.08 }}
-              transition={{ duration: 0.45, ease: EASE }}
-              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/10 text-primary"
-            >
-              <it.icon className="h-5 w-5" />
-            </motion.div>
-            <h3 className="mt-4 text-base font-semibold tracking-tight text-foreground sm:text-lg">
-              {it.title}
-            </h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{it.copy}</p>
-          </motion.article>
+            <div className="relative flex h-full flex-col">
+              <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/10 text-primary-glow transition-transform group-hover:scale-110">
+                <it.icon className="h-5 w-5" />
+              </div>
+              <h3 className={`mt-5 font-bold tracking-tight text-foreground ${it.accent ? "text-2xl sm:text-3xl" : "text-lg"}`}>
+                {it.title}
+              </h3>
+              <p className={`mt-2 text-sm leading-relaxed text-muted-foreground ${it.accent ? "max-w-md" : ""}`}>
+                {it.copy}
+              </p>
+              <div aria-hidden className="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100" />
+            </div>
+          </article>
         ))}
-      </motion.div>
-      <div className="mt-8 text-center">
+      </div>
+
+      <div className="mt-10 text-center">
         <Link
           to="/services"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-glow hover:underline"
         >
           See full service breakdown
           <ArrowRight className="h-4 w-4" />
@@ -285,81 +498,121 @@ function Bento() {
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+   PROMISE
+   ──────────────────────────────────────────────────────────────── */
 function Promise() {
   const pillars = [
-    { icon: ShieldCheck, title: "Bulletproof Security", copy: "Row-level isolation, audit trails, and RBAC by default — not as an afterthought." },
-    { icon: BarChart3, title: "Reporting You'll Open", copy: "Beautifully structured dashboards that surface leakages and risk in real time." },
-    { icon: LifeBuoy, title: "Support After Launch", copy: "Continuous server monitoring, proactive maintenance, and dedicated lifecycle support — for life." },
+    {
+      icon: ShieldCheck,
+      n: "01",
+      title: "Bulletproof Security",
+      copy: "Row-level isolation, audit trails, and RBAC by default — not as an afterthought.",
+    },
+    {
+      icon: BarChart3,
+      n: "02",
+      title: "Reporting You'll Open",
+      copy: "Beautifully structured dashboards that surface leakages and risk in real time.",
+    },
+    {
+      icon: LifeBuoy,
+      n: "03",
+      title: "Support After Launch",
+      copy: "Continuous server monitoring, proactive maintenance, and dedicated lifecycle support — for life.",
+    },
   ];
 
   return (
-    <section className="relative py-16 sm:py-20">
+    <section className="relative border-t border-border py-20 sm:py-24">
       <SectionHeader
         eyebrow="Our promise"
         title="Built to last. Supported for life."
         subtitle="Three commitments that separate Boafo from freelancers and off-the-shelf templates."
       />
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="mx-auto mt-10 grid max-w-6xl gap-4 px-5 sm:px-8 md:grid-cols-3"
-      >
+      <div className="mx-auto mt-12 grid max-w-6xl gap-8 px-5 sm:px-8 md:grid-cols-3 md:gap-12">
         {pillars.map((p) => (
-          <motion.div
-            key={p.title}
-            variants={fadeUp}
-            whileHover={{ y: -5, transition: { duration: 0.35, ease: EASE } }}
-            className="solid-card p-6"
-          >
-            <motion.div
-              whileHover={{ scale: 1.08, rotate: -4 }}
-              transition={{ duration: 0.45, ease: EASE }}
-              className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/10 text-primary"
-            >
-              <p.icon className="h-5 w-5" />
-            </motion.div>
-            <h3 className="mt-4 text-base font-semibold text-foreground">{p.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.copy}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <div className="mx-auto mt-10 max-w-4xl px-5 sm:px-8">
-        <div className="solid-card flex flex-wrap items-center justify-between gap-4 p-5">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <p className="text-sm text-muted-foreground">
-              30-minute architecture discovery with a senior engineer.{" "}
-              <span className="text-foreground/90">Fixed-price scope. Full source ownership.</span>
-            </p>
+          <div key={p.title} className="group">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs font-semibold tracking-widest text-primary-glow">{p.n}</span>
+              <div className="h-px flex-1 bg-border" />
+              <div className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-primary/10 text-primary-glow transition-transform group-hover:scale-110">
+                <p.icon className="h-4.5 w-4.5" />
+              </div>
+            </div>
+            <h3 className="mt-5 text-xl font-bold tracking-tight text-foreground">{p.title}</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">{p.copy}</p>
           </div>
-          <Link
-            to="/contact"
-            className="btn-mint inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold"
-          >
-            Book it
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   BOLD FOOTER CTA
+   ──────────────────────────────────────────────────────────────── */
+function FooterCTA() {
+  return (
+    <section className="px-5 pb-16 pt-8 sm:px-8 sm:pb-20">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-primary/40 bg-gradient-to-br from-primary/95 via-primary to-[oklch(0.45_0.22_290)] p-10 text-primary-foreground sm:p-16 lg:p-20">
+        <div aria-hidden className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+        <div aria-hidden className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-black/20 blur-3xl" />
+
+        <div className="relative max-w-3xl">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary-foreground/70">
+            Boafo · supported for life
+          </p>
+          <h2 className="mt-4 text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            Custom web portals, M-Pesa integration, and business automation for modern enterprises.
+          </h2>
+          <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
+            Built to ease the everyday grind and supported for life.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a
+              href="mailto:info@boafosolutions.com"
+              className="inline-flex items-center gap-2 rounded-xl bg-background px-6 py-3.5 text-sm font-semibold text-foreground transition-transform hover:scale-[1.02]"
+            >
+              info@boafosolutions.com
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="tel:+254737575156"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-white/10"
+            >
+              0737 575 156
+            </a>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/75">
+            <a href="https://wa.me/254737575156" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground">
+              WhatsApp
+            </a>
+            <a href="mailto:info@boafosolutions.com" className="hover:text-primary-foreground">
+              Email
+            </a>
+            <a href="tel:+254737575156" className="hover:text-primary-foreground">
+              Call
+            </a>
+            <span className="text-primary-foreground/50">© 2026 Boafo Solutions</span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+   SHARED
+   ──────────────────────────────────────────────────────────────── */
 function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.5 }}
-      className="mx-auto max-w-3xl px-5 text-center sm:px-8"
-    >
-      <p className="text-xs font-mono uppercase tracking-widest text-primary">{eyebrow}</p>
-      <h2 className="mt-2.5 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-3 text-pretty text-muted-foreground sm:text-base">{subtitle}</p>}
-    </motion.div>
+    <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+      <p className="text-xs font-mono uppercase tracking-[0.22em] text-primary-glow">{eyebrow}</p>
+      <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight sm:text-5xl">{title}</h2>
+      {subtitle && <p className="mt-4 text-pretty text-muted-foreground sm:text-lg">{subtitle}</p>}
+    </div>
   );
 }
