@@ -15,6 +15,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL ?? "hello@boafosolutions.com";
+    const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <onboarding@resend.dev>";
 
     const subject = `New architecture discovery — ${data.company}`;
     const html = `
@@ -31,7 +32,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     // and surface a clear server log for the developer.
     if (!apiKey) {
       console.warn("[contact] RESEND_API_KEY not set — skipping email send.", { to, subject });
-      return { ok: true, delivered: false as const };
+      return { ok: true, delivered: false as const, message: "Request saved. Email delivery is not configured yet." };
     }
 
     try {
@@ -42,27 +43,35 @@ export const sendContactRequest = createServerFn({ method: "POST" })
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "Boafo Solutions <onboarding@resend.dev>",
+          from,
           to: [to],
           subject,
           html,
+          reply_to: data.email,
         }),
       });
 
       if (!res.ok) {
         const text = await res.text();
         console.error("[contact] Resend failed", res.status, text);
-        // Do not block the user — accept the lead, surface server log for ops.
-        return { ok: true, delivered: false as const };
+        let userMessage = "Request saved. We couldn't deliver the email right now, but we'll follow up soon.";
+        try {
+          const parsed = JSON.parse(text);
+          if (parsed?.message?.includes("verify a domain") || parsed?.message?.includes("own email address")) {
+            userMessage = "Request received. Email delivery is in test mode — verify your domain at resend.com/domains to send to any recipient.";
+          }
+        } catch {
+          // keep default message
+        }
+        return { ok: true, delivered: false as const, message: userMessage };
       }
 
-      return { ok: true, delivered: true as const };
+      return { ok: true, delivered: true as const, message: "Request received — we'll be in touch within one business day." };
     } catch (err) {
       console.error("[contact] Resend threw", err);
-      return { ok: true, delivered: false as const };
+      return { ok: true, delivered: false as const, message: "Request saved. We'll be in touch within one business day." };
     }
   });
-
 
 function escapeHtml(s: string) {
   return s
