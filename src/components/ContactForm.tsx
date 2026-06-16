@@ -64,10 +64,10 @@ export function ContactForm() {
       className="space-y-4 rounded-2xl border border-border bg-secondary/40 p-6"
     >
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name" id="name" value={form.name} onChange={onChange("name")} placeholder="Jane Wanjiku" />
-        <Field label="Company" id="company" value={form.company} onChange={onChange("company")} placeholder="Acacia Holdings Ltd" />
-        <Field label="Corporate Email" id="email" type="email" value={form.email} onChange={onChange("email")} placeholder="jane@company.co.ke" />
-        <Field label="Phone (WhatsApp)" id="phone" type="tel" value={form.phone} onChange={onChange("phone")} placeholder="+254 7XX XXX XXX" />
+        <Field label="Name" id="name" value={form.name} onChange={onChange("name")} />
+        <Field label="Company" id="company" value={form.company} onChange={onChange("company")} />
+        <Field label="Corporate Email" id="email" type="email" value={form.email} onChange={onChange("email")} />
+        <Field label="Phone (WhatsApp)" id="phone" type="tel" value={form.phone} onChange={onChange("phone")} />
       </div>
 
       <div className="space-y-1.5">
