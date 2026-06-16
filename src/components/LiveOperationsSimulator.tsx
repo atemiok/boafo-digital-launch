@@ -234,7 +234,7 @@ export function LiveOperationsSimulator() {
                     key={v.id}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActiveId(v.id)}
+                    onClick={() => handleManualTab(v.id)}
                     className="relative isolate inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-tight transition-colors sm:text-sm"
                   >
                     {isActive && (
