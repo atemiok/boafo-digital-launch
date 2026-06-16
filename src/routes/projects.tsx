@@ -7,11 +7,11 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Business Automation Software Kenya | Boafo Solutions" },
+      { title: "Projects — Business Automation Software | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Case studies of business automation software Kenya — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch. Real ROI numbers.",
+          "Case studies of business automation software — M-Pesa reconciliation, property management portals, IoT telemetry, and logistics dispatch. Real ROI numbers.",
       },
       { property: "og:title", content: "Projects — Boafo Solutions" },
       {
