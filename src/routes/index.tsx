@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   ArrowRight,
