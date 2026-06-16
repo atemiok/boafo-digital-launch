@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -124,7 +123,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-12">
+    <section id="top" className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
 
@@ -148,7 +147,7 @@ function Hero() {
 
         <motion.h1
           variants={fadeUp}
-          className="text-balance text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+          className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
         >
           Websites, custom webapps, and{" "}
           <span className="text-gradient">autonomous business engines.</span>
@@ -180,16 +179,6 @@ function Hero() {
             Explore Core Verticals
           </Link>
         </motion.div>
-      </motion.div>
-
-      {/* Interactive cornerstone — visible above the fold */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
-        className="mx-auto mt-7 max-w-5xl px-5 sm:px-8"
-      >
-        <ReconciliationCanvas />
       </motion.div>
     </section>
   );
