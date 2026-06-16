@@ -149,8 +149,8 @@ function ServicesPage() {
               custom={2}
               className="mx-auto mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg"
             >
-              Portal development company Nairobi — we build, integrate, and
-              support every layer of your operational software, from M-Pesa
+              Full-stack portal development company — we build, integrate,
+              and support every layer of your operational software, from M-Pesa
               callbacks to executive dashboards.
             </motion.p>
           </div>
