@@ -8,18 +8,28 @@ import { ContactForm } from "@/components/ContactForm";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — M-Pesa Integration Developers | Boafo Solutions" },
+      { title: "Contact — M-Pesa Integration Developers in Nairobi, Kenya | Boafo Solutions" },
       {
         name: "description",
         content:
-          "Talk to M-Pesa integration developers. Book a 30-minute architecture discovery with Boafo Solutions. WhatsApp 0737 575 156.",
+          "Talk to M-Pesa integration developers in Nairobi, Kenya. Boafo Solutions — Ngong 5th Ave, Upperhill. Book a 30-minute architecture discovery. WhatsApp 0737 575 156.",
       },
-      { property: "og:title", content: "Contact — Boafo Solutions" },
+      {
+        name: "keywords",
+        content:
+          "Software developers Nairobi, M-Pesa integration Kenya, Custom software company Nairobi, Boafo Solutions contact, Upperhill software developer",
+      },
+      { name: "geo.region", content: "KE-30" },
+      { name: "geo.placename", content: "Nairobi" },
+      { name: "geo.position", content: "-1.2921;36.8219" },
+      { name: "ICBM", content: "-1.2921, 36.8219" },
+      { property: "og:title", content: "Contact Boafo Solutions — Nairobi, Kenya" },
       {
         property: "og:description",
         content:
-          "Book a 30-minute architecture discovery with Boafo Solutions.",
+          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers in Nairobi, Kenya.",
       },
+      { property: "og:locale", content: "en_KE" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/contact" },
     ],
