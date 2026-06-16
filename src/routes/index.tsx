@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { AISimulator } from "@/components/AISimulator";
+import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -173,7 +173,7 @@ function Hero() {
         transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
         className="mx-auto mt-10 max-w-5xl px-5 sm:px-8"
       >
-        <AISimulator />
+        <ReconciliationCanvas />
       </motion.div>
     </section>
   );
