@@ -287,7 +287,7 @@ export function LiveOperationsSimulator() {
 
 function BeforePane({ v }: { v: Vertical }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.3 });
+  const inView = useInView(ref, { once: false, amount: 0.05 });
 
   return (
     <motion.div
@@ -388,7 +388,7 @@ function ManualPulse() {
 
 function AfterPane({ v }: { v: Vertical }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.3 });
+  const inView = useInView(ref, { once: false, amount: 0.05 });
 
   return (
     <motion.div
@@ -549,7 +549,7 @@ function Stat({
 
 function FlowChart({ steps }: { steps: Step[] }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.3 });
+  const inView = useInView(ref, { once: false, amount: 0.05 });
 
   // 6 nodes laid out on a 320 x 460 grid (vw-units scale via viewBox)
   // 0: Ingress, 1: step[0], 2: step[1], 3: step[2], 4: Ledger, 5: Notify
