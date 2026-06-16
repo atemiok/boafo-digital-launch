@@ -11,6 +11,9 @@ import {
   Building2,
   BarChart3,
   Headphones,
+  Handshake,
+  Briefcase,
+  TrendingUp,
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
