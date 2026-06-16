@@ -19,25 +19,31 @@ import { ReconciliationCanvas } from "@/components/ReconciliationCanvas";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Boafo Solutions | Custom Software & Web Portal Developers" },
+      { title: "Boafo Solutions | Custom Software & Web Portal Developers in Kenya" },
       {
         name: "description",
         content:
-          "Web portal developers building M-Pesa integration, business automation software, and property management portals for modern enterprises.",
+          "Boafo Solutions — Nairobi-based custom software and web portal developers in Kenya. M-Pesa integration, business automation, and property management software for Kenyan enterprises.",
       },
       {
         name: "keywords",
         content:
-          "Web portal developers, Custom software developers, Portal development company, Business automation software, M-Pesa integration developers, Property management software, custom web solutions",
+          "Software development company in Kenya, Custom software developers Kenya, Web portal developers Kenya, Portal development company Nairobi, M-Pesa integration developers Kenya, Daraja API integration Kenya, Business automation software Kenya, Property management software Kenya, SACCO software Kenya, ERP developers Nairobi, IoT developers Kenya, Boafo Solutions Nairobi",
       },
-      { property: "og:title", content: "Boafo Solutions | Custom Software & Web Portal Developers" },
+      { name: "geo.region", content: "KE-30" },
+      { name: "geo.placename", content: "Nairobi" },
+      { name: "geo.position", content: "-1.2921;36.8219" },
+      { name: "ICBM", content: "-1.2921, 36.8219" },
+      { property: "og:title", content: "Boafo Solutions | Custom Software & Web Portal Developers in Kenya" },
       {
         property: "og:description",
         content:
-          "Custom web portals, M-Pesa integration, and business automation — engineered for the modern enterprise.",
+          "Nairobi-based custom software, M-Pesa integration, and business automation for Kenyan enterprises.",
       },
+      { property: "og:locale", content: "en_KE" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
+      { property: "og:site_name", content: "Boafo Solutions" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -50,7 +56,11 @@ export const Route = createFileRoute("/")({
           name: "Boafo Solutions",
           url: "https://boafosolutions.com",
           description:
-            "Custom software, web portal development, and M-Pesa integration agency.",
+            "Custom software, web portal development, and M-Pesa integration agency in Nairobi, Kenya.",
+          areaServed: [
+            { "@type": "Country", name: "Kenya" },
+            { "@type": "City", name: "Nairobi" },
+          ],
           serviceType: [
             "Custom software development",
             "Web portal development",
@@ -58,6 +68,18 @@ export const Route = createFileRoute("/")({
             "Property management software",
             "Business automation software",
           ],
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Ngong 5th Ave, Upperhill",
+            addressLocality: "Nairobi",
+            addressRegion: "Nairobi",
+            addressCountry: "KE",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: -1.2921,
+            longitude: 36.8219,
+          },
           email: "info@boafosolutions.com",
           telephone: "+254737575156",
         }),
