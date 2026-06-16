@@ -5,10 +5,10 @@ type Props = {
 };
 
 /**
- * Boafo Solutions — refined monogram mark.
- * A dimensional "B" built from interlocking planes. The vertical spine reads as a
- * backbone, while the two chambers suggest a bridge, data flow, and the handshake
- * between systems. Tuned for both light and dark themes.
+ * Boafo Solutions — connected flow mark.
+ * A single continuous ribbon that loops through two chambers and converges on a
+ * connector node, evoking data flow, integration, and the handshake between
+ * systems. Soft geometry tuned for both light and dark themes.
  */
 export function BoafoLogo({ className, showWordmark = true, size = 30 }: Props) {
   return (
@@ -23,65 +23,57 @@ export function BoafoLogo({ className, showWordmark = true, size = 30 }: Props) 
         aria-label="Boafo Solutions logo"
       >
         <defs>
-          <linearGradient id="boafo-stroke" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <linearGradient id="boafo-ribbon" x1="4" y1="24" x2="44" y2="24" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="oklch(0.78 0.16 162)" />
-            <stop offset="50%" stopColor="oklch(0.66 0.19 200)" />
+            <stop offset="55%" stopColor="oklch(0.66 0.19 200)" />
             <stop offset="100%" stopColor="oklch(0.55 0.22 265)" />
           </linearGradient>
-          <linearGradient id="boafo-fill" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <linearGradient id="boafo-surface" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="oklch(0.78 0.16 162 / 0.22)" />
             <stop offset="55%" stopColor="oklch(0.66 0.19 200 / 0.14)" />
             <stop offset="100%" stopColor="oklch(0.55 0.22 265 / 0.24)" />
           </linearGradient>
-          <filter id="boafo-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="oklch(0.22 0.04 260 / 0.18)" />
+          <filter id="boafo-glow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
-        {/* Rounded container with soft gradient fill */}
+        {/* Soft rounded container */}
         <rect
           x="2"
           y="2"
           width="44"
           height="44"
-          rx="12"
-          fill="url(#boafo-fill)"
-          stroke="url(#boafo-stroke)"
+          rx="14"
+          fill="url(#boafo-surface)"
+          stroke="url(#boafo-ribbon)"
           strokeWidth="1.5"
-          filter="url(#boafo-shadow)"
+          opacity="0.9"
         />
 
-        {/* Dimensional "B" — backbone + two chambers */}
-        <g filter="url(#boafo-shadow)">
-          {/* Vertical backbone */}
-          <path
-            d="M15 11 V37"
-            stroke="url(#boafo-stroke)"
-            strokeWidth="3.2"
-            strokeLinecap="round"
-          />
-          {/* Top chamber — forward-swept arc */}
-          <path
-            d="M15 11 H26 C31 11 34 14.5 34 18 C34 21.5 31 24 26 24 H15"
-            stroke="url(#boafo-stroke)"
-            strokeWidth="3.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          {/* Bottom chamber — matching lower arc */}
-          <path
-            d="M15 24 H28 C33 24 36 27.5 36 31 C36 34.5 33 37 28 37 H15"
-            stroke="url(#boafo-stroke)"
-            strokeWidth="3.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          {/* Bridge/connector node */}
-          <circle cx="34" cy="24" r="3.4" fill="oklch(0.98 0 0)" />
-          <circle cx="34" cy="24" r="3.4" stroke="url(#boafo-stroke)" strokeWidth="1.4" fill="none" />
-        </g>
+        {/* Connected flow ribbon */}
+        <path
+          d="M14 24
+             C14 16, 22 14, 24 18
+             C26 22, 18 26, 24 30
+             C28 33, 34 30, 34 24
+             C34 20, 30 18, 28 20
+             C25 23, 30 26, 28 28
+             C26 30, 22 30, 20 27
+             C18 24, 22 21, 20 19
+             C18 17, 14 19, 14 24
+             Z"
+          stroke="url(#boafo-ribbon)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          filter="url(#boafo-glow)"
+        />
+
+        {/* Connector node at the convergence point */}
+        <circle cx="24" cy="24" r="3.2" fill="oklch(0.98 0 0)" stroke="url(#boafo-ribbon)" strokeWidth="1.4" />
       </svg>
       {showWordmark && (
         <span className="text-base font-semibold tracking-tight text-foreground">
