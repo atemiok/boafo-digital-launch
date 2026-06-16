@@ -312,11 +312,8 @@ function Simulator() {
           </div>
         </div>
 
-        <motion.div
+        <div
           key={v.id}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: EASE }}
           className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-2"
         >
           {/* BEFORE */}
