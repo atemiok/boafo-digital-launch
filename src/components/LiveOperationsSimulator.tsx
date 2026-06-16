@@ -422,11 +422,44 @@ function AfterPane({ v }: { v: Vertical }) {
           ))}
         </div>
 
-        <LivePipeline key={`pipe-${v.id}`} steps={v.pipeline} />
+        <FlowChart key={`flow-${v.id}`} steps={v.pipeline} />
       </div>
     </motion.div>
   );
 }
+
+/* ────────────────────────────────────────────────────────────────
+   LIVE TICKER — pulses metrics every second
+   ──────────────────────────────────────────────────────────────── */
+function LiveTicker() {
+  const [tps, setTps] = useState(1284);
+  const [ms, setMs] = useState(42);
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setTps((v) => Math.max(900, Math.min(2400, v + Math.round((Math.random() - 0.5) * 180))));
+      setMs(() => 32 + Math.round(Math.random() * 22));
+    }, 1100);
+    return () => window.clearInterval(id);
+  }, []);
+  return (
+    <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em]">
+      <span className="inline-flex items-center gap-1.5 text-primary-glow">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-glow opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary-glow" />
+        </span>
+        Live
+      </span>
+      <span className="text-muted-foreground">
+        <span className="tabular-nums text-foreground">{tps.toLocaleString()}</span> tps
+      </span>
+      <span className="text-muted-foreground">
+        p99 <span className="tabular-nums text-foreground">{ms}ms</span>
+      </span>
+    </div>
+  );
+}
+
 
 /* ────────────────────────────────────────────────────────────────
    STAT BLOCK
