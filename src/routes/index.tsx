@@ -211,16 +211,11 @@ function HeroTerminal() {
       </div>
 
       {/* floating stat chip */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.1, duration: 0.5, ease: EASE }}
-        className="absolute -bottom-5 -right-4 rounded-2xl border border-border bg-card px-5 py-3 shadow-xl sm:-right-6"
-      >
+      <div className="absolute -bottom-5 -right-4 rounded-2xl border border-border bg-card px-5 py-3 shadow-xl sm:-right-6">
         <div className="font-display text-2xl font-bold tracking-tight">99.99%</div>
         <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Uptime SLA</div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
