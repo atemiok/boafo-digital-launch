@@ -517,161 +517,290 @@ function Stat({
 }
 
 /* ────────────────────────────────────────────────────────────────
-   LIVE PIPELINE
+   LIVE FLOWCHART — animated SVG with traveling data packets
    ──────────────────────────────────────────────────────────────── */
 
-function LivePipeline({ steps }: { steps: Step[] }) {
+function FlowChart({ steps }: { steps: Step[] }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.4 });
-  const [currentIdx, setCurrentIdx] = useState(-1);
-  const totalDuration = steps[steps.length - 1]?.t ?? 1;
+  const inView = useInView(ref, { once: false, amount: 0.3 });
 
-  // Restart on each mount (key change from parent)
+  // 6 nodes laid out on a 320 x 460 grid (vw-units scale via viewBox)
+  // 0: Ingress, 1: step[0], 2: step[1], 3: step[2], 4: Ledger, 5: Notify
+  const labels = [
+    "Ingress · Webhook",
+    steps[0]?.label ?? "Validate",
+    steps[1]?.label ?? "Transform",
+    steps[2]?.label ?? "Commit",
+    "Ledger · Posted",
+    "Notify · Receipt",
+  ];
+
+  // node positions { x, y } on viewBox 320x460
+  const N = [
+    { x: 160, y: 36 },   // 0 ingress
+    { x: 160, y: 122 },  // 1
+    { x: 160, y: 208 },  // 2
+    { x: 160, y: 294 },  // 3
+    { x: 78, y: 408 },   // 4 ledger (branch)
+    { x: 242, y: 408 },  // 5 notify (branch)
+  ];
+
+  // edges between nodes (curved)
+  const edges = [
+    { from: 0, to: 1, d: "M160 56 L160 102" },
+    { from: 1, to: 2, d: "M160 142 L160 188" },
+    { from: 2, to: 3, d: "M160 228 L160 274" },
+    { from: 3, to: 4, d: "M160 314 C 160 360, 110 372, 78 388" },
+    { from: 3, to: 5, d: "M160 314 C 160 360, 210 372, 242 388" },
+  ];
+
+  // node activation cycle — loops forever
+  const [active, setActive] = useState(0);
   useEffect(() => {
     if (!inView) return;
-    setCurrentIdx(-1);
-    const timers = steps.map((s, i) =>
-      window.setTimeout(() => setCurrentIdx(i), s.t * 1000 + 250),
-    );
-    return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [inView, steps]);
+    setActive(0);
+    let i = 0;
+    const total = 6;
+    const id = window.setInterval(() => {
+      i = (i + 1) % (total + 1); // +1 = brief "complete" pause
+      setActive(i >= total ? -1 : i);
+    }, 700);
+    return () => window.clearInterval(id);
+  }, [inView]);
 
   return (
     <div
       ref={ref}
-      className="mt-8 rounded-2xl border border-border/70 bg-background/60 p-5 backdrop-blur"
+      className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5"
     >
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div className="inline-flex items-center gap-2">
           <Radio className="h-3.5 w-3.5 text-primary-glow" />
           <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            Live pipeline · {totalDuration.toFixed(1)}s end-to-end
+            Live flow graph
           </span>
         </div>
         <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
           <Cpu className="h-3 w-3" />
-          T+0
+          DAG · v3
         </span>
       </div>
 
-      {/* Pipeline track */}
-      <div className="relative">
-        <div className="absolute left-3 top-3 bottom-3 w-px bg-border" />
-        <motion.div
+      <div className="relative overflow-hidden rounded-xl border border-border/60 bg-[color-mix(in_oklab,var(--color-background)_70%,transparent)] p-2">
+        {/* faint grid */}
+        <div
           aria-hidden
-          className="absolute left-3 top-3 w-px origin-top"
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
           style={{
-            background:
-              "linear-gradient(180deg, var(--color-primary-glow), var(--color-primary))",
-            boxShadow:
-              "0 0 12px color-mix(in oklab, var(--color-primary-glow) 60%, transparent)",
-          }}
-          initial={{ height: 0 }}
-          animate={inView ? { height: "calc(100% - 24px)" } : { height: 0 }}
-          transition={{
-            duration: totalDuration + 0.25,
-            ease: "easeInOut",
+            backgroundImage:
+              "linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
           }}
         />
 
-        <ul className="space-y-3">
-          {steps.map((s, i) => {
-            const done = currentIdx >= i;
-            return (
-              <li key={i} className="relative pl-9">
-                {/* node */}
-                <motion.span
-                  className="absolute left-0 top-1 grid h-6 w-6 place-items-center rounded-full border"
-                  initial={false}
-                  animate={{
-                    borderColor: done
-                      ? "color-mix(in oklab, var(--color-primary-glow) 70%, transparent)"
-                      : "var(--color-border)",
-                    backgroundColor: done
-                      ? "color-mix(in oklab, var(--color-primary) 25%, transparent)"
-                      : "var(--color-background)",
-                    boxShadow: done
-                      ? "0 0 0 4px color-mix(in oklab, var(--color-primary-glow) 18%, transparent), 0 0 18px color-mix(in oklab, var(--color-primary-glow) 50%, transparent)"
-                      : "0 0 0 0 transparent",
-                  }}
-                  transition={{ duration: 0.4, ease: EASE }}
-                >
-                  <AnimatePresence mode="wait">
-                    {done ? (
-                      <motion.span
-                        key="ok"
-                        initial={{ scale: 0.4, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.4, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: EASE }}
-                      >
-                        <CheckCircle2 className="h-3.5 w-3.5 text-primary-glow" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="idle"
-                        className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60"
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{
-                          duration: 1.4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </motion.span>
+        <svg
+          viewBox="0 0 320 460"
+          className="relative block h-[460px] w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="edge-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--color-primary-glow)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0.9" />
+            </linearGradient>
+            <radialGradient id="packet-grad">
+              <stop offset="0%" stopColor="var(--color-primary-glow)" stopOpacity="1" />
+              <stop offset="60%" stopColor="var(--color-primary-glow)" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
+            </radialGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-                {/* label row */}
-                <div className="flex items-start justify-between gap-3">
-                  <motion.p
-                    initial={false}
-                    animate={{
-                      color: done
-                        ? "var(--color-foreground)"
-                        : "color-mix(in oklab, var(--color-muted-foreground) 90%, transparent)",
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="text-[13px] leading-snug"
-                  >
-                    {s.label}
-                  </motion.p>
-                  <span
-                    className={`shrink-0 rounded-md border px-1.5 py-0.5 font-mono text-[10px] tracking-wider ${
-                      done
-                        ? "border-primary/40 bg-primary/10 text-primary-glow"
-                        : "border-border bg-background text-muted-foreground"
-                    }`}
-                  >
-                    <Clock className="-mt-0.5 mr-1 inline h-2.5 w-2.5" />
-                    T+{(s.t * 1000).toFixed(0)}ms
-                  </span>
-                </div>
-              </li>
+          {/* edges */}
+          {edges.map((e, i) => {
+            const lit = active >= e.to || active === -1;
+            return (
+              <g key={i}>
+                <path
+                  d={e.d}
+                  fill="none"
+                  stroke="var(--color-border)"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                />
+                <path
+                  d={e.d}
+                  fill="none"
+                  stroke="url(#edge-grad)"
+                  strokeWidth={lit ? 2 : 1.2}
+                  strokeLinecap="round"
+                  strokeDasharray="4 6"
+                  opacity={lit ? 0.95 : 0.35}
+                  filter={lit ? "url(#glow)" : undefined}
+                  style={{
+                    transition: "opacity 400ms ease, stroke-width 400ms ease",
+                  }}
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="0"
+                    to="-40"
+                    dur="1.4s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+                {/* traveling packet */}
+                <circle r="3.5" fill="url(#packet-grad)" filter="url(#glow)">
+                  <animateMotion
+                    dur="1.8s"
+                    repeatCount="indefinite"
+                    rotate="auto"
+                    begin={`${i * 0.3}s`}
+                    path={e.d}
+                  />
+                </circle>
+              </g>
             );
           })}
-        </ul>
+
+          {/* nodes */}
+          {N.map((p, i) => {
+            const isActive = active === i;
+            const isDone = active === -1 || active > i;
+            const isBranch = i === 4 || i === 5;
+            const w = isBranch ? 132 : 168;
+            const h = 36;
+            return (
+              <g
+                key={i}
+                transform={`translate(${p.x - w / 2} ${p.y - h / 2})`}
+                style={{ transition: "transform 300ms ease" }}
+              >
+                {/* halo */}
+                {isActive && (
+                  <rect
+                    x={-6}
+                    y={-6}
+                    rx={14}
+                    ry={14}
+                    width={w + 12}
+                    height={h + 12}
+                    fill="none"
+                    stroke="var(--color-primary-glow)"
+                    strokeWidth={1.5}
+                    opacity={0.6}
+                    filter="url(#glow)"
+                  >
+                    <animate
+                      attributeName="opacity"
+                      values="0.2;0.8;0.2"
+                      dur="1.2s"
+                      repeatCount="indefinite"
+                    />
+                  </rect>
+                )}
+                <rect
+                  width={w}
+                  height={h}
+                  rx={10}
+                  ry={10}
+                  fill={
+                    isActive
+                      ? "color-mix(in oklab, var(--color-primary) 28%, var(--color-card))"
+                      : isDone
+                        ? "color-mix(in oklab, var(--color-primary) 12%, var(--color-card))"
+                        : "var(--color-card)"
+                  }
+                  stroke={
+                    isActive || isDone
+                      ? "color-mix(in oklab, var(--color-primary-glow) 65%, transparent)"
+                      : "var(--color-border)"
+                  }
+                  strokeWidth={1.25}
+                  style={{ transition: "fill 350ms ease, stroke 350ms ease" }}
+                />
+                {/* status dot */}
+                <circle
+                  cx={12}
+                  cy={h / 2}
+                  r={3.5}
+                  fill={
+                    isActive
+                      ? "var(--color-primary-glow)"
+                      : isDone
+                        ? "var(--color-primary)"
+                        : "color-mix(in oklab, var(--color-muted-foreground) 50%, transparent)"
+                  }
+                >
+                  {isActive && (
+                    <animate
+                      attributeName="r"
+                      values="3;5;3"
+                      dur="0.9s"
+                      repeatCount="indefinite"
+                    />
+                  )}
+                </circle>
+                <text
+                  x={24}
+                  y={h / 2 + 3.5}
+                  fontSize={isBranch ? 10 : 10.5}
+                  fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                  fill={
+                    isActive || isDone
+                      ? "var(--color-foreground)"
+                      : "var(--color-muted-foreground)"
+                  }
+                  style={{ transition: "fill 300ms ease" }}
+                >
+                  {labels[i].length > (isBranch ? 16 : 28)
+                    ? labels[i].slice(0, isBranch ? 15 : 27) + "…"
+                    : labels[i]}
+                </text>
+                {/* tag */}
+                <text
+                  x={w - 8}
+                  y={h / 2 + 3.5}
+                  textAnchor="end"
+                  fontSize={8.5}
+                  fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                  fill={
+                    isActive || isDone
+                      ? "var(--color-primary-glow)"
+                      : "color-mix(in oklab, var(--color-muted-foreground) 70%, transparent)"
+                  }
+                >
+                  {i === 0 ? "IN" : i === 4 ? "DB" : i === 5 ? "SMS" : `S${i}`}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
       </div>
 
       {/* status bar */}
-      <div className="mt-5 flex items-center justify-between border-t border-border/70 pt-3">
+      <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-3">
         <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <Zap className="h-3 w-3 text-primary-glow" />
-          Throughput: nominal
+          {active === -1
+            ? "Cycle complete · re-arming"
+            : `Executing node ${active + 1}/6`}
         </span>
-        <span
-          className={`font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
-            currentIdx >= steps.length - 1
-              ? "text-primary-glow"
-              : "text-muted-foreground"
-          }`}
-        >
-          {currentIdx >= steps.length - 1 ? "✓ Cycle complete" : "● Streaming…"}
+        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
+          <CheckCircle2 className="h-3 w-3" />
+          {active === -1 ? "OK" : "Streaming"}
         </span>
       </div>
     </div>
   );
 }
+
 
 /* ────────────────────────────────────────────────────────────────
    CONVERSION FOOTER
