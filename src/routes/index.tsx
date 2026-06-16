@@ -661,7 +661,7 @@ function FooterCTA() {
             <span className="text-primary-foreground/50">© 2026 Boafo Solutions</span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
