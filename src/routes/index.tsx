@@ -538,7 +538,7 @@ function Bento() {
             </div>
           </motion.article>
         ))}
-      </motion.div>
+      </div>
 
       <div className="mt-10 text-center">
         <Link
