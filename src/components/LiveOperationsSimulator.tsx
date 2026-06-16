@@ -150,6 +150,33 @@ export function LiveOperationsSimulator() {
     [activeId],
   );
 
+  /* Auto-cycle through verticals every 5 s */
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setActiveId((prev) => {
+        const idx = VERTICALS.findIndex((v) => v.id === prev);
+        const next = VERTICALS[(idx + 1) % VERTICALS.length];
+        return next.id;
+      });
+    }, 5000);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const handleManualTab = (id: string) => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    setActiveId(id);
+    timerRef.current = setInterval(() => {
+      setActiveId((prev) => {
+        const idx = VERTICALS.findIndex((v) => v.id === prev);
+        const next = VERTICALS[(idx + 1) % VERTICALS.length];
+        return next.id;
+      });
+    }, 5000);
+  };
+
   return (
     <section
       id="simulator"
