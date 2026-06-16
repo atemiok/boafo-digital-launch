@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   ArrowRight,
   ShieldCheck,
@@ -11,9 +10,6 @@ import {
   Building2,
   BarChart3,
   Headphones,
-  CheckCircle2,
-  XCircle,
-  Zap,
   Activity,
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
