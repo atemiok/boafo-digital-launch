@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Projects — Business Automation Software | Boafo Solutions" },
+      { title: "Work — Business Automation Case Studies | Boafo Solutions" },
       {
         name: "description",
         content:
@@ -18,19 +18,19 @@ export const Route = createFileRoute("/work")({
         content:
           "Business automation software, M-Pesa reconciliation, Property management portal, IoT telemetry, Logistics dispatch software, SACCO automation, Boafo Solutions case studies",
       },
-      { property: "og:title", content: "Projects — Boafo Solutions" },
+      { property: "og:title", content: "Work — Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Real ROI from M-Pesa reconciliation, tenant portals, IoT telemetry, and logistics dispatch projects across Africa.",
+          "Business friction, eliminated. See the systems Boafo Solutions has shipped to production.",
       },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/projects" },
+      { property: "og:url", content: "/work" },
     ],
-    links: [{ rel: "canonical", href: "/projects" }],
+    links: [{ rel: "canonical", href: "/work" }],
   }),
-  component: ProjectsPage,
+  component: WorkPage,
 });
 
 const EASE = [0.16, 1, 0.3, 1] as const;
