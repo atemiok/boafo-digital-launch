@@ -94,6 +94,10 @@ function ContactPage() {
                         WhatsApp us instantly
                       </a>
                     </p>
+                    <p className="flex items-start gap-2">
+                      <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>Ngong 5th Ave, Upperhill, Nairobi, Kenya</span>
+                    </p>
                   </div>
                 </div>
 
