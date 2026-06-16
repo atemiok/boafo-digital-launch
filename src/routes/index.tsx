@@ -174,12 +174,9 @@ function HeroTerminal() {
             { dot: "bg-primary", pulse: false, label: "Tenant invoice matched", value: "INV-08412", tone: "text-primary-glow" },
             { dot: "bg-amber-400", pulse: false, label: "SMS receipt dispatched", value: "0.42s", tone: "text-amber-200" },
             { dot: "bg-emerald-400", pulse: true, label: "Ledger posted · 12,402 rows", value: "OK", tone: "text-emerald-300" },
-          ].map((row, i) => (
-            <motion.div
+          ].map((row) => (
+            <div
               key={row.label}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.12, duration: 0.4, ease: EASE }}
               className="flex items-center justify-between rounded-md border border-border/70 bg-background/60 px-3 py-2.5"
             >
               <div className="flex items-center gap-3">
@@ -187,7 +184,7 @@ function HeroTerminal() {
                 <span className="text-xs text-muted-foreground">{row.label}</span>
               </div>
               <span className={`text-xs font-semibold ${row.tone}`}>{row.value}</span>
-            </motion.div>
+            </div>
           ))}
 
           <div className="!mt-5 flex items-center justify-between border-t border-border/70 pt-4">
