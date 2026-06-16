@@ -38,7 +38,8 @@ export function SiteFooter() {
           links={[
             { label: "Home", to: "/" },
             { label: "Services", to: "/services" },
-            { label: "Projects", to: "/projects" },
+            { label: "Work", to: "/work" },
+            { label: "Company", to: "/company" },
             { label: "Contact", to: "/contact" },
           ]}
         />
@@ -62,7 +63,7 @@ export function SiteFooter() {
   );
 }
 
-type InternalLink = { label: string; to: "/" | "/services" | "/projects" | "/contact" };
+type InternalLink = { label: string; to: "/" | "/services" | "/work" | "/company" | "/contact" };
 type ExternalLink = { label: string; href: string };
 
 function FooterCol({

@@ -97,7 +97,7 @@ const STATS = [
   { icon: Clock, value: "<8wk", label: "average time to first launch" },
 ];
 
-function ProjectsPage() {
+function WorkPage() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
@@ -106,7 +106,7 @@ function ProjectsPage() {
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
           <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">
             <motion.p variants={fadeUp} initial="hidden" animate="visible" className="text-xs font-mono uppercase tracking-widest text-primary">
-              Projects
+              Work · Case Studies
             </motion.p>
             <motion.h1
               variants={fadeUp}
