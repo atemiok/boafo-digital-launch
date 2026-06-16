@@ -5,10 +5,9 @@ type Props = {
 };
 
 /**
- * Boafo Solutions — connected flow mark.
- * A single continuous ribbon that loops through two chambers and converges on a
- * connector node, evoking data flow, integration, and the handshake between
- * systems. Soft geometry tuned for both light and dark themes.
+ * Boafo Solutions — bold solid mark.
+ * A confident filled tile with a custom negative-space "B" carved into it.
+ * Reads instantly at small sizes, holds up next to Linear / Vercel-tier marks.
  */
 export function BoafoLogo({ className, showWordmark = true, size = 30 }: Props) {
   return (
@@ -16,64 +15,53 @@ export function BoafoLogo({ className, showWordmark = true, size = 30 }: Props) 
       <svg
         width={size}
         height={size}
-        viewBox="0 0 48 48"
+        viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-label="Boafo Solutions logo"
       >
         <defs>
-          <linearGradient id="boafo-ribbon" x1="4" y1="24" x2="44" y2="24" gradientUnits="userSpaceOnUse">
+          <linearGradient id="boafo-tile" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="oklch(0.78 0.16 162)" />
-            <stop offset="55%" stopColor="oklch(0.66 0.19 200)" />
             <stop offset="100%" stopColor="oklch(0.55 0.22 265)" />
           </linearGradient>
-          <linearGradient id="boafo-surface" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="oklch(0.78 0.16 162 / 0.22)" />
-            <stop offset="55%" stopColor="oklch(0.66 0.19 200 / 0.14)" />
-            <stop offset="100%" stopColor="oklch(0.55 0.22 265 / 0.24)" />
-          </linearGradient>
-          <filter id="boafo-glow" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
         </defs>
 
-        {/* Soft rounded container */}
-        <rect
-          x="2"
-          y="2"
-          width="44"
-          height="44"
-          rx="14"
-          fill="url(#boafo-surface)"
-          stroke="url(#boafo-ribbon)"
-          strokeWidth="1.5"
-          opacity="0.9"
-        />
+        {/* Bold filled tile */}
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="url(#boafo-tile)" />
 
-        {/* Connected flow ribbon */}
+        {/* Negative-space "B" — solid, geometric, decisive.
+            Outer path goes clockwise; inner counters go counter-clockwise (even-odd) to punch through. */}
         <path
-          d="M14 24
-             C14 16, 22 14, 24 18
-             C26 22, 18 26, 24 30
-             C28 33, 34 30, 34 24
-             C34 20, 30 18, 28 20
-             C25 23, 30 26, 28 28
-             C26 30, 22 30, 20 27
-             C18 24, 22 21, 20 19
-             C18 17, 14 19, 14 24
-             Z"
-          stroke="url(#boafo-ribbon)"
-          strokeWidth="2.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          filter="url(#boafo-glow)"
-        />
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="
+            M11 8
+            H22
+            C26.5 8, 29.5 10.7, 29.5 14.5
+            C29.5 16.8, 28.3 18.6, 26.4 19.6
+            C29 20.5, 30.5 22.6, 30.5 25.5
+            C30.5 29.4, 27.4 32, 22.6 32
+            H11
+            Z
 
-        {/* Connector node at the convergence point */}
-        <circle cx="24" cy="24" r="3.2" fill="oklch(0.98 0 0)" stroke="url(#boafo-ribbon)" strokeWidth="1.4" />
+            M16 12.5
+            V18
+            H21.5
+            C23.5 18, 24.8 16.9, 24.8 15.2
+            C24.8 13.5, 23.5 12.5, 21.5 12.5
+            Z
+
+            M16 22
+            V27.5
+            H22.2
+            C24.5 27.5, 25.8 26.4, 25.8 24.7
+            C25.8 23, 24.5 22, 22.2 22
+            Z
+          "
+          fill="oklch(0.99 0 0)"
+        />
       </svg>
       {showWordmark && (
         <span className="text-base font-semibold tracking-tight text-foreground">
