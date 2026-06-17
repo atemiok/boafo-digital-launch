@@ -443,7 +443,7 @@ function LiveTicker() {
     return () => window.clearInterval(id);
   }, []);
   return (
-    <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em]">
+    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] sm:gap-3 sm:tracking-[0.18em]">
       <span className="inline-flex items-center gap-1.5 text-primary-glow">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-glow opacity-75" />
@@ -451,7 +451,7 @@ function LiveTicker() {
         </span>
         Live
       </span>
-      <span className="text-muted-foreground">
+      <span className="hidden text-muted-foreground sm:inline">
         <span className="tabular-nums text-foreground">{tps.toLocaleString()}</span> tps
       </span>
       <span className="text-muted-foreground">
