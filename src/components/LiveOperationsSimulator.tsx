@@ -14,7 +14,6 @@ import {
   Truck,
   Banknote,
   Sparkles,
-
 } from "lucide-react";
 
 /* ────────────────────────────────────────────────────────────────
@@ -145,10 +144,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function LiveOperationsSimulator() {
   const [activeId, setActiveId] = useState(VERTICALS[0].id);
-  const active = useMemo(
-    () => VERTICALS.find((v) => v.id === activeId)!,
-    [activeId],
-  );
+  const active = useMemo(() => VERTICALS.find((v) => v.id === activeId)!, [activeId]);
 
   /* Auto-cycle through verticals every 5 s */
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -194,8 +190,7 @@ export function LiveOperationsSimulator() {
           backgroundImage:
             "linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
         }}
       />
 
@@ -214,8 +209,8 @@ export function LiveOperationsSimulator() {
               The friction vs. the engine.
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground">
-              Switch verticals to watch a Boafo-engineered workflow replace the
-              manual reality, end-to-end, in under a second.
+              Switch verticals to watch a Boafo-engineered workflow replace the manual reality,
+              end-to-end, in under a second.
             </p>
           </div>
 
@@ -255,9 +250,7 @@ export function LiveOperationsSimulator() {
                       }`}
                     />
                     <span
-                      className={
-                        isActive ? "text-primary-foreground" : "text-muted-foreground"
-                      }
+                      className={isActive ? "text-primary-foreground" : "text-muted-foreground"}
                     >
                       {v.short}
                     </span>
@@ -398,15 +391,12 @@ function AfterPane({ v }: { v: Vertical }) {
 
       <div className="relative">
         <div className="flex items-center justify-between">
-          <span
-            className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow"
-          >
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow">
             <Sparkles className="h-3 w-3" />
             After · Boafo Engine
           </span>
           <LiveTicker />
         </div>
-
 
         <AnimatePresence mode="wait">
           <motion.p
@@ -471,7 +461,6 @@ function LiveTicker() {
   );
 }
 
-
 /* ────────────────────────────────────────────────────────────────
    STAT BLOCK
    ──────────────────────────────────────────────────────────────── */
@@ -491,8 +480,7 @@ function Stat({
     variant === "danger"
       ? "border-destructive/25 bg-destructive/5"
       : "border-primary/30 bg-primary/10";
-  const accent =
-    variant === "danger" ? "text-destructive/90" : "text-primary-glow";
+  const accent = variant === "danger" ? "text-destructive/90" : "text-primary-glow";
 
   return (
     <motion.div
@@ -514,9 +502,7 @@ function Stat({
         animate={{ x: "100%" }}
         transition={{ duration: 1.6, delay: delay + 0.1, ease: "easeInOut" }}
       />
-      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>
-        ◆
-      </div>
+      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>◆</div>
       <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
         {value}
       </div>
@@ -545,12 +531,12 @@ function FlowChart({ steps }: { steps: Step[] }) {
 
   // node positions { x, y } on viewBox 320x460
   const N = [
-    { x: 160, y: 36 },   // 0 ingress
-    { x: 160, y: 122 },  // 1
-    { x: 160, y: 208 },  // 2
-    { x: 160, y: 294 },  // 3
-    { x: 78, y: 408 },   // 4 ledger (branch)
-    { x: 242, y: 408 },  // 5 notify (branch)
+    { x: 160, y: 36 }, // 0 ingress
+    { x: 160, y: 122 }, // 1
+    { x: 160, y: 208 }, // 2
+    { x: 160, y: 294 }, // 3
+    { x: 78, y: 408 }, // 4 ledger (branch)
+    { x: 242, y: 408 }, // 5 notify (branch)
   ];
 
   // edges between nodes (curved)
@@ -584,9 +570,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
   }, [steps]);
 
   return (
-    <div
-      className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5"
-    >
+    <div className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5">
       <div className="mb-3 flex items-center justify-between">
         <div className="inline-flex items-center gap-2">
           <Radio className="h-3.5 w-3.5 text-primary-glow" />
@@ -756,12 +740,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   }
                 >
                   {isActive && (
-                    <animate
-                      attributeName="r"
-                      values="3;5;3"
-                      dur="0.9s"
-                      repeatCount="indefinite"
-                    />
+                    <animate attributeName="r" values="3;5;3" dur="0.9s" repeatCount="indefinite" />
                   )}
                 </circle>
                 <text
@@ -770,9 +749,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   fontSize={isBranch ? 10 : 10.5}
                   fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
                   fill={
-                    isActive || isDone
-                      ? "var(--color-foreground)"
-                      : "var(--color-muted-foreground)"
+                    isActive || isDone ? "var(--color-foreground)" : "var(--color-muted-foreground)"
                   }
                   style={{ transition: "fill 300ms ease" }}
                 >
@@ -805,9 +782,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
       <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-3">
         <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <Zap className="h-3 w-3 text-primary-glow" />
-          {active === -1
-            ? "Cycle complete · re-arming"
-            : `Executing node ${active + 1}/6`}
+          {active === -1 ? "Cycle complete · re-arming" : `Executing node ${active + 1}/6`}
         </span>
         <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
           <CheckCircle2 className="h-3 w-3" />
@@ -817,7 +792,6 @@ function FlowChart({ steps }: { steps: Step[] }) {
     </div>
   );
 }
-
 
 /* ────────────────────────────────────────────────────────────────
    CONVERSION FOOTER
