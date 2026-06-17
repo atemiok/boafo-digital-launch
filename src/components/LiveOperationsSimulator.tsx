@@ -691,6 +691,31 @@ function FlowChart({ steps }: { steps: Step[] }) {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+            <marker
+              id="arrowhead"
+              viewBox="0 0 10 10"
+              refX="7"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto-start-reverse"
+            >
+              <path d="M0 0 L10 5 L0 10 L2.5 5 Z" fill="var(--color-primary-glow)" />
+            </marker>
+            <marker
+              id="arrowhead-dim"
+              viewBox="0 0 10 10"
+              refX="7"
+              refY="5"
+              markerWidth="4.5"
+              markerHeight="4.5"
+              orient="auto-start-reverse"
+            >
+              <path
+                d="M0 0 L10 5 L0 10 L2.5 5 Z"
+                fill="color-mix(in oklab, var(--color-primary) 45%, transparent)"
+              />
+            </marker>
           </defs>
 
           {/* edges */}
@@ -715,6 +740,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   strokeDashoffset={0}
                   opacity={lit ? 0.95 : 0.35}
                   filter={lit ? "url(#glow)" : undefined}
+                  markerEnd={lit ? "url(#arrowhead)" : "url(#arrowhead-dim)"}
                   style={{
                     transition: "opacity 400ms ease, stroke-width 400ms ease",
                   }}
