@@ -269,7 +269,7 @@ function Bento() {
         title="Six production-grade systems. Tailored to your workflow."
         subtitle="Battle-tested foundations we ship fast — and you own forever."
       />
-      <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[200px]">
+      <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[minmax(220px,auto)]">
         {SERVICES.map((it, i) => (
           <article
             key={it.title}
@@ -284,7 +284,7 @@ function Bento() {
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
             )}
-            <div className="relative flex h-full flex-col">
+            <div className="relative flex h-full flex-col pb-3">
               <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-primary/10 text-primary-glow transition-transform group-hover:scale-110">
                 <it.icon className="h-5 w-5" />
               </div>
@@ -294,8 +294,8 @@ function Bento() {
               <p className={`mt-2 text-sm leading-relaxed text-muted-foreground ${it.accent ? "max-w-md" : ""}`}>
                 {it.copy}
               </p>
-              <div aria-hidden className="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100" />
             </div>
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100" />
           </article>
         ))}
       </div>
