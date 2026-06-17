@@ -740,6 +740,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   strokeDashoffset={0}
                   opacity={lit ? 0.95 : 0.35}
                   filter={lit ? "url(#glow)" : undefined}
+                  markerEnd={lit ? "url(#arrowhead)" : "url(#arrowhead-dim)"}
                   style={{
                     transition: "opacity 400ms ease, stroke-width 400ms ease",
                   }}
