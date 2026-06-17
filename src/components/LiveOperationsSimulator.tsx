@@ -562,6 +562,14 @@ function FlowChart({ steps }: { steps: Step[] }) {
     { from: 3, to: 5, d: "M160 314 C 160 360, 210 372, 242 388" },
   ];
 
+  const packetTracks = [
+    { x: [160, 160], y: [56, 102] },
+    { x: [160, 160], y: [142, 188] },
+    { x: [160, 160], y: [228, 274] },
+    { x: [160, 150, 120, 78], y: [314, 350, 374, 388] },
+    { x: [160, 170, 205, 242], y: [314, 350, 374, 388] },
+  ];
+
   // node activation cycle — loops forever
   const [active, setActive] = useState(0);
   useEffect(() => {
@@ -640,37 +648,40 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
-                <path
+                <motion.path
                   d={e.d}
                   fill="none"
                   stroke="url(#edge-grad)"
                   strokeWidth={lit ? 2 : 1.2}
                   strokeLinecap="round"
                   strokeDasharray="4 6"
+                  strokeDashoffset={0}
                   opacity={lit ? 0.95 : 0.35}
                   filter={lit ? "url(#glow)" : undefined}
                   style={{
                     transition: "opacity 400ms ease, stroke-width 400ms ease",
                   }}
-                >
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    from="0"
-                    to="-40"
-                    dur="1.4s"
-                    repeatCount="indefinite"
-                  />
-                </path>
+                  animate={{ strokeDashoffset: [0, -40] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: "linear" }}
+                />
                 {/* traveling packet */}
-                <circle r="3.5" fill="url(#packet-grad)" filter="url(#glow)">
-                  <animateMotion
-                    dur="1.8s"
-                    repeatCount="indefinite"
-                    rotate="auto"
-                    begin={`${i * 0.3}s`}
-                    path={e.d}
-                  />
-                </circle>
+                <motion.circle
+                  r="4"
+                  fill="url(#packet-grad)"
+                  filter="url(#glow)"
+                  animate={{
+                    cx: packetTracks[i].x,
+                    cy: packetTracks[i].y,
+                    opacity: [0, 1, 1, 0],
+                    scale: [0.7, 1.25, 1, 0.7],
+                  }}
+                  transition={{
+                    duration: 1.65,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: i * 0.24,
+                  }}
+                />
               </g>
             );
           })}
