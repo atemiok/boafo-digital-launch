@@ -91,7 +91,7 @@ function HomePage() {
    ──────────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-12 lg:min-h-screen lg:pt-24 lg:pb-14">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-60" />
 
