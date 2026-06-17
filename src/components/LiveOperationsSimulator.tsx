@@ -816,8 +816,7 @@ function ConversionFooter() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE }}
       className="relative mt-10 overflow-hidden rounded-3xl border border-primary/30 p-6 sm:p-8"
       style={{
