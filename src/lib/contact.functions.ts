@@ -14,11 +14,12 @@ export const sendContactRequest = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ContactSchema.parse(input))
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
-    const to = "boafosolutions@outlook.com";
-    const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <noreply@updates.boafosolutions.com>";
+    const to = process.env.CONTACT_TO_EMAIL ?? "boafosolutions@outlook.com";
+    const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <onboarding@resend.dev>";
     const siteUrl = process.env.SITE_URL ?? "https://boafosolutions.com";
     const logoUrl = `${siteUrl}/boafo-logo-light.svg`;
     const bookingUrl = `${siteUrl}/contact#book`;
+    console.log("[contact] env check", { hasKey: !!apiKey, keyLen: apiKey?.length ?? 0, to, from });
 
     const internalSubject = `New architecture discovery — ${data.company}`;
     const internalHtml = renderInternalEmail({
