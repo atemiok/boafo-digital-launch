@@ -434,7 +434,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
@@ -442,17 +442,17 @@ function AfterPane({ v }: { v: Vertical }) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
         style={{ background: "var(--gradient-electric)" }}
       />
 
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow">
             <Sparkles className="h-3 w-3" />
             After · Boafo Engine
           </span>
-          <LiveTicker />
+          <SuccessPulse />
         </div>
 
         <AnimatePresence mode="wait">
@@ -468,7 +468,7 @@ function AfterPane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
           {v.afterStats.map((s, i) => (
             <Stat
               key={`${v.id}-as-${i}`}
@@ -479,10 +479,26 @@ function AfterPane({ v }: { v: Vertical }) {
             />
           ))}
         </div>
-
-        <FlowChart key={`flow-${v.id}`} steps={v.pipeline} />
       </div>
     </motion.div>
+  );
+}
+
+function SuccessPulse() {
+  return (
+    <div className="flex items-center gap-1.5">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="h-1.5 w-1.5 rounded-full bg-primary-glow"
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
+        />
+      ))}
+      <span className="ml-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
+        Flow
+      </span>
+    </div>
   );
 }
 
