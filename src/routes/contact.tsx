@@ -4,6 +4,10 @@ import { CheckCircle2, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
+import { CalendlyEmbed } from "@/components/CalendlyEmbed";
+
+const CALENDLY_URL =
+  "https://calendly.com/boafosolutions/30min?hide_gdpr_banner=1&background_color=0b0f14&text_color=e2e8f0&primary_color=22d3ee";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -111,6 +115,41 @@ function ContactPage() {
                   <ContactForm />
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="book" className="pb-24">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="solid-card p-6 sm:p-8"
+            >
+              <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-widest text-primary">
+                    Book a Meeting
+                  </p>
+                  <h2 className="mt-2 text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
+                    Pick a time that works for you.
+                  </h2>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    30 minutes · video call · senior engineer · zero pitch.
+                  </p>
+                </div>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline"
+                >
+                  Open in new tab ↗
+                </a>
+              </div>
+              <CalendlyEmbed url={CALENDLY_URL} minHeight={720} />
             </motion.div>
           </div>
         </section>
