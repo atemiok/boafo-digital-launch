@@ -15,16 +15,34 @@ export const sendContactRequest = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_TO_EMAIL ?? "boafosolutions@outlook.com";
-    // If RESEND_FROM_EMAIL is set (verified domain), use it; otherwise fall back to Resend's sandbox sender
-    const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <onboarding@resend.dev>";
-    const hasVerifiedDomain = Boolean(process.env.RESEND_FROM_EMAIL);
+    const fromEnv = process.env.RESEND_FROM_EMAIL;
+    // Resend requires a verified domain to send any email — there is no usable test mode with an API key.
+    const from = fromEnv ?? "Boafo Solutions <onboarding@resend.dev>";
+    const hasVerifiedDomain = Boolean(fromEnv);
     const siteUrl = process.env.SITE_URL ?? "https://boafosolutions.com";
     const logoUrl = `${siteUrl}/boafo-logo-light.svg`;
     const bookingUrl = `${siteUrl}/contact#book`;
 
-    if (!apiKey) {
-      console.warn("[contact] RESEND_API_KEY not set — skipping email send.", { to });
-      return { ok: true, delivered: false as const, message: "Request saved. Email delivery is not configured yet." };
+    // Always log the submission server-side so it's never lost, even if email delivery isn't configured.
+    console.log("[contact] submission", {
+      name: data.name,
+      company: data.company,
+      email: data.email,
+      phone: data.phone,
+      bottleneck: data.bottleneck,
+      message: data.message,
+    });
+
+    if (!apiKey || !hasVerifiedDomain) {
+      console.warn(
+        "[contact] Email skipped — set RESEND_FROM_EMAIL to a verified Resend domain to enable delivery.",
+        { hasApiKey: !!apiKey, hasVerifiedDomain },
+      );
+      return {
+        ok: true,
+        delivered: false as const,
+        message: "Thanks — your request was received. We'll be in touch within one business day.",
+      };
     }
 
     const internalSubject = `New architecture discovery — ${data.company}`;
@@ -56,54 +74,37 @@ export const sendContactRequest = createServerFn({ method: "POST" })
         body: JSON.stringify(payload),
       });
       const text = await res.text();
-      if (!res.ok) {
-        console.error("[contact] Resend failed", res.status, text);
-      } else {
-        console.log("[contact] Resend ok", text);
-      }
-      return { ok: res.ok, status: res.status, text };
+      if (!res.ok) console.error("[contact] Resend failed", res.status, text);
+      else console.log("[contact] Resend ok", text);
+      return { ok: res.ok, text };
     }
 
     try {
-      // Always send the internal notification (to the account owner — works even in Resend test mode)
-      const internal = await send({
-        from,
-        to: [to],
-        subject: internalSubject,
-        html: internalHtml,
-        reply_to: data.email,
-      });
+      const [internal, confirm] = await Promise.all([
+        send({ from, to: [to], subject: internalSubject, html: internalHtml, reply_to: data.email }),
+        send({ from, to: [data.email], subject: confirmSubject, html: confirmHtml, reply_to: to }),
+      ]);
 
-      // Only send user-facing confirmation when a verified domain is configured
-      let confirm: { ok: boolean } = { ok: true };
-      if (hasVerifiedDomain) {
-        confirm = await send({
-          from,
-          to: [data.email],
-          subject: confirmSubject,
-          html: confirmHtml,
-          reply_to: to,
-        });
-      }
-
-      if (!internal.ok) {
+      if (!internal.ok && !confirm.ok) {
         return {
           ok: true,
           delivered: false as const,
-          message: "Request received. We'll be in touch within one business day.",
+          message: "Thanks — your request was received. We'll be in touch within one business day.",
         };
       }
 
       return {
         ok: true,
         delivered: true as const,
-        message: hasVerifiedDomain && confirm.ok
-          ? "Request received — check your inbox for a confirmation. We'll be in touch within one business day."
-          : "Request received. We'll be in touch within one business day.",
+        message: "Request received — check your inbox for a confirmation. We'll be in touch within one business day.",
       };
     } catch (err) {
       console.error("[contact] Resend threw", err);
-      return { ok: true, delivered: false as const, message: "Request saved. We'll be in touch within one business day." };
+      return {
+        ok: true,
+        delivered: false as const,
+        message: "Thanks — your request was received. We'll be in touch within one business day.",
+      };
     }
   });
 
