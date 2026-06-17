@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence, LayoutGroup, useInView } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -286,18 +286,10 @@ export function LiveOperationsSimulator() {
    ──────────────────────────────────────────────────────────────── */
 
 function BeforePane({ v }: { v: Vertical }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 24 }
-      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
       className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
       style={{
@@ -387,18 +379,10 @@ function ManualPulse() {
    ──────────────────────────────────────────────────────────────── */
 
 function AfterPane({ v }: { v: Vertical }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 24 }
-      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
       className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
       style={{
@@ -548,9 +532,6 @@ function Stat({
    ──────────────────────────────────────────────────────────────── */
 
 function FlowChart({ steps }: { steps: Step[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   // 6 nodes laid out on a 320 x 460 grid (vw-units scale via viewBox)
   // 0: Ingress, 1: step[0], 2: step[1], 3: step[2], 4: Ledger, 5: Notify
   const labels = [
@@ -584,7 +565,6 @@ function FlowChart({ steps }: { steps: Step[] }) {
   // node activation cycle — loops forever
   const [active, setActive] = useState(0);
   useEffect(() => {
-    if (!inView) return;
     setActive(0);
     let i = 0;
     const total = 6;
@@ -593,11 +573,10 @@ function FlowChart({ steps }: { steps: Step[] }) {
       setActive(i >= total ? -1 : i);
     }, 700);
     return () => window.clearInterval(id);
-  }, [inView]);
+  }, [steps]);
 
   return (
     <div
-      ref={ref}
       className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5"
     >
       <div className="mb-3 flex items-center justify-between">
