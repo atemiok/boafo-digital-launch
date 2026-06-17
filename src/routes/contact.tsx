@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { CheckCircle2, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
+import { ContactForm } from "@/components/ContactForm";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 
 const CALENDLY_URL =
@@ -40,19 +41,19 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
 };
 
 function ContactPage() {
   return (
     <div className="h-[100dvh] overflow-hidden bg-background text-foreground antialiased flex flex-col">
       <SiteNav />
-      <main className="flex-1 min-h-0 pt-24 sm:pt-28 pb-4 sm:pb-6">
+      <main className="flex-1 min-h-0 pt-20 sm:pt-24 pb-4 sm:pb-6">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
 
         <div className="mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -60,44 +61,39 @@ function ContactPage() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="grid h-full gap-4 lg:gap-6 lg:grid-cols-5 lg:items-stretch"
+            className="grid h-full gap-4 lg:grid-cols-5 lg:items-stretch"
           >
-            {/* LEFT — info */}
+            {/* LEFT — info + compact form */}
             <motion.aside
               variants={item}
-              className="solid-card flex min-w-0 flex-col p-5 sm:p-6 lg:col-span-2 lg:overflow-y-auto"
+              className="solid-card flex min-w-0 flex-col p-4 sm:p-5 lg:col-span-2 lg:overflow-hidden"
             >
-              <motion.p variants={item} className="text-[11px] font-mono uppercase tracking-widest text-primary">
-                Architecture Discovery
-              </motion.p>
-              <motion.h1 variants={item} className="mt-2 text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
-                Tell us where the friction lives.
-              </motion.h1>
-              <motion.p variants={item} className="mt-2 text-sm text-muted-foreground">
-                One 30-minute call with a senior engineer. We diagnose your primary bottleneck and return a fixed-price plan.
-              </motion.p>
+              <motion.div variants={item} className="shrink-0">
+                <p className="text-[11px] font-mono uppercase tracking-widest text-primary">
+                  Architecture Discovery
+                </p>
+                <h1 className="mt-1 text-balance text-xl font-extrabold tracking-tight sm:text-2xl">
+                  Tell us where the friction lives.
+                </h1>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  One 30-minute call with a senior engineer. We diagnose your bottleneck and return a fixed-price plan.
+                </p>
+              </motion.div>
 
-              <motion.ul variants={container} className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-                {[
-                  "Senior engineer, not a sales rep",
-                  "Fixed-price scope, no surprises",
-                  "Full source ownership at delivery",
-                  "Ongoing support after launch",
-                ].map((t) => (
-                  <motion.li key={t} variants={item} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                    <span className="truncate">{t}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
+              <div className="mt-3 min-h-0 flex-1 overflow-y-auto lg:overflow-visible">
+                <ContactForm compact />
+              </div>
 
-              <motion.div variants={container} className="mt-auto pt-5 space-y-1.5 text-sm text-muted-foreground">
-                <motion.a variants={item} href="mailto:info@boafosolutions.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Mail className="h-4 w-4 shrink-0 text-primary" />
+              <motion.div
+                variants={container}
+                className="mt-3 grid grid-cols-2 gap-x-2 gap-y-1 text-xs text-muted-foreground"
+              >
+                <motion.a variants={item} href="mailto:info@boafosolutions.com" className="flex items-center gap-1.5 hover:text-foreground transition-colors">
+                  <Mail className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <span className="truncate">info@boafosolutions.com</span>
                 </motion.a>
-                <motion.a variants={item} href="tel:+254737575156" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Phone className="h-4 w-4 shrink-0 text-primary" />
+                <motion.a variants={item} href="tel:+254737575156" className="flex items-center gap-1.5 hover:text-foreground transition-colors">
+                  <Phone className="h-3.5 w-3.5 shrink-0 text-primary" />
                   0737 575 156
                 </motion.a>
                 <motion.a
@@ -105,14 +101,14 @@ function ContactPage() {
                   href="https://wa.me/254737575156"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-foreground transition-colors"
+                  className="flex items-center gap-1.5 hover:text-foreground transition-colors"
                 >
-                  <MessageCircle className="h-4 w-4 shrink-0 text-primary" />
-                  WhatsApp us instantly
+                  <MessageCircle className="h-3.5 w-3.5 shrink-0 text-primary" />
+                  WhatsApp
                 </motion.a>
-                <motion.p variants={item} className="flex items-start gap-2">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>Ngong 5th Ave, Upperhill, Nairobi</span>
+                <motion.p variants={item} className="flex items-start gap-1.5">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+                  <span className="truncate">Ngong 5th Ave, Upperhill</span>
                 </motion.p>
               </motion.div>
             </motion.aside>
@@ -122,10 +118,10 @@ function ContactPage() {
               variants={item}
               className="solid-card flex min-h-0 flex-col p-4 sm:p-5 lg:col-span-3"
             >
-              <div className="mb-3 flex items-end justify-between gap-3">
+              <div className="mb-2 flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-[11px] font-mono uppercase tracking-widest text-primary">Book a Meeting</p>
-                  <h2 className="mt-1 truncate text-lg font-extrabold tracking-tight sm:text-xl">
+                  <h2 className="mt-0.5 text-base font-extrabold tracking-tight sm:text-lg">
                     Pick a time that works for you.
                   </h2>
                 </div>
