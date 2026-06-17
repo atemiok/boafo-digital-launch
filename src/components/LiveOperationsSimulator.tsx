@@ -261,9 +261,10 @@ export function LiveOperationsSimulator() {
           </LayoutGroup>
         </div>
 
-        {/* Dual pane */}
-        <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
+        {/* Tri-pane: Before | Boafo Engine | After */}
+        <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6">
           <BeforePane key={`b-${active.id}`} v={active} />
+          <CenterEngine key={`c-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
         </div>
 
@@ -271,6 +272,62 @@ export function LiveOperationsSimulator() {
         <ConversionFooter />
       </div>
     </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   CENTER ENGINE — Boafo Solutions branded core with flow graph
+   ──────────────────────────────────────────────────────────────── */
+function CenterEngine({ v }: { v: Vertical }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.6, ease: EASE, delay: 0.03 }}
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/40 bg-card/80 p-6 backdrop-blur-xl sm:p-7"
+      style={{
+        boxShadow:
+          "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 22%, transparent), 0 0 90px -20px color-mix(in oklab, var(--color-primary) 70%, transparent)",
+      }}
+    >
+      {/* radial ambient */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          background:
+            "radial-gradient(420px 220px at 50% 0%, color-mix(in oklab, var(--color-primary-glow) 28%, transparent), transparent 65%)",
+        }}
+      />
+      {/* orbiting rings */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid place-items-center">
+        <motion.div
+          className="h-72 w-72 rounded-full border border-primary/15"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
+      <div className="relative flex flex-col items-center text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.24em] text-primary-glow">
+          <Sparkles className="h-3 w-3" />
+          The Boafo Engine
+        </span>
+        <h3 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+          Boafo <span className="text-gradient">Solutions</span>
+        </h3>
+        <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Autonomous workflow choreography
+        </p>
+        <div className="mt-3">
+          <LiveTicker />
+        </div>
+      </div>
+
+      <div className="relative mt-2 flex-1">
+        <FlowChart key={`flow-${v.id}`} steps={v.pipeline} />
+      </div>
+    </motion.div>
   );
 }
 
