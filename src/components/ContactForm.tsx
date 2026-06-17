@@ -150,6 +150,7 @@ export function ContactForm({ compact }: { compact?: boolean }) {
 }
 
 function Field({
+  compact,
   label,
   id,
   type = "text",
@@ -157,6 +158,7 @@ function Field({
   value,
   onChange,
 }: {
+  compact?: boolean;
   label: string;
   id: string;
   type?: string;
@@ -165,8 +167,8 @@ function Field({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="space-y-1.5">
-      <label htmlFor={id} className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+    <div className="space-y-1">
+      <label htmlFor={id} className={`font-medium uppercase tracking-wider text-muted-foreground ${compact ? "text-[10px]" : "text-xs"}`}>
         {label}
       </label>
       <input
@@ -176,7 +178,7 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring"
+        className={`w-full rounded-xl border border-input bg-background/60 text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring ${compact ? "px-3 py-2 text-xs" : "px-3.5 py-2.5 text-sm"}`}
       />
     </div>
   );
