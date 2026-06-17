@@ -196,7 +196,7 @@ export function LiveOperationsSimulator() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         {/* Header */}
-        <div className="mb-10 flex flex-col items-start justify-between gap-8 md:mb-12 md:flex-row md:items-end">
+        <div className="mb-6 flex flex-col items-start justify-between gap-8 md:mb-8 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.28em] text-primary-glow">
               <span className="relative flex h-2 w-2">
@@ -284,7 +284,7 @@ function BeforePane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
+      className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-5 backdrop-blur-xl sm:p-6"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 6%, transparent), 0 0 60px -20px color-mix(in oklab, var(--color-destructive) 35%, transparent)",
@@ -377,7 +377,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
+      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-5 backdrop-blur-xl sm:p-6"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
@@ -529,31 +529,31 @@ function FlowChart({ steps }: { steps: Step[] }) {
     "Notify · Receipt",
   ];
 
-  // node positions { x, y } on viewBox 320x460
+  // node positions { x, y } on a compact 320x230 viewBox
   const N = [
-    { x: 160, y: 36 }, // 0 ingress
-    { x: 160, y: 122 }, // 1
-    { x: 160, y: 208 }, // 2
-    { x: 160, y: 294 }, // 3
-    { x: 78, y: 408 }, // 4 ledger (branch)
-    { x: 242, y: 408 }, // 5 notify (branch)
+    { x: 160, y: 30 }, // 0 ingress
+    { x: 160, y: 70 }, // 1
+    { x: 160, y: 110 }, // 2
+    { x: 160, y: 150 }, // 3
+    { x: 78, y: 200 }, // 4 ledger (branch)
+    { x: 242, y: 200 }, // 5 notify (branch)
   ];
 
   // edges between nodes (curved)
   const edges = [
-    { from: 0, to: 1, d: "M160 56 L160 102" },
-    { from: 1, to: 2, d: "M160 142 L160 188" },
-    { from: 2, to: 3, d: "M160 228 L160 274" },
-    { from: 3, to: 4, d: "M160 314 C 160 360, 110 372, 78 388" },
-    { from: 3, to: 5, d: "M160 314 C 160 360, 210 372, 242 388" },
+    { from: 0, to: 1, d: "M160 44 L160 56" },
+    { from: 1, to: 2, d: "M160 84 L160 96" },
+    { from: 2, to: 3, d: "M160 124 L160 136" },
+    { from: 3, to: 4, d: "M160 164 C 160 180, 110 186, 78 192" },
+    { from: 3, to: 5, d: "M160 164 C 160 180, 210 186, 242 192" },
   ];
 
   const packetTracks = [
-    { x: [160, 160], y: [56, 102] },
-    { x: [160, 160], y: [142, 188] },
-    { x: [160, 160], y: [228, 274] },
-    { x: [160, 150, 120, 78], y: [314, 350, 374, 388] },
-    { x: [160, 170, 205, 242], y: [314, 350, 374, 388] },
+    { x: [160, 160], y: [44, 56] },
+    { x: [160, 160], y: [84, 96] },
+    { x: [160, 160], y: [124, 136] },
+    { x: [160, 150, 110, 78], y: [164, 178, 184, 192] },
+    { x: [160, 170, 210, 242], y: [164, 178, 184, 192] },
   ];
 
   // node activation cycle — loops forever
@@ -570,7 +570,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
   }, [steps]);
 
   return (
-    <div className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5">
+    <div className="mt-5 rounded-2xl border border-border/70 bg-background/70 p-3 backdrop-blur sm:p-4">
       <div className="mb-3 flex items-center justify-between">
         <div className="inline-flex items-center gap-2">
           <Radio className="h-3.5 w-3.5 text-primary-glow" />
@@ -597,8 +597,8 @@ function FlowChart({ steps }: { steps: Step[] }) {
         />
 
         <svg
-          viewBox="0 0 320 460"
-          className="relative block h-[460px] w-full"
+          viewBox="0 0 320 230"
+          className="relative block h-[230px] w-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -676,7 +676,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
             const isDone = active === -1 || active > i;
             const isBranch = i === 4 || i === 5;
             const w = isBranch ? 132 : 168;
-            const h = 36;
+            const h = 28;
             return (
               <g
                 key={i}
@@ -803,7 +803,7 @@ function ConversionFooter() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="relative mt-10 overflow-hidden rounded-3xl border border-primary/30 p-6 sm:p-8"
+      className="relative mt-6 overflow-hidden rounded-3xl border border-primary/30 p-5 sm:p-6"
       style={{
         background:
           "linear-gradient(120deg, color-mix(in oklab, var(--color-primary) 10%, var(--color-card)) 0%, var(--color-card) 60%, color-mix(in oklab, var(--color-primary-glow) 10%, var(--color-card)) 100%)",
