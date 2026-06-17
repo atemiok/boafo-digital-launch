@@ -70,10 +70,10 @@ export const sendContactRequest = createServerFn({ method: "POST" })
       ]);
 
       if (!internal.ok || !confirm.ok) {
-        let userMessage = "Request saved. We couldn't deliver the email right now, but we'll follow up soon.";
+        let userMessage = "Request received — we'll follow up within one business day.";
         const combined = `${internal.text} ${confirm.text}`;
         if (combined.includes("verify a domain") || combined.includes("own email address")) {
-          userMessage = "Request received. Email delivery is in test mode — verify your Resend domain to send to any recipient.";
+          userMessage = "Request received — confirmations are paused until your sender domain is verified. We'll follow up directly.";
         }
         return { ok: true, delivered: false as const, message: userMessage };
       }
@@ -81,7 +81,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
       return { ok: true, delivered: true as const, message: "Request received — check your inbox for a confirmation. We'll be in touch within one business day." };
     } catch (err) {
       console.error("[contact] Resend threw", err);
-      return { ok: true, delivered: false as const, message: "Request saved. We'll be in touch within one business day." };
+      return { ok: true, delivered: false as const, message: "Request received — we'll be in touch within one business day." };
     }
   });
 
