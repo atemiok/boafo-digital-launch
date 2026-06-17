@@ -219,7 +219,7 @@ export function LiveOperationsSimulator() {
             <div
               role="tablist"
               aria-label="Industry verticals"
-              className="-mx-1 flex w-full snap-x snap-mandatory gap-1 overflow-x-auto rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl md:mx-0 md:w-auto md:flex-wrap md:overflow-visible"
+              className="-mx-1 flex w-full snap-x snap-mandatory gap-1.5 overflow-x-auto rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl md:mx-0 md:w-auto md:flex-wrap md:gap-2 md:overflow-visible"
               style={{ boxShadow: "var(--shadow-deep)" }}
             >
               {VERTICALS.map((v) => {
