@@ -487,7 +487,7 @@ function Stat({
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.45, ease: EASE, delay }}
-      className={`relative overflow-hidden rounded-2xl border ${tone} p-3.5`}
+      className={`relative overflow-hidden rounded-2xl border ${tone} p-2.5 sm:p-3.5`}
     >
       <motion.div
         aria-hidden
@@ -502,11 +502,11 @@ function Stat({
         animate={{ x: "100%" }}
         transition={{ duration: 1.6, delay: delay + 0.1, ease: "easeInOut" }}
       />
-      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>◆</div>
-      <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+      <div className={`font-mono text-[9px] uppercase tracking-[0.16em] sm:text-[10px] sm:tracking-[0.18em] ${accent}`}>◆</div>
+      <div className="mt-1 font-display text-base font-bold tracking-tight text-foreground sm:text-2xl">
         {value}
       </div>
-      <div className="mt-1 text-[10px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+      <div className="mt-1 text-[9px] font-mono uppercase tracking-[0.14em] leading-tight text-muted-foreground sm:text-[10px] sm:tracking-[0.16em]">
         {label}
       </div>
     </motion.div>
