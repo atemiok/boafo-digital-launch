@@ -43,7 +43,7 @@ export function ContactForm() {
       if (result.delivered) {
         toast.success(result.message);
       } else {
-        toast.info(result.message, { duration: 6000 });
+        toast.success(result.message, { duration: 6000 });
       }
       setForm({
         name: "",
