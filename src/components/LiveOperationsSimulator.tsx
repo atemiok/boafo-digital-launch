@@ -411,7 +411,7 @@ function AfterPane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-3">
+        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
           {v.afterStats.map((s, i) => (
             <Stat
               key={`${v.id}-as-${i}`}
