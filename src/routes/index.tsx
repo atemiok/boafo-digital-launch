@@ -269,7 +269,7 @@ function Bento() {
         title="Six production-grade systems. Tailored to your workflow."
         subtitle="Battle-tested foundations we ship fast — and you own forever."
       />
-      <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[200px]">
+      <div className="mx-auto mt-12 grid max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-4 md:auto-rows-[minmax(220px,auto)]">
         {SERVICES.map((it, i) => (
           <article
             key={it.title}
