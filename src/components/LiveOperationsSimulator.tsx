@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence, LayoutGroup, useInView } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -14,7 +14,6 @@ import {
   Truck,
   Banknote,
   Sparkles,
-
 } from "lucide-react";
 
 /* ────────────────────────────────────────────────────────────────
@@ -145,10 +144,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function LiveOperationsSimulator() {
   const [activeId, setActiveId] = useState(VERTICALS[0].id);
-  const active = useMemo(
-    () => VERTICALS.find((v) => v.id === activeId)!,
-    [activeId],
-  );
+  const active = useMemo(() => VERTICALS.find((v) => v.id === activeId)!, [activeId]);
 
   /* Auto-cycle through verticals every 5 s */
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -194,8 +190,7 @@ export function LiveOperationsSimulator() {
           backgroundImage:
             "linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
         }}
       />
 
@@ -214,8 +209,8 @@ export function LiveOperationsSimulator() {
               The friction vs. the engine.
             </h2>
             <p className="mt-4 text-pretty text-muted-foreground">
-              Switch verticals to watch a Boafo-engineered workflow replace the
-              manual reality, end-to-end, in under a second.
+              Switch verticals to watch a Boafo-engineered workflow replace the manual reality,
+              end-to-end, in under a second.
             </p>
           </div>
 
@@ -255,9 +250,7 @@ export function LiveOperationsSimulator() {
                       }`}
                     />
                     <span
-                      className={
-                        isActive ? "text-primary-foreground" : "text-muted-foreground"
-                      }
+                      className={isActive ? "text-primary-foreground" : "text-muted-foreground"}
                     >
                       {v.short}
                     </span>
@@ -286,18 +279,10 @@ export function LiveOperationsSimulator() {
    ──────────────────────────────────────────────────────────────── */
 
 function BeforePane({ v }: { v: Vertical }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 24 }
-      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
       className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
       style={{
@@ -387,18 +372,10 @@ function ManualPulse() {
    ──────────────────────────────────────────────────────────────── */
 
 function AfterPane({ v }: { v: Vertical }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 24 }
-      }
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
       className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-7 backdrop-blur-xl sm:p-9"
       style={{
@@ -414,15 +391,12 @@ function AfterPane({ v }: { v: Vertical }) {
 
       <div className="relative">
         <div className="flex items-center justify-between">
-          <span
-            className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow"
-          >
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow">
             <Sparkles className="h-3 w-3" />
             After · Boafo Engine
           </span>
           <LiveTicker />
         </div>
-
 
         <AnimatePresence mode="wait">
           <motion.p
@@ -487,7 +461,6 @@ function LiveTicker() {
   );
 }
 
-
 /* ────────────────────────────────────────────────────────────────
    STAT BLOCK
    ──────────────────────────────────────────────────────────────── */
@@ -507,8 +480,7 @@ function Stat({
     variant === "danger"
       ? "border-destructive/25 bg-destructive/5"
       : "border-primary/30 bg-primary/10";
-  const accent =
-    variant === "danger" ? "text-destructive/90" : "text-primary-glow";
+  const accent = variant === "danger" ? "text-destructive/90" : "text-primary-glow";
 
   return (
     <motion.div
@@ -530,9 +502,7 @@ function Stat({
         animate={{ x: "100%" }}
         transition={{ duration: 1.6, delay: delay + 0.1, ease: "easeInOut" }}
       />
-      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>
-        ◆
-      </div>
+      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>◆</div>
       <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
         {value}
       </div>
@@ -548,9 +518,6 @@ function Stat({
    ──────────────────────────────────────────────────────────────── */
 
 function FlowChart({ steps }: { steps: Step[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.05 });
-
   // 6 nodes laid out on a 320 x 460 grid (vw-units scale via viewBox)
   // 0: Ingress, 1: step[0], 2: step[1], 3: step[2], 4: Ledger, 5: Notify
   const labels = [
@@ -564,12 +531,12 @@ function FlowChart({ steps }: { steps: Step[] }) {
 
   // node positions { x, y } on viewBox 320x460
   const N = [
-    { x: 160, y: 36 },   // 0 ingress
-    { x: 160, y: 122 },  // 1
-    { x: 160, y: 208 },  // 2
-    { x: 160, y: 294 },  // 3
-    { x: 78, y: 408 },   // 4 ledger (branch)
-    { x: 242, y: 408 },  // 5 notify (branch)
+    { x: 160, y: 36 }, // 0 ingress
+    { x: 160, y: 122 }, // 1
+    { x: 160, y: 208 }, // 2
+    { x: 160, y: 294 }, // 3
+    { x: 78, y: 408 }, // 4 ledger (branch)
+    { x: 242, y: 408 }, // 5 notify (branch)
   ];
 
   // edges between nodes (curved)
@@ -581,10 +548,17 @@ function FlowChart({ steps }: { steps: Step[] }) {
     { from: 3, to: 5, d: "M160 314 C 160 360, 210 372, 242 388" },
   ];
 
+  const packetTracks = [
+    { x: [160, 160], y: [56, 102] },
+    { x: [160, 160], y: [142, 188] },
+    { x: [160, 160], y: [228, 274] },
+    { x: [160, 150, 120, 78], y: [314, 350, 374, 388] },
+    { x: [160, 170, 205, 242], y: [314, 350, 374, 388] },
+  ];
+
   // node activation cycle — loops forever
   const [active, setActive] = useState(0);
   useEffect(() => {
-    if (!inView) return;
     setActive(0);
     let i = 0;
     const total = 6;
@@ -593,13 +567,10 @@ function FlowChart({ steps }: { steps: Step[] }) {
       setActive(i >= total ? -1 : i);
     }, 700);
     return () => window.clearInterval(id);
-  }, [inView]);
+  }, [steps]);
 
   return (
-    <div
-      ref={ref}
-      className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5"
-    >
+    <div className="mt-8 rounded-2xl border border-border/70 bg-background/70 p-4 backdrop-blur sm:p-5">
       <div className="mb-3 flex items-center justify-between">
         <div className="inline-flex items-center gap-2">
           <Radio className="h-3.5 w-3.5 text-primary-glow" />
@@ -661,37 +632,40 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
-                <path
+                <motion.path
                   d={e.d}
                   fill="none"
                   stroke="url(#edge-grad)"
                   strokeWidth={lit ? 2 : 1.2}
                   strokeLinecap="round"
                   strokeDasharray="4 6"
+                  strokeDashoffset={0}
                   opacity={lit ? 0.95 : 0.35}
                   filter={lit ? "url(#glow)" : undefined}
                   style={{
                     transition: "opacity 400ms ease, stroke-width 400ms ease",
                   }}
-                >
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    from="0"
-                    to="-40"
-                    dur="1.4s"
-                    repeatCount="indefinite"
-                  />
-                </path>
+                  animate={{ strokeDashoffset: [0, -40] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: "linear" }}
+                />
                 {/* traveling packet */}
-                <circle r="3.5" fill="url(#packet-grad)" filter="url(#glow)">
-                  <animateMotion
-                    dur="1.8s"
-                    repeatCount="indefinite"
-                    rotate="auto"
-                    begin={`${i * 0.3}s`}
-                    path={e.d}
-                  />
-                </circle>
+                <motion.circle
+                  r="4"
+                  fill="url(#packet-grad)"
+                  filter="url(#glow)"
+                  animate={{
+                    cx: packetTracks[i].x,
+                    cy: packetTracks[i].y,
+                    opacity: [0, 1, 1, 0],
+                    scale: [0.7, 1.25, 1, 0.7],
+                  }}
+                  transition={{
+                    duration: 1.65,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: i * 0.24,
+                  }}
+                />
               </g>
             );
           })}
@@ -766,12 +740,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   }
                 >
                   {isActive && (
-                    <animate
-                      attributeName="r"
-                      values="3;5;3"
-                      dur="0.9s"
-                      repeatCount="indefinite"
-                    />
+                    <animate attributeName="r" values="3;5;3" dur="0.9s" repeatCount="indefinite" />
                   )}
                 </circle>
                 <text
@@ -780,9 +749,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   fontSize={isBranch ? 10 : 10.5}
                   fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
                   fill={
-                    isActive || isDone
-                      ? "var(--color-foreground)"
-                      : "var(--color-muted-foreground)"
+                    isActive || isDone ? "var(--color-foreground)" : "var(--color-muted-foreground)"
                   }
                   style={{ transition: "fill 300ms ease" }}
                 >
@@ -815,9 +782,7 @@ function FlowChart({ steps }: { steps: Step[] }) {
       <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-3">
         <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <Zap className="h-3 w-3 text-primary-glow" />
-          {active === -1
-            ? "Cycle complete · re-arming"
-            : `Executing node ${active + 1}/6`}
+          {active === -1 ? "Cycle complete · re-arming" : `Executing node ${active + 1}/6`}
         </span>
         <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
           <CheckCircle2 className="h-3 w-3" />
@@ -828,7 +793,6 @@ function FlowChart({ steps }: { steps: Step[] }) {
   );
 }
 
-
 /* ────────────────────────────────────────────────────────────────
    CONVERSION FOOTER
    ──────────────────────────────────────────────────────────────── */
@@ -837,8 +801,7 @@ function ConversionFooter() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE }}
       className="relative mt-10 overflow-hidden rounded-3xl border border-primary/30 p-6 sm:p-8"
       style={{
