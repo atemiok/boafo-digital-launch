@@ -112,8 +112,7 @@ function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-pretty text-base leading-[1.7] text-muted-foreground lg:text-lg">
-            From high-conversion corporate sites to complex, role-based secure platforms. We replace
-            manual friction with bulletproof software engineered for the modern enterprise landscape.
+            Corporate sites, secure platforms, and business automation that just works.
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-7">
@@ -121,14 +120,14 @@ function Hero() {
               to="/contact"
               className="btn-mint group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
-              Initiate Architecture Discovery
+              Start a Project
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/services"
               className="btn-outline group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
-              Explore Core Verticals
+              Explore Services
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
