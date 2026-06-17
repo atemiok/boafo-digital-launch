@@ -16,6 +16,9 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     const apiKey = process.env.RESEND_API_KEY;
     const to = "boafosolutions@outlook.com";
     const from = process.env.RESEND_FROM_EMAIL ?? "Boafo Solutions <noreply@updates.boafosolutions.com>";
+    const siteUrl = process.env.SITE_URL ?? "https://boafosolutions.com";
+    const logoUrl = `${siteUrl}/boafo-logo-light.svg`;
+    const bookingUrl = `${siteUrl}/contact#book`;
 
     const internalSubject = `New architecture discovery — ${data.company}`;
     const internalHtml = `
@@ -29,21 +32,13 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     `;
 
     const confirmSubject = `We received your request — Boafo Solutions`;
-    const confirmHtml = `
-      <div style="font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#0f172a; max-width:560px;">
-        <h2 style="margin:0 0 12px;">Thanks, ${escapeHtml(data.name)} — we've got your request.</h2>
-        <p>A senior engineer at Boafo Solutions will reach out within one business day to schedule your 30-minute architecture discovery call.</p>
-        <p style="margin-top:16px;"><strong>Here's what you sent us:</strong></p>
-        <ul style="line-height:1.6;">
-          <li><strong>Company:</strong> ${escapeHtml(data.company)}</li>
-          <li><strong>Primary bottleneck:</strong> ${escapeHtml(data.bottleneck)}</li>
-          <li><strong>Phone (WhatsApp):</strong> ${escapeHtml(data.phone)}</li>
-          ${data.message ? `<li><strong>Notes:</strong> ${escapeHtml(data.message)}</li>` : ""}
-        </ul>
-        <p style="margin-top:20px;">Need us urgently? WhatsApp <a href="https://wa.me/254737575156">0737 575 156</a> or reply to this email.</p>
-        <p style="margin-top:24px; color:#475569; font-size:13px;">— Boafo Solutions · Ngong 5th Ave, Upperhill, Nairobi</p>
-      </div>
-    `;
+    const confirmHtml = renderConfirmationEmail({
+      name: data.name,
+      company: data.company,
+      bottleneck: data.bottleneck,
+      logoUrl,
+      bookingUrl,
+    });
 
     if (!apiKey) {
       console.warn("[contact] RESEND_API_KEY not set — skipping email send.", { to });
@@ -97,4 +92,82 @@ function escapeHtml(s: string) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function renderConfirmationEmail(opts: {
+  name: string;
+  company: string;
+  bottleneck: string;
+  logoUrl: string;
+  bookingUrl: string;
+}) {
+  const { name, company, bottleneck, logoUrl, bookingUrl } = opts;
+  const firstName = escapeHtml(name.split(" ")[0] || name);
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Boafo Solutions</title>
+  </head>
+  <body style="margin:0;padding:0;background:#f4f6f8;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">We received your request — a senior engineer will be in touch within one business day.</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f8;padding:32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;">
+            <tr>
+              <td style="background:linear-gradient(135deg,#0b1220 0%,#0f172a 100%);padding:24px 28px;">
+                <img src="${logoUrl}" alt="Boafo Solutions" height="28" style="display:block;height:28px;width:auto;border:0;outline:none;" />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:32px 28px 8px;">
+                <p style="margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0891b2;font-weight:600;">Request received</p>
+                <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:#0f172a;font-weight:700;">Thanks, ${firstName}.</h1>
+                <p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#334155;">
+                  A senior engineer at <strong style="color:#0f172a;">Boafo Solutions</strong> will reach out within one business day to schedule your 30-minute architecture discovery — no pitch, just a clear plan.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 28px 4px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;">
+                  <tr><td style="padding:14px 16px;font-size:13px;color:#475569;">
+                    <div style="margin-bottom:6px;"><span style="color:#64748b;">Company</span> &nbsp; <strong style="color:#0f172a;">${escapeHtml(company)}</strong></div>
+                    <div><span style="color:#64748b;">Bottleneck</span> &nbsp; <strong style="color:#0f172a;">${escapeHtml(bottleneck)}</strong></div>
+                  </td></tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:22px 28px 8px;">
+                <a href="${bookingUrl}" style="display:inline-block;background:#0f172a;color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;padding:12px 22px;border-radius:8px;">
+                  Book a time now →
+                </a>
+                <div style="margin-top:10px;font-size:12px;color:#64748b;">Prefer instant? WhatsApp <a href="https://wa.me/254737575156" style="color:#0891b2;text-decoration:none;">0737 575 156</a></div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:24px 28px 26px;border-top:1px solid #e2e8f0;background:#fafbfc;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="font-size:12px;line-height:1.6;color:#64748b;">
+                      <strong style="color:#0f172a;">Boafo Solutions</strong><br/>
+                      Ngong 5th Ave, Upperhill · Nairobi, Kenya<br/>
+                      <a href="mailto:info@boafosolutions.com" style="color:#0891b2;text-decoration:none;">info@boafosolutions.com</a> · <a href="https://boafosolutions.com" style="color:#0891b2;text-decoration:none;">boafosolutions.com</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <div style="max-width:560px;margin:14px auto 0;font-size:11px;color:#94a3b8;text-align:center;">
+            You received this because you submitted a request at boafosolutions.com.
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
 }
