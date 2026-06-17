@@ -744,17 +744,17 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   )}
                 </circle>
                 <text
-                  x={24}
-                  y={h / 2 + 3.5}
-                  fontSize={isBranch ? 10 : 10.5}
+                  x={26}
+                  y={h / 2 + 4}
+                  fontSize={isBranch ? 11 : 11.5}
                   fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
                   fill={
                     isActive || isDone ? "var(--color-foreground)" : "var(--color-muted-foreground)"
                   }
                   style={{ transition: "fill 300ms ease" }}
                 >
-                  {labels[i].length > (isBranch ? 16 : 28)
-                    ? labels[i].slice(0, isBranch ? 15 : 27) + "…"
+                  {labels[i].length > (isBranch ? 16 : 26)
+                    ? labels[i].slice(0, isBranch ? 15 : 25) + "…"
                     : labels[i]}
                 </text>
                 {/* tag */}
