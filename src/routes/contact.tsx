@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { CheckCircle2, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ContactForm } from "@/components/ContactForm";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 
 const CALENDLY_URL =
@@ -36,115 +38,123 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const easeOut = [0.16, 1, 0.3, 1] as const;
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
-};
-
 function ContactPage() {
   return (
-    <div className="h-[100dvh] overflow-hidden bg-background text-foreground antialiased flex flex-col">
+    <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
-      <main className="flex-1 min-h-0 pt-24 sm:pt-28 pb-4 sm:pb-6">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
+      <main className="pt-32 sm:pt-36">
+        <section className="relative overflow-hidden pb-20">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
 
-        <div className="mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="grid h-full gap-4 lg:gap-6 lg:grid-cols-5 lg:items-stretch"
-          >
-            {/* LEFT — info */}
-            <motion.aside
-              variants={item}
-              className="solid-card flex min-w-0 flex-col p-5 sm:p-6 lg:col-span-2 lg:overflow-y-auto"
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="solid-card overflow-hidden p-7 sm:p-10"
             >
-              <motion.p variants={item} className="text-[11px] font-mono uppercase tracking-widest text-primary">
-                Architecture Discovery
-              </motion.p>
-              <motion.h1 variants={item} className="mt-2 text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
-                Tell us where the friction lives.
-              </motion.h1>
-              <motion.p variants={item} className="mt-2 text-sm text-muted-foreground">
-                One 30-minute call with a senior engineer. We diagnose your primary bottleneck and return a fixed-price plan.
-              </motion.p>
+              <div className="grid gap-10 lg:grid-cols-5 lg:items-start">
+                <div className="min-w-0 lg:col-span-2">
+                  <p className="text-xs font-mono uppercase tracking-widest text-primary">
+                    Architecture Discovery
+                  </p>
+                  <h1 className="mt-2.5 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Tell us where the friction lives.
+                  </h1>
+                  <p className="mt-3 text-muted-foreground">
+                    One 30-minute call with a senior engineer. We diagnose your
+                    primary bottleneck and return a clear, fixed-price
+                    architecture plan — no pressure, no jargon.
+                  </p>
+                  <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                    {[
+                      "Senior engineer, not a sales rep",
+                      "Fixed-price scope, no surprises",
+                      "Full source ownership at delivery",
+                      "Ongoing support after launch",
+                    ].map((t) => (
+                      <li key={t} className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-primary" />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
 
-              <motion.ul variants={container} className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-                {[
-                  "Senior engineer, not a sales rep",
-                  "Fixed-price scope, no surprises",
-                  "Full source ownership at delivery",
-                  "Ongoing support after launch",
-                ].map((t) => (
-                  <motion.li key={t} variants={item} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                    <span className="truncate">{t}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
+                  <div className="mt-7 space-y-2 text-sm text-muted-foreground">
+                    <p className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-primary" />
+                      <a href="mailto:info@boafosolutions.com" className="hover:text-foreground transition-colors">
+                        info@boafosolutions.com
+                      </a>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary" />
+                      <a href="tel:+254737575156" className="hover:text-foreground transition-colors">
+                        0737 575 156
+                      </a>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <MessageCircle className="h-4 w-4 text-primary" />
+                      <a
+                        href="https://wa.me/254737575156"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-foreground transition-colors"
+                      >
+                        WhatsApp us instantly
+                      </a>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>Ngong 5th Ave, Upperhill, Nairobi</span>
+                    </p>
+                  </div>
+                </div>
 
-              <motion.div variants={container} className="mt-auto pt-5 space-y-1.5 text-sm text-muted-foreground">
-                <motion.a variants={item} href="mailto:info@boafosolutions.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Mail className="h-4 w-4 shrink-0 text-primary" />
-                  <span className="truncate">info@boafosolutions.com</span>
-                </motion.a>
-                <motion.a variants={item} href="tel:+254737575156" className="flex items-center gap-2 hover:text-foreground transition-colors">
-                  <Phone className="h-4 w-4 shrink-0 text-primary" />
-                  0737 575 156
-                </motion.a>
-                <motion.a
-                  variants={item}
-                  href="https://wa.me/254737575156"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-foreground transition-colors"
-                >
-                  <MessageCircle className="h-4 w-4 shrink-0 text-primary" />
-                  WhatsApp us instantly
-                </motion.a>
-                <motion.p variants={item} className="flex items-start gap-2">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>Ngong 5th Ave, Upperhill, Nairobi</span>
-                </motion.p>
-              </motion.div>
-            </motion.aside>
+                <div className="lg:col-span-3">
+                  <ContactForm />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-            {/* RIGHT — calendar */}
-            <motion.section
-              variants={item}
-              className="solid-card flex min-h-0 flex-col p-4 sm:p-5 lg:col-span-3"
+        <section id="book" className="pb-24">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="solid-card p-6 sm:p-8"
             >
-              <div className="mb-3 flex items-end justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-[11px] font-mono uppercase tracking-widest text-primary">Book a Meeting</p>
-                  <h2 className="mt-1 truncate text-lg font-extrabold tracking-tight sm:text-xl">
+              <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-widest text-primary">
+                    Book a Meeting
+                  </p>
+                  <h2 className="mt-2 text-balance text-2xl font-extrabold tracking-tight sm:text-3xl">
                     Pick a time that works for you.
                   </h2>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    30 minutes · video call · senior engineer · zero pitch.
+                  </p>
                 </div>
                 <a
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 text-xs text-primary hover:underline"
+                  className="text-sm text-primary hover:underline"
                 >
                   Open in new tab ↗
                 </a>
               </div>
-              <div className="min-h-0 flex-1">
-                <CalendlyEmbed url={CALENDLY_URL} />
-              </div>
-            </motion.section>
-          </motion.div>
-        </div>
+              <CalendlyEmbed url={CALENDLY_URL} minHeight={720} />
+            </motion.div>
+          </div>
+        </section>
       </main>
+      <SiteFooter />
     </div>
   );
 }
