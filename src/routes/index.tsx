@@ -153,8 +153,23 @@ function HeroTerminal() {
             <span className="h-3 w-3 rounded-full bg-amber-400/40" />
             <span className="h-3 w-3 rounded-full bg-primary/60" />
           </div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-            core_engine.v3 · live
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span>core_engine.v3</span>
+            <span className="text-muted-foreground/50">·</span>
+            <span className="inline-flex items-center gap-1.5">
+              <motion.span
+                className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+                animate={{ opacity: [0.3, 1, 0.3], scale: [0.85, 1.15, 0.85] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="text-emerald-300"
+                animate={{ opacity: [0.55, 1, 0.55] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                live
+              </motion.span>
+            </span>
           </div>
           <Activity className="h-3.5 w-3.5 text-primary" />
         </div>
