@@ -91,11 +91,11 @@ function HomePage() {
    ──────────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-12 lg:min-h-screen lg:pt-24 lg:pb-14">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-20 pb-8 sm:pt-24 sm:pb-10 lg:pt-20 lg:pb-12">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-60" />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:gap-12">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-6 px-5 sm:px-8 lg:grid-cols-2 lg:gap-10">
         <div className="min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary-glow">
             <motion.span
@@ -106,30 +106,30 @@ function Hero() {
             Engineered for the modern enterprise
           </div>
 
-          <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="mt-4 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:mt-5 lg:text-[3.5rem] xl:text-[4rem]">
             We build great websites, custom webapps, and{" "}
             <span className="text-gradient">autonomous business engines.</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground lg:text-lg">
-            From high-conversion corporate sites to complex, role-based secure platforms.
-            We replace manual friction with bulletproof software engineered for the modern
-            enterprise landscape.
+          <p className="mt-5 max-w-xl text-pretty text-base leading-[1.7] text-muted-foreground lg:text-lg">
+            From high-conversion corporate sites to complex, role-based secure platforms. We replace
+            manual friction with bulletproof software engineered for the modern enterprise landscape.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-7">
             <Link
               to="/contact"
-              className="btn-mint inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
+              className="btn-mint group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
               Initiate Architecture Discovery
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/services"
-              className="btn-outline inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
+              className="btn-outline group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
               Explore Core Verticals
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
         </div>
