@@ -261,9 +261,10 @@ export function LiveOperationsSimulator() {
           </LayoutGroup>
         </div>
 
-        {/* Dual pane */}
-        <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
+        {/* Tri-pane: Before | Boafo Engine | After */}
+        <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6">
           <BeforePane key={`b-${active.id}`} v={active} />
+          <CenterEngine key={`c-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
         </div>
 
@@ -271,6 +272,62 @@ export function LiveOperationsSimulator() {
         <ConversionFooter />
       </div>
     </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+   CENTER ENGINE — Boafo Solutions branded core with flow graph
+   ──────────────────────────────────────────────────────────────── */
+function CenterEngine({ v }: { v: Vertical }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.6, ease: EASE, delay: 0.03 }}
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/40 bg-card/80 p-6 backdrop-blur-xl sm:p-7"
+      style={{
+        boxShadow:
+          "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 22%, transparent), 0 0 90px -20px color-mix(in oklab, var(--color-primary) 70%, transparent)",
+      }}
+    >
+      {/* radial ambient */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          background:
+            "radial-gradient(420px 220px at 50% 0%, color-mix(in oklab, var(--color-primary-glow) 28%, transparent), transparent 65%)",
+        }}
+      />
+      {/* orbiting rings */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid place-items-center">
+        <motion.div
+          className="h-72 w-72 rounded-full border border-primary/15"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
+      <div className="relative flex flex-col items-center text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.24em] text-primary-glow">
+          <Sparkles className="h-3 w-3" />
+          The Boafo Engine
+        </span>
+        <h3 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+          Boafo <span className="text-gradient">Solutions</span>
+        </h3>
+        <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          Autonomous workflow choreography
+        </p>
+        <div className="mt-3">
+          <LiveTicker />
+        </div>
+      </div>
+
+      <div className="relative mt-2 flex-1">
+        <FlowChart key={`flow-${v.id}`} steps={v.pipeline} />
+      </div>
+    </motion.div>
   );
 }
 
@@ -284,7 +341,7 @@ function BeforePane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 6%, transparent), 0 0 60px -20px color-mix(in oklab, var(--color-destructive) 35%, transparent)",
@@ -306,7 +363,7 @@ function BeforePane({ v }: { v: Vertical }) {
         }}
       />
 
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-destructive">
             <AlertTriangle className="h-3 w-3" />
@@ -328,7 +385,7 @@ function BeforePane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
@@ -377,7 +434,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
@@ -385,17 +442,17 @@ function AfterPane({ v }: { v: Vertical }) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
         style={{ background: "var(--gradient-electric)" }}
       />
 
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow">
             <Sparkles className="h-3 w-3" />
             After · Boafo Engine
           </span>
-          <LiveTicker />
+          <SuccessPulse />
         </div>
 
         <AnimatePresence mode="wait">
@@ -411,7 +468,7 @@ function AfterPane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
           {v.afterStats.map((s, i) => (
             <Stat
               key={`${v.id}-as-${i}`}
@@ -422,10 +479,26 @@ function AfterPane({ v }: { v: Vertical }) {
             />
           ))}
         </div>
-
-        <FlowChart key={`flow-${v.id}`} steps={v.pipeline} />
       </div>
     </motion.div>
+  );
+}
+
+function SuccessPulse() {
+  return (
+    <div className="flex items-center gap-1.5">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="h-1.5 w-1.5 rounded-full bg-primary-glow"
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
+        />
+      ))}
+      <span className="ml-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
+        Flow
+      </span>
+    </div>
   );
 }
 
