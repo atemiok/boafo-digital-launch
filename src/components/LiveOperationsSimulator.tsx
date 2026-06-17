@@ -176,7 +176,7 @@ export function LiveOperationsSimulator() {
   return (
     <section
       id="simulator"
-      className="relative overflow-hidden border-y border-border py-10 sm:py-14"
+      className="relative overflow-hidden border-y border-border py-16 sm:py-24"
       style={{
         background:
           "radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 60%), radial-gradient(800px 500px at 0% 100%, color-mix(in oklab, var(--color-primary-glow) 10%, transparent), transparent 60%), var(--color-surface)",
@@ -194,21 +194,21 @@ export function LiveOperationsSimulator() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
         {/* Header */}
-        <div className="mb-6 flex flex-col items-start justify-between gap-8 md:mb-8 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col items-start justify-between gap-6 md:mb-12 md:flex-row md:items-end md:gap-10">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.28em] text-primary-glow">
+            <p className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.24em] text-primary-glow sm:text-[11px] sm:tracking-[0.28em]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-glow opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-glow" />
               </span>
               Live Operations · Command Center
             </p>
-            <h2 className="mt-3 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
+            <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
               The friction vs. the engine.
             </h2>
-            <p className="mt-4 text-pretty text-muted-foreground">
+            <p className="mt-4 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
               Switch verticals to watch a Boafo-engineered workflow replace the manual reality,
               end-to-end, in under a second.
             </p>
@@ -219,7 +219,7 @@ export function LiveOperationsSimulator() {
             <div
               role="tablist"
               aria-label="Industry verticals"
-              className="flex w-full flex-wrap gap-1 rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl md:w-auto"
+              className="-mx-1 flex w-full snap-x snap-mandatory gap-1 overflow-x-auto rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl md:mx-0 md:w-auto md:flex-wrap md:overflow-visible"
               style={{ boxShadow: "var(--shadow-deep)" }}
             >
               {VERTICALS.map((v) => {
@@ -230,7 +230,7 @@ export function LiveOperationsSimulator() {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => handleManualTab(v.id)}
-                    className="relative isolate inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-tight transition-colors sm:text-sm"
+                    className="relative isolate inline-flex shrink-0 snap-start items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-tight transition-colors sm:text-sm"
                   >
                     {isActive && (
                       <motion.span
@@ -245,12 +245,12 @@ export function LiveOperationsSimulator() {
                       />
                     )}
                     <v.Icon
-                      className={`h-3.5 w-3.5 transition-colors ${
+                      className={`h-3.5 w-3.5 shrink-0 transition-colors ${
                         isActive ? "text-primary-foreground" : "text-muted-foreground"
                       }`}
                     />
                     <span
-                      className={isActive ? "text-primary-foreground" : "text-muted-foreground"}
+                      className={`whitespace-nowrap ${isActive ? "text-primary-foreground" : "text-muted-foreground"}`}
                     >
                       {v.short}
                     </span>
@@ -262,7 +262,7 @@ export function LiveOperationsSimulator() {
         </div>
 
         {/* Dual pane */}
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
           <BeforePane key={`b-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
         </div>
@@ -284,7 +284,7 @@ function BeforePane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-5 backdrop-blur-xl sm:p-6"
+      className="group relative overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 6%, transparent), 0 0 60px -20px color-mix(in oklab, var(--color-destructive) 35%, transparent)",
@@ -328,7 +328,7 @@ function BeforePane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-3">
+        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
@@ -377,7 +377,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-5 backdrop-blur-xl sm:p-6"
+      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
@@ -411,7 +411,7 @@ function AfterPane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-3">
+        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
           {v.afterStats.map((s, i) => (
             <Stat
               key={`${v.id}-as-${i}`}
@@ -443,7 +443,7 @@ function LiveTicker() {
     return () => window.clearInterval(id);
   }, []);
   return (
-    <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em]">
+    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] sm:gap-3 sm:tracking-[0.18em]">
       <span className="inline-flex items-center gap-1.5 text-primary-glow">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-glow opacity-75" />
@@ -451,7 +451,7 @@ function LiveTicker() {
         </span>
         Live
       </span>
-      <span className="text-muted-foreground">
+      <span className="hidden text-muted-foreground sm:inline">
         <span className="tabular-nums text-foreground">{tps.toLocaleString()}</span> tps
       </span>
       <span className="text-muted-foreground">
@@ -487,7 +487,7 @@ function Stat({
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.45, ease: EASE, delay }}
-      className={`relative overflow-hidden rounded-2xl border ${tone} p-3.5`}
+      className={`relative overflow-hidden rounded-2xl border ${tone} p-2.5 sm:p-3.5`}
     >
       <motion.div
         aria-hidden
@@ -502,11 +502,11 @@ function Stat({
         animate={{ x: "100%" }}
         transition={{ duration: 1.6, delay: delay + 0.1, ease: "easeInOut" }}
       />
-      <div className={`font-mono text-[10px] uppercase tracking-[0.18em] ${accent}`}>◆</div>
-      <div className="mt-1 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+      <div className={`font-mono text-[9px] uppercase tracking-[0.16em] sm:text-[10px] sm:tracking-[0.18em] ${accent}`}>◆</div>
+      <div className="mt-1 font-display text-base font-bold tracking-tight text-foreground sm:text-2xl">
         {value}
       </div>
-      <div className="mt-1 text-[10px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+      <div className="mt-1 text-[9px] font-mono uppercase tracking-[0.14em] leading-tight text-muted-foreground sm:text-[10px] sm:tracking-[0.16em]">
         {label}
       </div>
     </motion.div>
@@ -529,31 +529,31 @@ function FlowChart({ steps }: { steps: Step[] }) {
     "Notify · Receipt",
   ];
 
-  // node positions { x, y } on a compact 320x230 viewBox
+  // node positions { x, y } on a 320x320 viewBox
   const N = [
-    { x: 160, y: 30 }, // 0 ingress
-    { x: 160, y: 70 }, // 1
-    { x: 160, y: 110 }, // 2
-    { x: 160, y: 150 }, // 3
-    { x: 78, y: 200 }, // 4 ledger (branch)
-    { x: 242, y: 200 }, // 5 notify (branch)
+    { x: 160, y: 36 }, // 0 ingress
+    { x: 160, y: 96 }, // 1
+    { x: 160, y: 156 }, // 2
+    { x: 160, y: 216 }, // 3
+    { x: 74, y: 284 }, // 4 ledger (branch)
+    { x: 246, y: 284 }, // 5 notify (branch)
   ];
 
   // edges between nodes (curved)
   const edges = [
-    { from: 0, to: 1, d: "M160 44 L160 56" },
-    { from: 1, to: 2, d: "M160 84 L160 96" },
-    { from: 2, to: 3, d: "M160 124 L160 136" },
-    { from: 3, to: 4, d: "M160 164 C 160 180, 110 186, 78 192" },
-    { from: 3, to: 5, d: "M160 164 C 160 180, 210 186, 242 192" },
+    { from: 0, to: 1, d: "M160 54 L160 78" },
+    { from: 1, to: 2, d: "M160 114 L160 138" },
+    { from: 2, to: 3, d: "M160 174 L160 198" },
+    { from: 3, to: 4, d: "M160 234 C 160 258, 110 270, 74 274" },
+    { from: 3, to: 5, d: "M160 234 C 160 258, 210 270, 246 274" },
   ];
 
   const packetTracks = [
-    { x: [160, 160], y: [44, 56] },
-    { x: [160, 160], y: [84, 96] },
-    { x: [160, 160], y: [124, 136] },
-    { x: [160, 150, 110, 78], y: [164, 178, 184, 192] },
-    { x: [160, 170, 210, 242], y: [164, 178, 184, 192] },
+    { x: [160, 160], y: [54, 78] },
+    { x: [160, 160], y: [114, 138] },
+    { x: [160, 160], y: [174, 198] },
+    { x: [160, 150, 110, 74], y: [234, 254, 268, 274] },
+    { x: [160, 170, 210, 246], y: [234, 254, 268, 274] },
   ];
 
   // node activation cycle — loops forever
@@ -597,8 +597,8 @@ function FlowChart({ steps }: { steps: Step[] }) {
         />
 
         <svg
-          viewBox="0 0 320 230"
-          className="relative block h-[230px] w-full"
+          viewBox="0 0 320 320"
+          className="relative block aspect-[320/320] h-auto w-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -675,8 +675,8 @@ function FlowChart({ steps }: { steps: Step[] }) {
             const isActive = active === i;
             const isDone = active === -1 || active > i;
             const isBranch = i === 4 || i === 5;
-            const w = isBranch ? 132 : 168;
-            const h = 28;
+            const w = isBranch ? 140 : 188;
+            const h = 40;
             return (
               <g
                 key={i}
@@ -744,17 +744,17 @@ function FlowChart({ steps }: { steps: Step[] }) {
                   )}
                 </circle>
                 <text
-                  x={24}
-                  y={h / 2 + 3.5}
-                  fontSize={isBranch ? 10 : 10.5}
+                  x={26}
+                  y={h / 2 + 4}
+                  fontSize={isBranch ? 11 : 11.5}
                   fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
                   fill={
                     isActive || isDone ? "var(--color-foreground)" : "var(--color-muted-foreground)"
                   }
                   style={{ transition: "fill 300ms ease" }}
                 >
-                  {labels[i].length > (isBranch ? 16 : 28)
-                    ? labels[i].slice(0, isBranch ? 15 : 27) + "…"
+                  {labels[i].length > (isBranch ? 16 : 26)
+                    ? labels[i].slice(0, isBranch ? 15 : 25) + "…"
                     : labels[i]}
                 </text>
                 {/* tag */}
@@ -803,7 +803,7 @@ function ConversionFooter() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="relative mt-6 overflow-hidden rounded-3xl border border-primary/30 p-5 sm:p-6"
+      className="relative mt-10 overflow-hidden rounded-3xl border border-primary/30 p-6 sm:mt-12 sm:p-8"
       style={{
         background:
           "linear-gradient(120deg, color-mix(in oklab, var(--color-primary) 10%, var(--color-card)) 0%, var(--color-card) 60%, color-mix(in oklab, var(--color-primary-glow) 10%, var(--color-card)) 100%)",
