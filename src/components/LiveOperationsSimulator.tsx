@@ -194,21 +194,21 @@ export function LiveOperationsSimulator() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
         {/* Header */}
-        <div className="mb-6 flex flex-col items-start justify-between gap-8 md:mb-8 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col items-start justify-between gap-6 md:mb-12 md:flex-row md:items-end md:gap-10">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.28em] text-primary-glow">
+            <p className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.24em] text-primary-glow sm:text-[11px] sm:tracking-[0.28em]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-glow opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-glow" />
               </span>
               Live Operations · Command Center
             </p>
-            <h2 className="mt-3 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
+            <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
               The friction vs. the engine.
             </h2>
-            <p className="mt-4 text-pretty text-muted-foreground">
+            <p className="mt-4 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
               Switch verticals to watch a Boafo-engineered workflow replace the manual reality,
               end-to-end, in under a second.
             </p>
@@ -219,7 +219,7 @@ export function LiveOperationsSimulator() {
             <div
               role="tablist"
               aria-label="Industry verticals"
-              className="flex w-full flex-wrap gap-1 rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl md:w-auto"
+              className="-mx-1 flex w-full snap-x snap-mandatory gap-1 overflow-x-auto rounded-2xl border border-border bg-background/50 p-1.5 backdrop-blur-xl scrollbar-none md:mx-0 md:w-auto md:flex-wrap md:overflow-visible"
               style={{ boxShadow: "var(--shadow-deep)" }}
             >
               {VERTICALS.map((v) => {
@@ -230,7 +230,7 @@ export function LiveOperationsSimulator() {
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => handleManualTab(v.id)}
-                    className="relative isolate inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-tight transition-colors sm:text-sm"
+                    className="relative isolate inline-flex shrink-0 snap-start items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-tight transition-colors sm:text-sm"
                   >
                     {isActive && (
                       <motion.span
@@ -245,12 +245,12 @@ export function LiveOperationsSimulator() {
                       />
                     )}
                     <v.Icon
-                      className={`h-3.5 w-3.5 transition-colors ${
+                      className={`h-3.5 w-3.5 shrink-0 transition-colors ${
                         isActive ? "text-primary-foreground" : "text-muted-foreground"
                       }`}
                     />
                     <span
-                      className={isActive ? "text-primary-foreground" : "text-muted-foreground"}
+                      className={`whitespace-nowrap ${isActive ? "text-primary-foreground" : "text-muted-foreground"}`}
                     >
                       {v.short}
                     </span>
@@ -262,7 +262,7 @@ export function LiveOperationsSimulator() {
         </div>
 
         {/* Dual pane */}
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
           <BeforePane key={`b-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
         </div>
