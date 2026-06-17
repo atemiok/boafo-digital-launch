@@ -49,7 +49,7 @@ export function SiteNav() {
             to="/contact"
             className="btn-mint hidden items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold sm:inline-flex"
           >
-            Discovery
+            Book a Meeting
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
           <button
