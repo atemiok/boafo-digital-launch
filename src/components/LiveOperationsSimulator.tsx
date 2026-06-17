@@ -328,7 +328,7 @@ function BeforePane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-3">
+        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
