@@ -42,7 +42,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
 
     if (!apiKey) {
       console.warn("[contact] RESEND_API_KEY not set — skipping email send.", { to });
-      return { ok: true, delivered: false as const, message: "Request saved. Email delivery is not configured yet." };
+      return { ok: true, delivered: false as const, message: "Request received — we'll be in touch within one business day." };
     }
 
     async function send(payload: Record<string, unknown>) {
