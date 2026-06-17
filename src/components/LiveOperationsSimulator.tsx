@@ -597,8 +597,8 @@ function FlowChart({ steps }: { steps: Step[] }) {
         />
 
         <svg
-          viewBox="0 0 320 230"
-          className="relative block h-[230px] w-full"
+          viewBox="0 0 320 320"
+          className="relative block aspect-[320/320] h-auto w-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
