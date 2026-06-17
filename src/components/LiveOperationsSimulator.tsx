@@ -803,7 +803,7 @@ function ConversionFooter() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="relative mt-6 overflow-hidden rounded-3xl border border-primary/30 p-5 sm:p-6"
+      className="relative mt-10 overflow-hidden rounded-3xl border border-primary/30 p-6 sm:mt-12 sm:p-8"
       style={{
         background:
           "linear-gradient(120deg, color-mix(in oklab, var(--color-primary) 10%, var(--color-card)) 0%, var(--color-card) 60%, color-mix(in oklab, var(--color-primary-glow) 10%, var(--color-card)) 100%)",
