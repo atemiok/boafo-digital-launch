@@ -377,7 +377,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-5 backdrop-blur-xl sm:p-6"
+      className="relative overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-8"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
