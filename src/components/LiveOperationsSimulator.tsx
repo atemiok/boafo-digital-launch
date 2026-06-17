@@ -176,7 +176,7 @@ export function LiveOperationsSimulator() {
   return (
     <section
       id="simulator"
-      className="relative overflow-hidden border-y border-border py-20 sm:py-28"
+      className="relative overflow-hidden border-y border-border py-10 sm:py-14"
       style={{
         background:
           "radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 60%), radial-gradient(800px 500px at 0% 100%, color-mix(in oklab, var(--color-primary-glow) 10%, transparent), transparent 60%), var(--color-surface)",
