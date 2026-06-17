@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface CalendlyEmbedProps {
   url: string;
@@ -14,7 +15,7 @@ declare global {
 const SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
 const CSS_HREF = "https://assets.calendly.com/assets/external/widget.css";
 
-export function CalendlyEmbed({ url, minHeight = 720 }: CalendlyEmbedProps) {
+export function CalendlyEmbed({ url, minHeight }: CalendlyEmbedProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
@@ -51,21 +52,28 @@ export function CalendlyEmbed({ url, minHeight = 720 }: CalendlyEmbedProps) {
   }, [url]);
 
   return (
-    <div className="relative">
+    <div className="relative h-full w-full">
       {!ready && (
-        <div
-          className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground"
-          style={{ minHeight }}
-        >
-          Loading calendar…
+        <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-2">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+            Loading calendar…
+          </span>
         </div>
       )}
-      <div
-        ref={ref}
-        className="calendly-inline-widget rounded-2xl overflow-hidden border border-border bg-background"
-        style={{ minWidth: 320, height: minHeight }}
-        data-auto-load="false"
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: ready ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="h-full w-full"
+      >
+        <div
+          ref={ref}
+          className="calendly-inline-widget rounded-xl overflow-hidden border border-border bg-background h-full w-full"
+          style={minHeight ? { minWidth: 320, height: minHeight } : { minWidth: 320, height: "100%" }}
+          data-auto-load="false"
+        />
+      </motion.div>
     </div>
   );
 }
