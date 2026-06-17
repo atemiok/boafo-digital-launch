@@ -675,8 +675,8 @@ function FlowChart({ steps }: { steps: Step[] }) {
             const isActive = active === i;
             const isDone = active === -1 || active > i;
             const isBranch = i === 4 || i === 5;
-            const w = isBranch ? 132 : 168;
-            const h = 28;
+            const w = isBranch ? 140 : 188;
+            const h = 40;
             return (
               <g
                 key={i}
