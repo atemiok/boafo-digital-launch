@@ -81,25 +81,25 @@ export function ContactForm({ compact }: { compact?: boolean }) {
       animate="show"
       onSubmit={onSubmit}
       aria-label="Architecture discovery request form"
-      className={`rounded-2xl border border-border bg-secondary/40 ${compact ? "space-y-2.5 p-4" : "space-y-4 p-6"}`}
+      className={`rounded-2xl border border-border bg-secondary/40 ${compact ? "space-y-2 p-3.5" : "space-y-4 p-6"}`}
     >
-      <motion.div variants={itemVariant} className={`grid gap-3 ${compact ? "sm:grid-cols-2" : "gap-4 sm:grid-cols-2"}`}>
+      <motion.div variants={itemVariant} className={`grid ${compact ? "gap-2 sm:grid-cols-2" : "gap-4 sm:grid-cols-2"}`}>
         <Field compact={compact} label="Name" id="name" value={form.name} onChange={onChange("name")} />
         <Field compact={compact} label="Company" id="company" value={form.company} onChange={onChange("company")} />
         <Field compact={compact} label="Corporate Email" id="email" type="email" value={form.email} onChange={onChange("email")} />
-        <Field compact={compact} label="Phone (WhatsApp)" id="phone" type="tel" value={form.phone} onChange={onChange("phone")} />
+        <Field compact={compact} label="Phone" id="phone" type="tel" value={form.phone} onChange={onChange("phone")} />
       </motion.div>
 
       <motion.div variants={itemVariant} className="space-y-1">
         <label htmlFor="bottleneck" className={`font-medium uppercase tracking-wider text-muted-foreground ${compact ? "text-[10px]" : "text-xs"}`}>
-          Primary System Bottleneck
+          Primary Bottleneck
         </label>
         <select
           id="bottleneck"
           required
           value={form.bottleneck}
           onChange={onChange("bottleneck")}
-          className={`w-full rounded-xl border border-input bg-background/60 text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring ${compact ? "px-3 py-2 text-xs" : "px-3.5 py-2.5 text-sm"}`}
+          className={`w-full rounded-xl border border-input bg-background/60 text-foreground outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring ${compact ? "px-2.5 py-1.5 text-xs" : "px-3.5 py-2.5 text-sm"}`}
         >
           {BOTTLENECKS.map((b) => (
             <option key={b} value={b} className="bg-background text-foreground">
@@ -111,15 +111,15 @@ export function ContactForm({ compact }: { compact?: boolean }) {
 
       <motion.div variants={itemVariant} className="space-y-1">
         <label htmlFor="message" className={`font-medium uppercase tracking-wider text-muted-foreground ${compact ? "text-[10px]" : "text-xs"}`}>
-          Anything else? <span className="normal-case text-muted-foreground/70">(optional)</span>
+          Notes <span className="normal-case text-muted-foreground/70">(optional)</span>
         </label>
         <textarea
           id="message"
-          rows={compact ? 2 : 4}
+          rows={compact ? 1 : 4}
           value={form.message}
           onChange={onChange("message")}
-          placeholder="Optional context — current tools, team size, timeline…"
-          className={`w-full rounded-xl border border-input bg-background/60 text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring ${compact ? "px-3 py-2 text-xs" : "px-3.5 py-2.5 text-sm"}`}
+          placeholder="Current tools, timeline, team size…"
+          className={`w-full rounded-xl border border-input bg-background/60 text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary/60 focus:ring-2 focus:ring-ring ${compact ? "px-2.5 py-1.5 text-xs" : "px-3.5 py-2.5 text-sm"}`}
         />
       </motion.div>
 
@@ -127,7 +127,7 @@ export function ContactForm({ compact }: { compact?: boolean }) {
         <button
           type="submit"
           disabled={loading}
-          className={`btn-mint inline-flex w-full items-center justify-center gap-2 rounded-xl font-semibold disabled:opacity-70 ${compact ? "px-4 py-2.5 text-xs" : "px-5 py-3 text-sm"}`}
+          className={`btn-mint inline-flex w-full items-center justify-center gap-2 rounded-xl font-semibold disabled:opacity-70 ${compact ? "px-4 py-2 text-xs" : "px-5 py-3 text-sm"}`}
         >
           {loading ? (
             <>
@@ -143,7 +143,7 @@ export function ContactForm({ compact }: { compact?: boolean }) {
         </button>
       </motion.div>
       <motion.p variants={itemVariant} className={`flex items-center justify-center gap-1.5 uppercase tracking-widest text-muted-foreground ${compact ? "text-[10px]" : "text-[11px]"}`}>
-        <ShieldCheck className={`shrink-0 text-primary ${compact ? "h-3 w-3" : "h-3 w-3"}`} /> Your details are kept private
+        <ShieldCheck className="h-3 w-3 shrink-0 text-primary" /> Private & confidential
       </motion.p>
     </motion.form>
   );
