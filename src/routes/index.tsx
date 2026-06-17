@@ -106,7 +106,7 @@ function Hero() {
             Engineered for the modern enterprise
           </div>
 
-          <h1 className="mt-4 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:mt-5 lg:text-[3.5rem] xl:text-[4rem]">
+          <h1 className="mt-4 text-balance text-[2.5rem] font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4rem]">
             We build great websites, custom webapps, and{" "}
             <span className="text-gradient">autonomous business engines.</span>
           </h1>
@@ -175,7 +175,7 @@ function HeroTerminal() {
         </div>
 
         {/* body */}
-        <div className="space-y-3 p-5 font-mono text-[13px]">
+        <div className="space-y-2 p-4 font-mono text-[13px]">
           <div className="flex items-center gap-3">
             <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-bold text-primary-glow">GET</span>
             <span className="text-muted-foreground">/api/v1/ledger/reconcile</span>
@@ -189,7 +189,7 @@ function HeroTerminal() {
           ].map((row) => (
             <div
               key={row.label}
-              className="flex items-center justify-between rounded-md border border-border/70 bg-background/60 px-3 py-2.5"
+              className="flex items-center justify-between rounded-md border border-border/70 bg-background/60 px-3 py-2"
             >
               <div className="flex items-center gap-3">
                 <span className={`h-2 w-2 rounded-full ${row.dot} ${row.pulse ? "animate-pulse" : ""}`} />
@@ -199,7 +199,7 @@ function HeroTerminal() {
             </div>
           ))}
 
-          <div className="!mt-5 flex items-center justify-between border-t border-border/70 pt-4">
+          <div className="!mt-4 flex items-center justify-between border-t border-border/70 pt-3">
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">latency</div>
             <div className="font-mono text-xs text-primary-glow">42ms · p99</div>
           </div>
