@@ -529,31 +529,31 @@ function FlowChart({ steps }: { steps: Step[] }) {
     "Notify · Receipt",
   ];
 
-  // node positions { x, y } on a compact 320x230 viewBox
+  // node positions { x, y } on a 320x320 viewBox
   const N = [
-    { x: 160, y: 30 }, // 0 ingress
-    { x: 160, y: 70 }, // 1
-    { x: 160, y: 110 }, // 2
-    { x: 160, y: 150 }, // 3
-    { x: 78, y: 200 }, // 4 ledger (branch)
-    { x: 242, y: 200 }, // 5 notify (branch)
+    { x: 160, y: 36 }, // 0 ingress
+    { x: 160, y: 96 }, // 1
+    { x: 160, y: 156 }, // 2
+    { x: 160, y: 216 }, // 3
+    { x: 74, y: 284 }, // 4 ledger (branch)
+    { x: 246, y: 284 }, // 5 notify (branch)
   ];
 
   // edges between nodes (curved)
   const edges = [
-    { from: 0, to: 1, d: "M160 44 L160 56" },
-    { from: 1, to: 2, d: "M160 84 L160 96" },
-    { from: 2, to: 3, d: "M160 124 L160 136" },
-    { from: 3, to: 4, d: "M160 164 C 160 180, 110 186, 78 192" },
-    { from: 3, to: 5, d: "M160 164 C 160 180, 210 186, 242 192" },
+    { from: 0, to: 1, d: "M160 54 L160 78" },
+    { from: 1, to: 2, d: "M160 114 L160 138" },
+    { from: 2, to: 3, d: "M160 174 L160 198" },
+    { from: 3, to: 4, d: "M160 234 C 160 258, 110 270, 74 274" },
+    { from: 3, to: 5, d: "M160 234 C 160 258, 210 270, 246 274" },
   ];
 
   const packetTracks = [
-    { x: [160, 160], y: [44, 56] },
-    { x: [160, 160], y: [84, 96] },
-    { x: [160, 160], y: [124, 136] },
-    { x: [160, 150, 110, 78], y: [164, 178, 184, 192] },
-    { x: [160, 170, 210, 242], y: [164, 178, 184, 192] },
+    { x: [160, 160], y: [54, 78] },
+    { x: [160, 160], y: [114, 138] },
+    { x: [160, 160], y: [174, 198] },
+    { x: [160, 150, 110, 74], y: [234, 254, 268, 274] },
+    { x: [160, 170, 210, 246], y: [234, 254, 268, 274] },
   ];
 
   // node activation cycle — loops forever
