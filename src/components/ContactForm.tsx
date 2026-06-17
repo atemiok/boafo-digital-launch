@@ -62,6 +62,8 @@ export function ContactForm({ compact }: { compact?: boolean }) {
     }
   }
 
+  const easeOut = [0.16, 1, 0.3, 1] as const;
+
   const formVariants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.04, delayChildren: 0.05 } },
@@ -69,7 +71,7 @@ export function ContactForm({ compact }: { compact?: boolean }) {
 
   const itemVariant = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOut } },
   };
 
   return (
