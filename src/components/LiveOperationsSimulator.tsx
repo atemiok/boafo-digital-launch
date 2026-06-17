@@ -363,7 +363,7 @@ function BeforePane({ v }: { v: Vertical }) {
         }}
       />
 
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-destructive">
             <AlertTriangle className="h-3 w-3" />
@@ -385,7 +385,7 @@ function BeforePane({ v }: { v: Vertical }) {
           </motion.p>
         </AnimatePresence>
 
-        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
