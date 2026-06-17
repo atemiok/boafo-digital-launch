@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { ArrowRight, Loader2, ShieldCheck } from "lucide-react";
 import { sendContactRequest } from "@/lib/contact.functions";
+import { motion } from "framer-motion";
 
 const BOTTLENECKS = [
   "Manual M-Pesa reconciliation",
