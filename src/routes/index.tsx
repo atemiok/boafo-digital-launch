@@ -91,11 +91,11 @@ function HomePage() {
    ──────────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-12 lg:min-h-screen lg:pt-24 lg:pb-14">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg opacity-60" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:gap-12">
         <div className="min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary-glow">
             <motion.span
@@ -106,28 +106,28 @@ function Hero() {
             Engineered for the modern enterprise
           </div>
 
-          <h1 className="mt-6 text-balance text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
             We build great websites, custom webapps, and{" "}
             <span className="text-gradient">autonomous business engines.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground lg:text-lg">
             From high-conversion corporate sites to complex, role-based secure platforms.
             We replace manual friction with bulletproof software engineered for the modern
             enterprise landscape.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="btn-mint inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
+              className="btn-mint inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
               Initiate Architecture Discovery
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/services"
-              className="btn-outline inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
+              className="btn-outline inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold"
             >
               Explore Core Verticals
             </Link>
