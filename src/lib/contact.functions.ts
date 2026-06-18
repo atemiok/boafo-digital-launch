@@ -124,6 +124,15 @@ function escapeHtml(s: string) {
     .replace(/'/g, "&#39;");
 }
 
+function getInternalRecipients(raw?: string) {
+  const recipients = (raw ?? DEFAULT_CONTACT_TO_EMAIL)
+    .split(/[;,]/)
+    .map((email) => email.trim())
+    .filter((email) => EmailAddressSchema.safeParse(email).success);
+
+  return recipients.length > 0 ? recipients : [DEFAULT_CONTACT_TO_EMAIL];
+}
+
 function renderConfirmationEmail(opts: {
   name: string;
   company: string;
