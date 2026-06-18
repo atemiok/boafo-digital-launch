@@ -5,7 +5,11 @@ const ContactSchema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
   company: z.string().trim().min(1, "Company required").max(150),
   email: z.string().trim().email("Valid email required").max(200),
-  phone: z.string().trim().min(7, "Phone required").max(30),
+  phone: z.string()
+    .trim()
+    .min(1, "Phone required")
+    .max(30, "Phone number too long")
+    .refine((s) => s.replace(/\D/g, "").length >= 7, "Enter a complete phone number with at least 7 digits"),
   bottleneck: z.string().trim().min(1, "Pick a bottleneck").max(80),
   message: z.string().trim().max(2000).optional().default(""),
 });
