@@ -89,7 +89,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
     try {
       const [internal, confirm] = await Promise.all([
         send({ from, to: internalRecipients, subject: internalSubject, html: internalHtml, reply_to: data.email }),
-        send({ from, to: [data.email], subject: confirmSubject, html: confirmHtml, reply_to: to }),
+        send({ from, to: [data.email], subject: confirmSubject, html: confirmHtml, reply_to: internalRecipients[0] }),
       ]);
 
       if (!internal.ok && !confirm.ok) {
