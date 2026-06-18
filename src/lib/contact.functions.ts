@@ -1,6 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+const DEFAULT_CONTACT_TO_EMAIL = "boafosolutions@outlook.com";
+const EmailAddressSchema = z.string().trim().email();
+
 const ContactSchema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
   company: z.string().trim().min(1, "Company required").max(150),
@@ -18,7 +21,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ContactSchema.parse(input))
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_TO_EMAIL ?? "boafosolutions@outlook.com";
+    const internalRecipients = getInternalRecipients(process.env.CONTACT_TO_EMAIL);
     const fromEnv = process.env.RESEND_FROM_EMAIL;
     // Resend requires a verified domain to send any email — there is no usable test mode with an API key.
     const from = fromEnv ?? "Boafo Solutions <onboarding@resend.dev>";
@@ -85,7 +88,7 @@ export const sendContactRequest = createServerFn({ method: "POST" })
 
     try {
       const [internal, confirm] = await Promise.all([
-        send({ from, to: [to], subject: internalSubject, html: internalHtml, reply_to: data.email }),
+        send({ from, to: internalRecipients, subject: internalSubject, html: internalHtml, reply_to: data.email }),
         send({ from, to: [data.email], subject: confirmSubject, html: confirmHtml, reply_to: to }),
       ]);
 
