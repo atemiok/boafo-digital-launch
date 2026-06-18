@@ -14,6 +14,10 @@ const BOTTLENECKS = [
   "Other",
 ];
 
+function digitsOnly(phone: string) {
+  return phone.replace(/\D/g, "");
+}
+
 export function ContactForm() {
   const send = useServerFn(sendContactRequest);
   const [loading, setLoading] = useState(false);
@@ -37,6 +41,13 @@ export function ContactForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (loading) return;
+
+    const phoneDigits = digitsOnly(form.phone);
+    if (phoneDigits.length < 7) {
+      toast.error("Please enter a complete phone number with at least 7 digits.");
+      return;
+    }
+
     setLoading(true);
     try {
       const result = await send({ data: form });
@@ -60,6 +71,7 @@ export function ContactForm() {
       setLoading(false);
     }
   }
+
 
   return (
     <form
