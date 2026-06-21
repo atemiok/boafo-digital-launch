@@ -696,7 +696,7 @@ function CompanyPage() {
                     <Sparkles className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Innovation &amp; digital transformation</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
                     Practical automation. Not slogans.
                   </h3>
                   <p
@@ -717,7 +717,7 @@ function CompanyPage() {
                     <HeartHandshake className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Our commitment to clients</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
                     We answer the phone at 3 a.m.
                   </h3>
                   <p
@@ -743,7 +743,7 @@ function CompanyPage() {
                 <div className="col-span-12 lg:col-span-8">
                   <Eyebrow>Partnership — not a project</Eyebrow>
                   <h2
-                    className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.02] text-white sm:text-6xl lg:text-7xl`}
+                    className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl`}
                   >
                     Let's map your bottleneck —{" "}
                     <span className="font-medium" style={{ color: INDIGO_300 }}>
