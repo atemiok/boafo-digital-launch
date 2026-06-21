@@ -504,6 +504,3 @@ function QuickAction({
     </a>
   );
 }
-
-// Suppress unused-import lint when Link not used elsewhere — silently referenced for type stability.
-void Link;
