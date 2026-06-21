@@ -39,10 +39,9 @@ export const Route = createFileRoute("/company")({
 
 /* ────────────────────────── design language ────────────────────────── */
 const EASE = [0.16, 1, 0.3, 1] as const;
-// Use site-wide typography tokens (Space Grotesk on h*, DM Sans on body)
-// kept as empty strings so existing template strings continue to compile.
-const DISPLAY = "";
-const SANS = "";
+// Use site-wide typography tokens (Space Grotesk on display text, DM Sans on body)
+const DISPLAY = "font-display";
+const SANS = "font-sans";
 
 // Midnight Indigo accent system — scoped to the company page via inline styles.
 const INDIGO_50 = "#eef0ff";
