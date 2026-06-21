@@ -15,13 +15,13 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/company")({
   head: () => ({
     meta: [
-      { title: "Company — Built to Last. Supported for Life. | Boafo Solutions" },
+      { title: "Company | Boafo Solutions — Enterprise Software That Lasts" },
       {
         name: "description",
         content:
           "Boafo Solutions is a boutique enterprise software agency. Architecture-first engineering, transparent process, and lifetime support — not freelancer roulette.",
       },
-      { property: "og:title", content: "Company — Boafo Solutions" },
+      { property: "og:title", content: "Company | Boafo Solutions — Enterprise Software That Lasts" },
       {
         property: "og:description",
         content:
