@@ -362,7 +362,7 @@ function BeforePane({ v }: { v: Vertical }) {
         }}
       />
 
-      <div className="relative flex h-full flex-col">
+      <div className="relative flex h-full min-h-0 flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-destructive">
             <AlertTriangle className="h-3 w-3" />
@@ -371,20 +371,22 @@ function BeforePane({ v }: { v: Vertical }) {
           <ManualPulse />
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={v.id + "-before-copy"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="mt-5 text-pretty text-[15px] leading-relaxed text-muted-foreground"
-          >
-            {v.before}
-          </motion.p>
-        </AnimatePresence>
+        <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={v.id + "-before-copy"}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="mt-5 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-[15px]"
+            >
+              {v.before}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
-        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
+        <div className="shrink-0 grid grid-cols-3 gap-2 pt-5 sm:gap-3 sm:pt-6">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
