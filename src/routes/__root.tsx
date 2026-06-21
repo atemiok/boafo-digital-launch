@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Custom Business Portals & Automation Systems | Boafo Solutions" },
-      { name: "description", content: "Boafo Solutions builds custom web portals, automated business workflows, and green energy software for global enterprises." },
+      { name: "description", content: "Custom software and web portal developers. Boafo Solutions delivers tailored business automation and property management systems for the modern enterprise." },
       { name: "author", content: "Boafo Solutions" },
       { property: "og:title", content: "Custom Business Portals & Automation Systems | Boafo Solutions" },
       { property: "og:description", content: "Custom web portals, automated workflows, and green energy software for global enterprises." },
