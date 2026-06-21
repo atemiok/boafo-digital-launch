@@ -335,6 +335,263 @@ function CompanyPage() {
           </div>
         </section>
 
+        {/* ───────────── COMPANY OVERVIEW ───────────── */}
+        <section className="relative py-20 sm:py-24">
+          <div className="mx-auto max-w-4xl px-5 sm:px-8 space-y-16">
+            <article>
+              <p className="text-xs font-mono uppercase tracking-[0.22em] text-primary-glow">
+                Company overview
+              </p>
+              <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                A boutique software company engineering the operating backbone of modern enterprises.
+              </h2>
+              <div className="mt-6 space-y-5 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                <p>
+                  Boafo Solutions is an enterprise software company specialising in custom software
+                  development, web development, mobile app development, and cloud solutions for
+                  operators who have outgrown spreadsheets, off-the-shelf SaaS, and freelance
+                  marketplaces. We design, build, deploy, and operate production-grade platforms
+                  for organisations across financial services, logistics, manufacturing, healthcare,
+                  and the public sector — and we stay on call for the lifetime of every system we ship.
+                </p>
+                <p>
+                  Unlike traditional IT consulting firms, we do not bill discovery decks and hand
+                  the build off to a junior pool. The senior engineer who maps your bottleneck on
+                  day one is the same senior engineer who ships your platform, monitors the
+                  dashboards at 2 a.m., and walks your team through the quarterly improvement plan.
+                  That continuity is the entire reason Boafo exists.
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Our story</h2>
+              <div className="mt-5 space-y-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                <p>
+                  Boafo Solutions was founded by engineers who had spent a decade rescuing broken
+                  enterprise builds — half-finished ERPs, abandoned mobile apps, brittle integrations
+                  glued together by departed contractors. The pattern was always the same: a
+                  business chose the cheapest path, paid in lost revenue, then paid again to rebuild.
+                </p>
+                <p>
+                  We launched Boafo as a deliberate third option: a small, senior team that treats
+                  software as long-lived infrastructure, not a one-time deliverable. Every
+                  engagement begins with a working architecture call and ends, years later, with a
+                  platform that still runs reliably, still integrates cleanly, and still belongs
+                  entirely to the client.
+                </p>
+              </div>
+            </article>
+
+            <article className="grid gap-8 sm:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-card p-7">
+                <h2 className="text-2xl font-bold tracking-tight">Our mission</h2>
+                <p className="mt-3 text-pretty text-base leading-relaxed text-muted-foreground">
+                  To engineer enterprise software that organisations can bet quarterly targets on —
+                  combining architecture-first development, transparent process, and lifetime
+                  support to eliminate the freelancer roulette that costs businesses millions every
+                  year.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-card p-7">
+                <h2 className="text-2xl font-bold tracking-tight">Our vision</h2>
+                <p className="mt-3 text-pretty text-base leading-relaxed text-muted-foreground">
+                  A future where every operator — from regional logistics firm to multinational
+                  bank — has access to a senior, accountable engineering partner that designs
+                  business technology around their actual workflow, not around a generic template.
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Core values</h2>
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                <li className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Engineering integrity</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    We build for the next three years, not the next sprint. Every decision is
+                    documented, every trade-off is explained.
+                  </p>
+                </li>
+                <li className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Radical transparency</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Live project boards, weekly written updates, real demos. You always know
+                    exactly where your platform stands.
+                  </p>
+                </li>
+                <li className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Client ownership</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Your repositories, your cloud accounts, your data. We hand over the keys on
+                    day one and keep them in your hands forever.
+                  </p>
+                </li>
+                <li className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Long-term accountability</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Launch day is the start of the relationship, not the end. We monitor, patch,
+                    and improve every system we ship.
+                  </p>
+                </li>
+              </ul>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Our expertise</h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Boafo Solutions delivers end-to-end software development services across the full
+                product lifecycle. Our team brings deep, hands-on experience across the disciplines
+                that modern enterprises need most:
+              </p>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground">
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> Custom software development and enterprise application engineering</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> Web development with React, Next.js, and TanStack</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> Mobile app development for iOS and Android</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> Cloud solutions, DevOps, and platform engineering</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> AI integration, machine learning, and intelligent automation</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> API design, systems integration, and legacy modernisation</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> IT consulting, technical due diligence, and architecture audits</li>
+                <li className="flex gap-3"><span className="text-primary-glow">▹</span> Digital transformation and business process automation</li>
+              </ul>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Industries we serve</h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                We partner with operators in regulated, high-stakes industries where downtime is
+                expensive and trust is non-negotiable. Our delivery teams are fluent in the
+                workflows, compliance regimes, and integration patterns of the sectors we serve.
+              </p>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm sm:text-base text-muted-foreground">
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Financial services &amp; fintech</li>
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Logistics &amp; supply chain</li>
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Manufacturing &amp; industrial IoT</li>
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Healthcare &amp; life sciences</li>
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Retail, commerce &amp; payments</li>
+                <li className="rounded-lg border border-border bg-card/60 px-4 py-3">Public sector &amp; education</li>
+              </ul>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Our technology stack</h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                We are deliberate about the tools we adopt. Every component of our stack has been
+                battle-tested in production, has a healthy long-term maintenance trajectory, and
+                interoperates cleanly with the rest. We favour boring infrastructure that produces
+                bulletproof outcomes.
+              </p>
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Frontend</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    React, Next.js, TanStack Start, TypeScript, Tailwind CSS, React Native.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Backend</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Node.js, Python, Go, PostgreSQL, Redis, GraphQL, REST and event-driven APIs.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Cloud &amp; DevOps</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    AWS, Cloudflare, GCP, Kubernetes, Terraform, GitHub Actions, observability
+                    pipelines.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">AI &amp; automation</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    LLM integration, vector search, retrieval-augmented generation, workflow
+                    automation, and intelligent document processing.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Data &amp; integrations</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Data warehousing, ETL pipelines, Daraja, Stripe, Twilio, ERP and CRM connectors.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card/60 p-5">
+                  <h3 className="font-semibold">Security</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Zero-trust architecture, SSO, audit logging, encryption-at-rest, and continuous
+                    vulnerability scanning.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                Why choose Boafo Solutions
+              </h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Choosing an engineering partner is a multi-year decision. Here is what separates
+                Boafo Solutions from generic agencies, freelance marketplaces, and traditional
+                consultancies:
+              </p>
+              <ul className="mt-5 space-y-3 text-sm sm:text-base text-muted-foreground">
+                <li><strong className="text-foreground">Senior-only delivery.</strong> No junior pool, no offshore handoff. The architect who scopes your project ships your project.</li>
+                <li><strong className="text-foreground">Lifetime support.</strong> We monitor, patch, and improve every platform we ship for as long as it runs.</li>
+                <li><strong className="text-foreground">Outcome-based engagements.</strong> We commit to business outcomes — reduced cycle time, lower error rates, higher conversion — not just deliverables.</li>
+                <li><strong className="text-foreground">Full ownership transfer.</strong> Your code, your cloud, your data. No vendor lock-in, ever.</li>
+                <li><strong className="text-foreground">Transparent pricing.</strong> Fixed-scope blueprints and predictable monthly operations. No surprise invoices.</li>
+                <li><strong className="text-foreground">Domain depth.</strong> Real expertise in regulated industries — not a generic playbook applied to your business.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                Our development process
+              </h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Every Boafo engagement follows the same five-stage operating model — Discovery,
+                Design, Build, Deploy, and Operate — documented in the timeline above. Within each
+                stage we apply rigorous engineering discipline: trunk-based development, automated
+                test pipelines, infrastructure-as-code, peer code review, and continuous deployment
+                to staging environments. Clients receive a fortnightly live demo, a written status
+                report, and access to the same project board our engineers use. There are no
+                surprises, no scope drama, and no opaque progress.
+              </p>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                Innovation &amp; digital transformation
+              </h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Digital transformation is not a marketing slogan at Boafo Solutions — it is a
+                practical commitment to replacing manual, error-prone workflows with reliable
+                automation. We help clients modernise legacy enterprise systems, migrate workloads
+                to the cloud, embed AI into operational decision-making, and unlock new revenue
+                streams through better data. Whether the goal is to integrate a decades-old ERP
+                with a new mobile workforce, deploy a real-time analytics platform, or layer
+                machine learning over an existing product, our engineers translate ambitious
+                business strategy into shipping software.
+              </p>
+            </article>
+
+            <article>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                Our commitment to clients
+              </h2>
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Clients hire Boafo Solutions because they want a partner that treats their platform
+                like its own. That commitment shows up in the small things: answering the phone
+                when an alert fires, writing the runbook a junior engineer can follow at 3 a.m.,
+                refusing to ship a feature that we know will create technical debt. It also shows
+                up in the big things: standing behind every SLA, never billing for surprise scope,
+                and proactively recommending the cheaper path even when it shrinks our own retainer.
+                We measure success by whether our clients renew — and they do, year after year,
+                because the software keeps working and the team keeps showing up.
+              </p>
+            </article>
+          </div>
+        </section>
+
         {/* ───────────── CTA ───────────── */}
         <section className="relative py-24 sm:py-28">
           <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
