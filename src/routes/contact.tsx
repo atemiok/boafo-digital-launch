@@ -21,7 +21,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "keywords",
         content:
-          "Software developers, M-Pesa integration, Custom software company, Boafo Solutions contact, Upperhill software developer",
+          "contact Boafo Solutions, software company support, IT consulting contact, web development services, mobile app development inquiries, enterprise solutions team, digital transformation consultancy, custom software company, M-Pesa integration developers",
       },
       { property: "og:title", content: "Contact Boafo Solutions" },
       {
@@ -34,6 +34,26 @@ export const Route = createFileRoute("/contact")({
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Boafo Solutions",
+          url: "https://boafosolutions.com/contact",
+          telephone: "+254737575156",
+          email: "info@boafosolutions.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Ngong 5th Ave",
+            addressLocality: "Upperhill",
+            addressRegion: "Nairobi",
+            addressCountry: "KE",
+          },
+        }),
+      },
+    ],
   }),
   component: ContactPage,
 });
