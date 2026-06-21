@@ -144,11 +144,13 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function LiveOperationsSimulator() {
   const [activeId, setActiveId] = useState(VERTICALS[0].id);
+  const [manualOverride, setManualOverride] = useState(false);
   const active = useMemo(() => VERTICALS.find((v) => v.id === activeId)!, [activeId]);
 
-  /* Auto-cycle through verticals every 5 s */
+  /* Auto-cycle through verticals every 5 s — stops permanently once the user picks a tab */
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
+    if (manualOverride) return;
     timerRef.current = setInterval(() => {
       setActiveId((prev) => {
         const idx = VERTICALS.findIndex((v) => v.id === prev);
@@ -159,18 +161,15 @@ export function LiveOperationsSimulator() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, []);
+  }, [manualOverride]);
 
   const handleManualTab = (id: string) => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    setManualOverride(true);
     setActiveId(id);
-    timerRef.current = setInterval(() => {
-      setActiveId((prev) => {
-        const idx = VERTICALS.findIndex((v) => v.id === prev);
-        const next = VERTICALS[(idx + 1) % VERTICALS.length];
-        return next.id;
-      });
-    }, 5000);
   };
 
   return (
