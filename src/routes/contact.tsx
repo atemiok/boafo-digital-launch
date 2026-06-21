@@ -179,6 +179,132 @@ function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* SEO content — expanded to resolve thin content */}
+        <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 sm:pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 max-w-2xl"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+              Working with Boafo
+            </span>
+            <h2 className="mt-4 text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl">
+              What to expect when you contact us.
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+              Every inquiry is reviewed by a senior engineer. Below you will find the most common reasons to reach out, our response commitments, and answers to frequently asked questions.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <ContentCard title="Contact Overview">
+              <p>
+                Boafo Solutions is a custom software company and digital transformation consultancy helping enterprises across Kenya, Africa, and global markets. Whether you need web development services, mobile app development, M-Pesa integration, enterprise software solutions, or IT consulting, our senior team is ready to advise. This page is the fastest way to{" "}
+                <strong>contact Boafo Solutions</strong> — book a discovery call, send a detailed inquiry, or reach us on WhatsApp.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="How We Can Help" className="md:col-span-2 lg:col-span-1">
+              <p>
+                Our team supports the full software lifecycle, from architecture to long-term operations. When you contact us, you can discuss:
+              </p>
+              <ul>
+                <li>Custom software and web application development</li>
+                <li>Native and cross-platform mobile app development</li>
+                <li>M-Pesa, Daraja API, and payment workflow integration</li>
+                <li>Enterprise solutions, ERP connectors, and cloud infrastructure</li>
+                <li>IT consulting and digital transformation strategy</li>
+                <li>Ongoing support, monitoring, and feature improvements</li>
+              </ul>
+              <p>
+                Every conversation starts with understanding your business outcome, not selling a pre-packaged product.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Business Inquiries">
+              <p>
+                For new project requests, software procurement, and strategic architecture reviews, email our enterprise solutions team or book a 30-minute architecture discovery. We prepare a one-page technical brief, a fixed-price scope, and a realistic delivery plan.
+              </p>
+              <p>
+                Typical business inquiries include portal development, automation systems, payment integrations, and legacy modernisation for regulated industries.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Support &amp; Customer Service">
+              <p>
+                Existing clients can contact our <strong>software company support</strong> team for bug reports, feature requests, infrastructure monitoring, and SLA questions. Support requests are routed directly to the engineer who knows your platform.
+              </p>
+              <p>
+                For urgent production issues, WhatsApp or phone is the fastest channel. Non-urgent requests can be logged by email at{" "}
+                <a href="mailto:info@boafosolutions.com" className="text-primary hover:underline">info@boafosolutions.com</a>.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Partnership Opportunities">
+              <p>
+                We actively collaborate with technology partners, agencies, and independent consultants across East Africa, Europe, and North America. If you have a referral partnership, technology integration opportunity, or joint go-to-market idea, we would love to explore it.
+              </p>
+              <p>
+                Partners gain direct access to our engineering leadership and transparent commercial terms.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Response Time Expectations">
+              <p>We respect your time. Our response commitments are:</p>
+              <ul>
+                <li>New business inquiries: same business day</li>
+                <li>Support tickets: within 4 hours during business hours (EAT)</li>
+                <li>Critical production issues: immediate escalation</li>
+                <li>Partnership requests: within two business days</li>
+              </ul>
+              <p>
+                Messages received outside business hours are queued and answered at the start of the next working day.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Office &amp; Remote Availability" className="md:col-span-2 lg:col-span-1">
+              <p>
+                Our headquarters are on Ngong 5th Avenue in Upperhill, Nairobi, and we operate a remote-first delivery model across Kenya and international time zones. We combine the responsiveness of a local software company with the scale of a distributed engineering team.
+              </p>
+              <p>
+                In-person architecture workshops and executive briefings are available in Nairobi by appointment.
+              </p>
+            </ContentCard>
+
+            <ContentCard title="Frequently Asked Questions" className="md:col-span-2">
+              <dl className="space-y-4">
+                <div>
+                  <dt className="font-semibold text-foreground">What happens after I submit the contact form?</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    A senior engineer reviews your request, follows up within one business day, and schedules a free 30-minute architecture discovery if relevant.
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Do you work with international clients?</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    Yes. We serve clients in Kenya, Uganda, Tanzania, Rwanda, the United Kingdom, the United States, and the Middle East.
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Can I receive a fixed-price quote?</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    Yes. After the discovery call we deliver a fixed-price architecture plan and a milestone-based delivery schedule.
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">Do you sign NDAs before discussing sensitive systems?</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    Absolutely. We routinely sign non-disclosure agreements before reviewing proprietary data or systems.
+                  </dd>
+                </div>
+              </dl>
+            </ContentCard>
+          </div>
+        </section>
       </main>
 
       {/* Mobile sticky quick-contact rail */}
