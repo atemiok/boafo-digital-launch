@@ -322,6 +322,27 @@ function ContactPage() {
   );
 }
 
+function ContentCard({
+  title,
+  children,
+  className = "",
+}: {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <article
+      className={`flex h-full flex-col rounded-2xl border border-border/60 bg-secondary/20 p-5 sm:p-6 ${className}`}
+    >
+      <h3 className="mb-3 text-lg font-semibold text-foreground sm:text-xl">{title}</h3>
+      <div className="space-y-3 text-sm leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:hover:underline [&_li]:relative [&_li]:pl-4 [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[0.35em] [&_li]:before:h-1.5 [&_li]:before:w-1.5 [&_li]:before:rounded-full [&_li]:before:bg-primary/70">
+        {children}
+      </div>
+    </article>
+  );
+}
+
 function Row({
   label,
   value,
