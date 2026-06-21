@@ -99,12 +99,9 @@ function ContactPage() {
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
               Architecture Discovery
             </span>
-            <h1 className="font-display text-balance text-5xl leading-[0.95] tracking-tight sm:text-7xl lg:text-[5.5rem]">
+            <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               Tell us where the{" "}
-              <span className="bg-gradient-to-r from-primary to-royal bg-clip-text italic text-transparent">
-                friction
-              </span>{" "}
-              lives.
+              <span className="text-gradient">friction</span> lives.
             </h1>
             <p className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               One 30-minute call with a senior engineer. We diagnose your
@@ -188,7 +185,7 @@ function ContactPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/80">
                     Option 01 · Fastest path
                   </p>
-                  <h2 className="mt-1 font-display text-xl tracking-tight sm:text-2xl">
+                  <h2 className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">
                     Book a discovery
                   </h2>
                 </div>
@@ -224,7 +221,7 @@ function ContactPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
                     Option 02 · Send a brief
                   </p>
-                  <h2 className="mt-1 font-display text-xl tracking-tight sm:text-2xl">
+                  <h2 className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">
                     Detailed inquiry
                   </h2>
                 </div>
@@ -250,11 +247,8 @@ function ContactPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
                 Working with Boafo
               </span>
-              <h2 className="mt-5 font-display text-balance text-4xl leading-[1.05] tracking-tight sm:text-5xl">
-                What to expect{" "}
-                <span className="italic text-muted-foreground">
-                  when you contact us.
-                </span>
+              <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+                What to expect <span className="text-gradient">when you contact us.</span>
               </h2>
               <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
                 Every inquiry is reviewed by a senior engineer. Below: the most
@@ -460,7 +454,7 @@ function ContentCard({
         </span>
         <span className="h-px flex-1 ml-4 bg-border/60" />
       </div>
-      <h3 className="mb-4 font-display text-2xl tracking-tight sm:text-3xl">
+      <h3 className="mb-4 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
         {title}
       </h3>
       <div className="prose prose-sm max-w-none flex-1 space-y-3 text-muted-foreground [&_li]:marker:text-primary/60 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1.5">
@@ -473,7 +467,7 @@ function ContentCard({
 function Faq({ q, children }: { q: string; children: React.ReactNode }) {
   return (
     <div>
-      <dt className="mb-1 font-display text-base font-semibold text-foreground sm:text-lg">
+      <dt className="mb-1 text-base font-semibold tracking-tight text-foreground sm:text-lg">
         {q}
       </dt>
       <dd className="text-sm text-muted-foreground sm:text-base">{children}</dd>
