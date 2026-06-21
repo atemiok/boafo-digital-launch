@@ -52,14 +52,7 @@ const INDIGO_950 = "#141432";
 const INK = "#0a0a1a";
 
 const tileBase =
-  "group relative overflow-hidden rounded-3xl border p-7 sm:p-8 transition-all duration-500";
-const tileStyle: React.CSSProperties = {
-  background:
-    "linear-gradient(180deg, rgba(30,30,90,0.35) 0%, rgba(10,10,26,0.55) 100%)",
-  borderColor: "rgba(165,180,252,0.14)",
-  boxShadow:
-    "inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 60px -30px rgba(10,10,26,0.6)",
-};
+  "group relative overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur p-7 sm:p-8 shadow-md transition-all duration-500 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 18 },
