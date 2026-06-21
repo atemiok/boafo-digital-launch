@@ -261,7 +261,7 @@ export function LiveOperationsSimulator() {
         </div>
 
         {/* Tri-pane: Before | Boafo Engine | After */}
-        <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6">
+        <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6 min-h-[640px] lg:min-h-[560px]">
           <BeforePane key={`b-${active.id}`} v={active} />
           <CenterEngine key={`c-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
