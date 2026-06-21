@@ -354,13 +354,13 @@ function CompanyPage() {
             <div className="grid grid-cols-12 gap-4 sm:gap-5">
               <Tile className="col-span-12 lg:col-span-7">
                 <Eyebrow>Company overview</Eyebrow>
-                <SerifH2 className="mt-4">
+                <DisplayH2 className="mt-4">
                   A boutique software company engineering the{" "}
                   <span className="font-medium" style={{ color: INDIGO_300 }}>
                     operating backbone
                   </span>{" "}
                   of modern enterprises.
-                </SerifH2>
+                </DisplayH2>
                 <div
                   className={`${SANS} mt-6 space-y-4 text-pretty text-base leading-relaxed sm:text-lg`}
                   style={{ color: "rgba(223,226,245,0.72)" }}
@@ -444,9 +444,9 @@ function CompanyPage() {
             <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
               <div>
                 <Eyebrow>Core values</Eyebrow>
-                <SerifH2 className="mt-3">
+                <DisplayH2 className="mt-3">
                   Four non-negotiables. <span className="font-medium" style={{ color: INDIGO_300 }}>Every engagement.</span>
-                </SerifH2>
+                </DisplayH2>
               </div>
               <p
                 className={`${SANS} max-w-md text-sm leading-relaxed`}
@@ -485,9 +485,9 @@ function CompanyPage() {
             <div className="grid grid-cols-12 gap-4 sm:gap-5">
               <Tile className="col-span-12 lg:col-span-7">
                 <Eyebrow>Our expertise</Eyebrow>
-                <SerifH2 className="mt-3 text-3xl sm:text-4xl">
+                <DisplayH2 className="mt-3 text-3xl sm:text-4xl">
                   End-to-end software development across the full product lifecycle.
-                </SerifH2>
+                </DisplayH2>
                 <p
                   className={`${SANS} mt-5 text-base leading-relaxed`}
                   style={{ color: "rgba(223,226,245,0.7)" }}
@@ -547,12 +547,12 @@ function CompanyPage() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
               <Eyebrow>Our technology stack</Eyebrow>
-              <SerifH2 className="mt-3">
+              <DisplayH2 className="mt-3">
                 Deliberate tools.{" "}
                 <span className="font-medium" style={{ color: INDIGO_300 }}>
                   Boring infrastructure, bulletproof outcomes.
                 </span>
-              </SerifH2>
+              </DisplayH2>
               <p
                 className={`${SANS} mt-5 text-base leading-relaxed`}
                 style={{ color: "rgba(223,226,245,0.7)" }}
@@ -598,12 +598,12 @@ function CompanyPage() {
             <div className="mb-12 grid grid-cols-12 gap-4 sm:gap-5">
               <div className="col-span-12 lg:col-span-7">
                 <Eyebrow>Our development process</Eyebrow>
-                <SerifH2 className="mt-3">
+                <DisplayH2 className="mt-3">
                   How a single call becomes a{" "}
                   <span className="font-medium" style={{ color: INDIGO_300 }}>
                     running platform.
                   </span>
-                </SerifH2>
+                </DisplayH2>
               </div>
               <p
                 className={`${SANS} col-span-12 self-end text-sm leading-relaxed lg:col-span-5`}
@@ -662,9 +662,9 @@ function CompanyPage() {
             <div className="grid grid-cols-12 gap-4 sm:gap-5">
               <Tile className="col-span-12 lg:col-span-7">
                 <Eyebrow>Why choose Boafo Solutions</Eyebrow>
-                <SerifH2 className="mt-3">
+                <DisplayH2 className="mt-3">
                   What separates us from agencies, marketplaces and traditional consultancies.
-                </SerifH2>
+                </DisplayH2>
                 <dl className="mt-8 divide-y" style={{ borderColor: "rgba(165,180,252,0.12)" }}>
                   {WHY.map((w) => (
                     <div
