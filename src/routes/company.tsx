@@ -173,7 +173,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function DisplayH2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`${DISPLAY} text-balance text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl ${className}`}
+      className={`${DISPLAY} text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl ${className}`}
     >
       {children}
     </h2>
@@ -213,8 +213,7 @@ function Tile({
 function CompanyPage() {
   return (
     <div
-      className={`${SANS} min-h-screen antialiased`}
-      style={{ background: INK, color: "#dfe2f5" }}
+      className={`${SANS} min-h-screen antialiased bg-background text-foreground`}
     >
       {/* Ambient backdrop */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
@@ -251,7 +250,6 @@ function CompanyPage() {
               <Eyebrow>Company · Boafo Solutions · Est. operating model</Eyebrow>
               <span
                 className="hidden font-mono text-[11px] uppercase tracking-[0.3em] sm:inline"
-                style={{ color: "rgba(223,226,245,0.4)" }}
               >
                 Vol. 01 — The Studio
               </span>
@@ -264,7 +262,7 @@ function CompanyPage() {
                   <div>
                     <Eyebrow>Manifesto</Eyebrow>
                     <h1
-                      className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl`}
+                      className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl`}
                     >
                       Built to last.{" "}
                       <span
@@ -280,7 +278,6 @@ function CompanyPage() {
                     </h1>
                     <p
                       className={`${SANS} mt-6 max-w-xl text-pretty text-base leading-relaxed sm:text-lg`}
-                      style={{ color: "rgba(223,226,245,0.7)" }}
                     >
                       Boafo Solutions is the small, senior software company that engineers your
                       operating backbone — then stays to run it. Architecture-first, transparent
@@ -291,7 +288,7 @@ function CompanyPage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <Link
                       to="/contact"
-                      className={`${SANS} inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5`}
+                      className={`${SANS} inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5`}
                       style={{
                         background: `linear-gradient(135deg, ${INDIGO_500}, ${INDIGO_900})`,
                         boxShadow: `0 14px 30px -12px ${INDIGO_500}aa`,
@@ -302,7 +299,7 @@ function CompanyPage() {
                     </Link>
                     <Link
                       to="/work"
-                      className={`${SANS} inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5`}
+                      className={`${SANS} inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/5`}
                       style={{ borderColor: "rgba(165,180,252,0.25)" }}
                     >
                       See systems in production
@@ -315,12 +312,11 @@ function CompanyPage() {
               {/* Stat — clients */}
               <Tile className="col-span-6 lg:col-span-4" delay={1}>
                 <Eyebrow>Retention</Eyebrow>
-                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-white sm:text-6xl`}>
+                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-foreground sm:text-6xl`}>
                   94<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
                   className={`${SANS} mt-2 text-sm`}
-                  style={{ color: "rgba(223,226,245,0.65)" }}
                 >
                   of clients renew year on year — because the software keeps working and the team
                   keeps showing up.
@@ -330,12 +326,11 @@ function CompanyPage() {
               {/* Stat — uptime */}
               <Tile className="col-span-6 lg:col-span-4" delay={2}>
                 <Eyebrow>Production uptime</Eyebrow>
-                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-white sm:text-6xl`}>
+                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-foreground sm:text-6xl`}>
                   99.98<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
                   className={`${SANS} mt-2 text-sm`}
-                  style={{ color: "rgba(223,226,245,0.65)" }}
                 >
                   Rolling 12-month average across every platform under our SLA — measured, not
                   marketing.
@@ -360,7 +355,6 @@ function CompanyPage() {
                 </DisplayH2>
                 <div
                   className={`${SANS} mt-6 space-y-4 text-pretty text-base leading-relaxed sm:text-lg`}
-                  style={{ color: "rgba(223,226,245,0.72)" }}
                 >
                   <p>
                     Boafo Solutions is an enterprise software company specialising in custom
@@ -383,12 +377,11 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Our story</Eyebrow>
-                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white sm:text-3xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-foreground sm:text-3xl`}>
                   Founded as a deliberate third option.
                 </h3>
                 <div
                   className={`${SANS} mt-5 space-y-4 text-pretty text-base leading-relaxed`}
-                  style={{ color: "rgba(223,226,245,0.72)" }}
                 >
                   <p>
                     Boafo was founded by engineers who had spent a decade rescuing broken
@@ -408,7 +401,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our mission</Eyebrow>
-                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
+                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-foreground sm:text-2xl`}>
                   To engineer enterprise software that organisations can{" "}
                   <span style={{ color: INDIGO_300 }}>
                     bet quarterly targets on
@@ -421,7 +414,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our vision</Eyebrow>
-                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
+                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-foreground sm:text-2xl`}>
                   A future where every operator — from regional logistics firm to multinational
                   bank — has access to a{" "}
                   <span style={{ color: INDIGO_300 }}>
@@ -447,7 +440,6 @@ function CompanyPage() {
               </div>
               <p
                 className={`${SANS} max-w-md text-sm leading-relaxed`}
-                style={{ color: "rgba(223,226,245,0.6)" }}
               >
                 The operating principles every Boafo engineer signs up to on day one — and is
                 held to from kickoff to retirement of the system.
@@ -463,10 +455,9 @@ function CompanyPage() {
                   >
                     0{i + 1}
                   </p>
-                  <h3 className={`${DISPLAY} mt-4 text-xl font-bold text-white`}>{v.title}</h3>
+                  <h3 className={`${DISPLAY} mt-4 text-xl font-bold text-foreground`}>{v.title}</h3>
                   <p
                     className={`${SANS} mt-3 text-sm leading-relaxed`}
-                    style={{ color: "rgba(223,226,245,0.7)" }}
                   >
                     {v.body}
                   </p>
@@ -487,7 +478,6 @@ function CompanyPage() {
                 </DisplayH2>
                 <p
                   className={`${SANS} mt-5 text-base leading-relaxed`}
-                  style={{ color: "rgba(223,226,245,0.7)" }}
                 >
                   Deep, hands-on experience across the disciplines modern enterprises need most —
                   composed into a single, coherent platform by people who have shipped it before.
@@ -497,7 +487,6 @@ function CompanyPage() {
                     <li
                       key={e}
                       className="flex gap-3 leading-relaxed"
-                      style={{ color: "rgba(223,226,245,0.8)" }}
                     >
                       <span style={{ color: INDIGO_300 }}>▹</span>
                       <span>{e}</span>
@@ -508,12 +497,11 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Industries we serve</Eyebrow>
-                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white sm:text-3xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-foreground sm:text-3xl`}>
                   Regulated, high-stakes, integration-heavy.
                 </h3>
                 <p
                   className={`${SANS} mt-4 text-sm leading-relaxed`}
-                  style={{ color: "rgba(223,226,245,0.7)" }}
                 >
                   We partner with operators where downtime is expensive and trust is
                   non-negotiable. Our teams are fluent in the workflows, compliance regimes and
@@ -526,7 +514,6 @@ function CompanyPage() {
                       className={`${SANS} rounded-xl border px-4 py-3 text-sm`}
                       style={{
                         borderColor: "rgba(165,180,252,0.15)",
-                        background: "rgba(255,255,255,0.02)",
                         color: "rgba(223,226,245,0.85)",
                       }}
                     >
@@ -552,7 +539,6 @@ function CompanyPage() {
               </DisplayH2>
               <p
                 className={`${SANS} mt-5 text-base leading-relaxed`}
-                style={{ color: "rgba(223,226,245,0.7)" }}
               >
                 Every component of our stack has been battle-tested in production, has a healthy
                 long-term maintenance trajectory and interoperates cleanly with the rest.
@@ -569,7 +555,7 @@ function CompanyPage() {
                   delay={i}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className={`${DISPLAY} text-xl font-bold text-white`}>{s.label}</h3>
+                    <h3 className={`${DISPLAY} text-xl font-bold text-foreground`}>{s.label}</h3>
                     <span
                       className="font-mono text-[10px] uppercase tracking-[0.28em]"
                       style={{ color: "rgba(165,180,252,0.6)" }}
@@ -579,7 +565,6 @@ function CompanyPage() {
                   </div>
                   <p
                     className={`${SANS} mt-3 text-sm leading-relaxed`}
-                    style={{ color: "rgba(223,226,245,0.72)" }}
                   >
                     {s.body}
                   </p>
@@ -604,7 +589,6 @@ function CompanyPage() {
               </div>
               <p
                 className={`${SANS} col-span-12 self-end text-sm leading-relaxed lg:col-span-5`}
-                style={{ color: "rgba(223,226,245,0.65)" }}
               >
                 The same five-stage operating model, every engagement. Fortnightly demos, written
                 status reports and access to the same project board our engineers use. No
@@ -639,10 +623,9 @@ function CompanyPage() {
                         <Icon className="h-4 w-4" style={{ color: INDIGO_300 }} />
                       </span>
                     </div>
-                    <h3 className={`${DISPLAY} mt-5 text-xl font-bold text-white`}>{step.title}</h3>
+                    <h3 className={`${DISPLAY} mt-5 text-xl font-bold text-foreground`}>{step.title}</h3>
                     <p
                       className={`${SANS} mt-3 text-sm leading-relaxed`}
-                      style={{ color: "rgba(223,226,245,0.72)" }}
                     >
                       {step.body}
                     </p>
@@ -670,13 +653,12 @@ function CompanyPage() {
                       style={{ borderColor: "rgba(165,180,252,0.12)" }}
                     >
                       <dt
-                        className={`${DISPLAY} col-span-12 text-lg font-semibold text-white sm:col-span-5 sm:text-xl`}
+                        className={`${DISPLAY} col-span-12 text-lg font-semibold text-foreground sm:col-span-5 sm:text-xl`}
                       >
                         {w.k}
                       </dt>
                       <dd
                         className={`${SANS} col-span-12 text-sm leading-relaxed sm:col-span-7`}
-                        style={{ color: "rgba(223,226,245,0.72)" }}
                       >
                         {w.v}
                       </dd>
@@ -691,12 +673,11 @@ function CompanyPage() {
                     <Sparkles className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Innovation &amp; digital transformation</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-foreground`}>
                     Practical automation. Not slogans.
                   </h3>
                   <p
                     className={`${SANS} mt-4 text-sm leading-relaxed`}
-                    style={{ color: "rgba(223,226,245,0.72)" }}
                   >
                     We help clients modernise legacy enterprise systems, migrate workloads to the
                     cloud, embed AI into operational decision-making and unlock new revenue
@@ -712,12 +693,11 @@ function CompanyPage() {
                     <HeartHandshake className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Our commitment to clients</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-foreground`}>
                     We answer the phone at 3 a.m.
                   </h3>
                   <p
                     className={`${SANS} mt-4 text-sm leading-relaxed`}
-                    style={{ color: "rgba(223,226,245,0.72)" }}
                   >
                     Clients hire Boafo because they want a partner that treats their platform like
                     its own — writing the runbook a junior engineer can follow, refusing features
@@ -738,7 +718,7 @@ function CompanyPage() {
                 <div className="col-span-12 lg:col-span-8">
                   <Eyebrow>Partnership — not a project</Eyebrow>
                   <h2
-                    className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl`}
+                    className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl`}
                   >
                     Let's map your bottleneck —{" "}
                     <span style={{ color: INDIGO_300 }}>
@@ -747,7 +727,6 @@ function CompanyPage() {
                   </h2>
                   <p
                     className={`${SANS} mt-5 max-w-xl text-base leading-relaxed`}
-                    style={{ color: "rgba(223,226,245,0.7)" }}
                   >
                     30 minutes. Working session. You leave with a one-page technical brief,
                     whether we build together or not.
@@ -757,7 +736,7 @@ function CompanyPage() {
                 <div className="col-span-12 flex flex-col gap-3 lg:col-span-4 lg:items-end">
                   <Link
                     to="/contact"
-                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 lg:w-auto`}
+                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5 lg:w-auto`}
                     style={{
                       background: `linear-gradient(135deg, ${INDIGO_500}, ${INDIGO_900})`,
                       boxShadow: `0 18px 40px -12px ${INDIGO_500}cc`,
@@ -768,7 +747,7 @@ function CompanyPage() {
                   </Link>
                   <Link
                     to="/work"
-                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full border px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/5 lg:w-auto`}
+                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full border px-6 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/5 lg:w-auto`}
                     style={{ borderColor: "rgba(165,180,252,0.25)" }}
                   >
                     See systems in production
