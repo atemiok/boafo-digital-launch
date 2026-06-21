@@ -165,10 +165,7 @@ const WHY = [
 /* ────────────────────────── primitives ────────────────────────── */
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p
-      className={`${SANS} text-[10px] font-medium uppercase tracking-[0.32em]`}
-      style={{ color: INDIGO_300 }}
-    >
+    <p className="font-mono text-xs uppercase tracking-widest text-primary-glow">
       {children}
     </p>
   );
@@ -177,7 +174,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function DisplayH2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`${DISPLAY} text-balance text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl ${className}`}
+      className={`${DISPLAY} text-balance text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl ${className}`}
     >
       {children}
     </h2>
@@ -254,7 +251,7 @@ function CompanyPage() {
             >
               <Eyebrow>Company · Boafo Solutions · Est. operating model</Eyebrow>
               <span
-                className={`${SANS} hidden text-[11px] uppercase tracking-[0.3em] sm:inline`}
+                className="hidden font-mono text-[11px] uppercase tracking-[0.3em] sm:inline"
                 style={{ color: "rgba(223,226,245,0.4)" }}
               >
                 Vol. 01 — The Studio
@@ -272,7 +269,6 @@ function CompanyPage() {
                     >
                       Built to last.{" "}
                       <span
-                        className="font-medium"
                         style={{
                           backgroundImage: `linear-gradient(90deg, ${INDIGO_300}, ${INDIGO_500})`,
                           WebkitBackgroundClip: "text",
@@ -296,7 +292,7 @@ function CompanyPage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <Link
                       to="/contact"
-                      className={`${SANS} inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5`}
+                      className={`${SANS} inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5`}
                       style={{
                         background: `linear-gradient(135deg, ${INDIGO_500}, ${INDIGO_900})`,
                         boxShadow: `0 14px 30px -12px ${INDIGO_500}aa`,
@@ -307,7 +303,7 @@ function CompanyPage() {
                     </Link>
                     <Link
                       to="/work"
-                      className={`${SANS} inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5`}
+                      className={`${SANS} inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5`}
                       style={{ borderColor: "rgba(165,180,252,0.25)" }}
                     >
                       See systems in production
@@ -358,7 +354,7 @@ function CompanyPage() {
                 <Eyebrow>Company overview</Eyebrow>
                 <DisplayH2 className="mt-4">
                   A boutique software company engineering the{" "}
-                  <span className="font-medium" style={{ color: INDIGO_300 }}>
+                  <span style={{ color: INDIGO_300 }}>
                     operating backbone
                   </span>{" "}
                   of modern enterprises.
@@ -415,7 +411,7 @@ function CompanyPage() {
                 <Eyebrow>Our mission</Eyebrow>
                 <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
                   To engineer enterprise software that organisations can{" "}
-                  <span className="font-medium" style={{ color: INDIGO_300 }}>
+                  <span style={{ color: INDIGO_300 }}>
                     bet quarterly targets on
                   </span>{" "}
                   — combining architecture-first development, transparent process and lifetime
@@ -429,7 +425,7 @@ function CompanyPage() {
                 <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
                   A future where every operator — from regional logistics firm to multinational
                   bank — has access to a{" "}
-                  <span className="font-medium" style={{ color: INDIGO_300 }}>
+                  <span style={{ color: INDIGO_300 }}>
                     senior, accountable engineering partner
                   </span>{" "}
                   that designs business technology around their actual workflow, not around a
@@ -447,7 +443,7 @@ function CompanyPage() {
               <div>
                 <Eyebrow>Core values</Eyebrow>
                 <DisplayH2 className="mt-3">
-                  Four non-negotiables. <span className="font-medium" style={{ color: INDIGO_300 }}>Every engagement.</span>
+                  Four non-negotiables. <span style={{ color: INDIGO_300 }}>Every engagement.</span>
                 </DisplayH2>
               </div>
               <p
@@ -551,7 +547,7 @@ function CompanyPage() {
               <Eyebrow>Our technology stack</Eyebrow>
               <DisplayH2 className="mt-3">
                 Deliberate tools.{" "}
-                <span className="font-medium" style={{ color: INDIGO_300 }}>
+                <span style={{ color: INDIGO_300 }}>
                   Boring infrastructure, bulletproof outcomes.
                 </span>
               </DisplayH2>
@@ -576,7 +572,7 @@ function CompanyPage() {
                   <div className="flex items-start justify-between gap-3">
                     <h3 className={`${DISPLAY} text-xl font-bold text-white`}>{s.label}</h3>
                     <span
-                      className={`${SANS} text-[10px] uppercase tracking-[0.28em]`}
+                      className="font-mono text-[10px] uppercase tracking-[0.28em]"
                       style={{ color: "rgba(165,180,252,0.6)" }}
                     >
                       0{i + 1}
@@ -600,12 +596,12 @@ function CompanyPage() {
             <div className="mb-12 grid grid-cols-12 gap-4 sm:gap-5">
               <div className="col-span-12 lg:col-span-7">
                 <Eyebrow>Our development process</Eyebrow>
-                <DisplayH2 className="mt-3">
-                  How a single call becomes a{" "}
-                  <span className="font-medium" style={{ color: INDIGO_300 }}>
-                    running platform.
-                  </span>
-                </DisplayH2>
+              <DisplayH2 className="mt-3">
+                How a single call becomes a{" "}
+                <span style={{ color: INDIGO_300 }}>
+                  running platform.
+                </span>
+              </DisplayH2>
               </div>
               <p
                 className={`${SANS} col-span-12 self-end text-sm leading-relaxed lg:col-span-5`}
@@ -675,7 +671,7 @@ function CompanyPage() {
                       style={{ borderColor: "rgba(165,180,252,0.12)" }}
                     >
                       <dt
-                        className={`${DISPLAY} col-span-12 text-lg font-medium text-white sm:col-span-5 sm:text-xl`}
+                        className={`${DISPLAY} col-span-12 text-lg font-semibold text-white sm:col-span-5 sm:text-xl`}
                       >
                         {w.k}
                       </dt>
@@ -746,7 +742,7 @@ function CompanyPage() {
                     className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl`}
                   >
                     Let's map your bottleneck —{" "}
-                    <span className="font-medium" style={{ color: INDIGO_300 }}>
+                    <span style={{ color: INDIGO_300 }}>
                       together.
                     </span>
                   </h2>
@@ -762,7 +758,7 @@ function CompanyPage() {
                 <div className="col-span-12 flex flex-col gap-3 lg:col-span-4 lg:items-end">
                   <Link
                     to="/contact"
-                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 lg:w-auto`}
+                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 lg:w-auto`}
                     style={{
                       background: `linear-gradient(135deg, ${INDIGO_500}, ${INDIGO_900})`,
                       boxShadow: `0 18px 40px -12px ${INDIGO_500}cc`,
@@ -773,7 +769,7 @@ function CompanyPage() {
                   </Link>
                   <Link
                     to="/work"
-                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full border px-6 py-4 text-sm font-medium text-white transition-colors hover:bg-white/5 lg:w-auto`}
+                    className={`${SANS} inline-flex w-full items-center justify-center gap-2 rounded-full border px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/5 lg:w-auto`}
                     style={{ borderColor: "rgba(165,180,252,0.25)" }}
                   >
                     See systems in production
