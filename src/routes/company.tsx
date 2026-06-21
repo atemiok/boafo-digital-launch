@@ -190,7 +190,6 @@ function Tile({
       viewport={{ once: true, amount: 0.2 }}
       custom={delay}
       className={`${tileBase} ${className}`}
-      style={tileStyle}
     >
       <div
         aria-hidden
