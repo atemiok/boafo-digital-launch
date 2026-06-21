@@ -270,7 +270,7 @@ function CompanyPage() {
                     >
                       Built to last.{" "}
                       <span
-      className="font-medium"
+                        className="font-medium"
                         style={{
                           backgroundImage: `linear-gradient(90deg, ${INDIGO_300}, ${INDIGO_500})`,
                           WebkitBackgroundClip: "text",
