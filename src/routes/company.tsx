@@ -39,8 +39,10 @@ export const Route = createFileRoute("/company")({
 
 /* ────────────────────────── design language ────────────────────────── */
 const EASE = [0.16, 1, 0.3, 1] as const;
-const DISPLAY = "font-['Space_Grotesk']";
-const SANS = "font-['DM_Sans']";
+// Use site-wide typography tokens (Space Grotesk on h*, DM Sans on body)
+// kept as empty strings so existing template strings continue to compile.
+const DISPLAY = "";
+const SANS = "";
 
 // Midnight Indigo accent system — scoped to the company page via inline styles.
 const INDIGO_50 = "#eef0ff";
@@ -175,7 +177,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function DisplayH2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`${DISPLAY} text-balance text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl ${className}`}
+      className={`${DISPLAY} text-balance text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl ${className}`}
     >
       {children}
     </h2>
@@ -266,7 +268,7 @@ function CompanyPage() {
                   <div>
                     <Eyebrow>Manifesto</Eyebrow>
                     <h1
-                      className={`${DISPLAY} mt-4 text-balance text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[88px]`}
+                      className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl`}
                     >
                       Built to last.{" "}
                       <span
@@ -318,7 +320,7 @@ function CompanyPage() {
               {/* Stat — clients */}
               <Tile className="col-span-6 lg:col-span-4" delay={1}>
                 <Eyebrow>Retention</Eyebrow>
-                <p className={`${DISPLAY} mt-3 text-6xl font-semibold text-white sm:text-7xl`}>
+                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-white sm:text-6xl`}>
                   94<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
@@ -333,7 +335,7 @@ function CompanyPage() {
               {/* Stat — uptime */}
               <Tile className="col-span-6 lg:col-span-4" delay={2}>
                 <Eyebrow>Production uptime</Eyebrow>
-                <p className={`${DISPLAY} mt-3 text-6xl font-semibold text-white sm:text-7xl`}>
+                <p className={`${DISPLAY} mt-3 text-5xl font-extrabold text-white sm:text-6xl`}>
                   99.98<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
@@ -386,7 +388,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Our story</Eyebrow>
-                <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white sm:text-4xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white sm:text-3xl`}>
                   Founded as a deliberate third option.
                 </h3>
                 <div
@@ -411,7 +413,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our mission</Eyebrow>
-                <p className={`${DISPLAY} mt-4 text-2xl font-medium leading-snug text-white sm:text-3xl`}>
+                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
                   To engineer enterprise software that organisations can{" "}
                   <span className="font-medium" style={{ color: INDIGO_300 }}>
                     bet quarterly targets on
@@ -424,7 +426,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our vision</Eyebrow>
-                <p className={`${DISPLAY} mt-4 text-2xl font-medium leading-snug text-white sm:text-3xl`}>
+                <p className={`${DISPLAY} mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl`}>
                   A future where every operator — from regional logistics firm to multinational
                   bank — has access to a{" "}
                   <span className="font-medium" style={{ color: INDIGO_300 }}>
@@ -461,12 +463,12 @@ function CompanyPage() {
               {VALUES.map((v, i) => (
                 <Tile key={v.title} className="col-span-12 sm:col-span-6 lg:col-span-3" delay={i}>
                   <p
-                    className={`${DISPLAY} text-5xl font-semibold`}
+                    className={`${DISPLAY} text-4xl font-extrabold`}
                     style={{ color: INDIGO_300 }}
                   >
                     0{i + 1}
                   </p>
-                  <h3 className={`${DISPLAY} mt-4 text-2xl font-semibold text-white`}>{v.title}</h3>
+                  <h3 className={`${DISPLAY} mt-4 text-xl font-bold text-white`}>{v.title}</h3>
                   <p
                     className={`${SANS} mt-3 text-sm leading-relaxed`}
                     style={{ color: "rgba(223,226,245,0.7)" }}
@@ -511,7 +513,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Industries we serve</Eyebrow>
-                <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white sm:text-4xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white sm:text-3xl`}>
                   Regulated, high-stakes, integration-heavy.
                 </h3>
                 <p
@@ -572,7 +574,7 @@ function CompanyPage() {
                   delay={i}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className={`${DISPLAY} text-2xl font-semibold text-white`}>{s.label}</h3>
+                    <h3 className={`${DISPLAY} text-xl font-bold text-white`}>{s.label}</h3>
                     <span
                       className={`${SANS} text-[10px] uppercase tracking-[0.28em]`}
                       style={{ color: "rgba(165,180,252,0.6)" }}
@@ -627,7 +629,7 @@ function CompanyPage() {
                   >
                     <div className="flex items-center justify-between">
                       <span
-                        className={`${DISPLAY} text-4xl font-semibold`}
+                        className={`${DISPLAY} text-3xl font-bold`}
                         style={{ color: INDIGO_300 }}
                       >
                         {step.code}
@@ -642,7 +644,7 @@ function CompanyPage() {
                         <Icon className="h-4 w-4" style={{ color: INDIGO_300 }} />
                       </span>
                     </div>
-                    <h3 className={`${DISPLAY} mt-5 text-2xl font-semibold text-white`}>{step.title}</h3>
+                    <h3 className={`${DISPLAY} mt-5 text-xl font-bold text-white`}>{step.title}</h3>
                     <p
                       className={`${SANS} mt-3 text-sm leading-relaxed`}
                       style={{ color: "rgba(223,226,245,0.72)" }}
@@ -694,7 +696,7 @@ function CompanyPage() {
                     <Sparkles className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Innovation &amp; digital transformation</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
                     Practical automation. Not slogans.
                   </h3>
                   <p
@@ -715,7 +717,7 @@ function CompanyPage() {
                     <HeartHandshake className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Our commitment to clients</Eyebrow>
                   </div>
-                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-bold text-white`}>
                     We answer the phone at 3 a.m.
                   </h3>
                   <p
@@ -741,7 +743,7 @@ function CompanyPage() {
                 <div className="col-span-12 lg:col-span-8">
                   <Eyebrow>Partnership — not a project</Eyebrow>
                   <h2
-                    className={`${DISPLAY} mt-4 text-balance text-5xl font-semibold leading-[1.02] text-white sm:text-6xl lg:text-7xl`}
+                    className={`${DISPLAY} mt-4 text-balance text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl`}
                   >
                     Let's map your bottleneck —{" "}
                     <span className="font-medium" style={{ color: INDIGO_300 }}>
