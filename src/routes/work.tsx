@@ -177,7 +177,70 @@ function WorkPage() {
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl px-5 text-center sm:px-8">
+          {/* ───── SEO long-form content ───── */}
+          <section className="mx-auto mt-20 max-w-4xl px-5 sm:px-8">
+            <div className="mb-10 text-center">
+              <p className="text-xs font-mono uppercase tracking-widest text-primary">
+                Engagement model
+              </p>
+              <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+                How Boafo Solutions ships <span className="text-gradient">production systems.</span>
+              </h2>
+            </div>
+
+            <div className="prose prose-sm sm:prose-base max-w-none space-y-5 text-muted-foreground [&_h3]:text-foreground [&_h3]:font-semibold [&_h3]:tracking-tight [&_strong]:text-foreground">
+              <h3 className="text-lg sm:text-xl">Case studies in business automation software</h3>
+              <p>
+                These case studies represent a snapshot of the <strong>business automation software</strong>{" "}
+                Boafo Solutions has shipped to production for SACCOs, property managers, solar utilities, and
+                logistics operators across Kenya and East Africa. Each engagement begins with a senior
+                engineer auditing the real bottleneck — payment leakage, manual rent collection, fragmented
+                telemetry, or unreliable dispatch — and ends with software your team uses every day, backed
+                by clear metrics on the outcome.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">M-Pesa reconciliation and Daraja-powered ledgers</h3>
+              <p>
+                Our <strong>M-Pesa reconciliation</strong> work uses the Safaricom Daraja API to match every
+                C2B and STK payment against an invoice and post directly to the GL. For multi-branch SACCOs
+                and retail networks we eliminate the WhatsApp-and-Excel reconciliation cycle, recover
+                payment leakage, and close the books in real time. Reversals, duplicate callbacks, and
+                partial payments are handled inside the engine — not in a finance team's inbox.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">Property management portals and tenant self-service</h3>
+              <p>
+                Our <strong>property management portal</strong> engagements replace notebooks and shared
+                spreadsheets with prorated billing, STK-push rent payments, automatic receipts, tenant
+                self-service, and a board-ready dashboard for occupancy, arrears, and yield. The same
+                platform scales from a single block to multi-landlord portfolios without rewriting the
+                operational model.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">IoT telemetry and logistics dispatch software</h3>
+              <p>
+                For solar and utility operators we deliver unified <strong>IoT telemetry</strong> across
+                multi-brand smart meters, with prepaid token vending paid through M-Pesa and live
+                consumption visible to the CFO on a single map. For distribution networks we build
+                <strong> logistics dispatch software</strong> — a lightweight Android PWA for riders, a
+                real-time dispatch console for HQ, customer SMS with tracking links, and auto-calculated
+                rider commissions.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">SACCO automation and enterprise-grade reliability</h3>
+              <p>
+                Our <strong>SACCO automation</strong> projects pair member portals and loan workflows with
+                audit-ready ledgers and granular role-based access. Across every sector, the systems we
+                ship share the same backbone: row-level tenant isolation, full audit trails, single sign-on,
+                fixed-price scope, full source ownership at delivery, and ongoing support after launch.
+                If your next operational platform needs the same outcomes — measurable ROI, lower
+                operational drag, and software your team trusts — start with a 30-minute architecture
+                discovery.
+              </p>
+            </div>
+          </section>
+
+          <div className="mx-auto mt-12 max-w-4xl px-5 text-center sm:px-8">
             <Link
               to="/contact"
               className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"

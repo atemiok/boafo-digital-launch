@@ -198,7 +198,68 @@ function ServicesPage() {
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl px-5 text-center sm:px-8">
+          {/* ───── SEO long-form content ───── */}
+          <section className="mx-auto mt-20 max-w-4xl px-5 sm:px-8">
+            <div className="mb-10 text-center">
+              <p className="text-xs font-mono uppercase tracking-widest text-primary">
+                How we deliver
+              </p>
+              <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+                A delivery model built for <span className="text-gradient">operational software.</span>
+              </h2>
+            </div>
+
+            <div className="prose prose-sm sm:prose-base max-w-none space-y-5 text-muted-foreground [&_h3]:text-foreground [&_h3]:font-semibold [&_h3]:tracking-tight [&_strong]:text-foreground">
+              <h3 className="text-lg sm:text-xl">Custom software developers for high-stakes workflows</h3>
+              <p>
+                Boafo Solutions is a Nairobi-based team of <strong>custom software developers</strong> and
+                <strong> web portal developers</strong> serving SACCOs, property managers, energy operators,
+                logistics networks, and enterprise finance teams across Kenya and East Africa. Every engagement
+                starts with a senior engineer mapping the real bottleneck — reconciliation drift, manual
+                rent ledgers, scattered telemetry, fragmented reporting — and ends with production software
+                your team actually uses on Monday morning.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">M-Pesa, Daraja, and payment integration done properly</h3>
+              <p>
+                Our <strong>M-Pesa integration</strong> and <strong>Daraja API</strong> work covers C2B, STK
+                Push, B2C disbursements, and reversals — wired directly into your general ledger with
+                automatic invoice matching, branded SMS receipts, and WhatsApp confirmations. We handle the
+                edge cases most teams ignore: duplicate callbacks, partial payments, refund flows, and
+                multi-tenant Paybill splits. The result is a closed-loop payment system where finance
+                stops reconciling spreadsheets and starts publishing real numbers.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">Property management software and tenant portals</h3>
+              <p>
+                Our <strong>property management software</strong> covers prorated billing, STK-push rent
+                collection, automatic statements, caretaker workflows, and an executive dashboard for
+                occupancy, arrears, and yield. It is multi-block, multi-landlord ready, and integrates
+                cleanly with the rest of your finance stack so the board sees a single source of truth.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">IoT telemetry, SACCO platforms, and business automation</h3>
+              <p>
+                We unify telemetry from solar inverters, smart meters, and IoT sensors into one operational
+                feed — with prepaid token vending, anomaly alerts, and live consumption maps. For SACCOs and
+                cooperatives, we build member portals, loan workflows, and audit-ready ledgers. Across every
+                domain, our <strong>business automation</strong> engagements share the same backbone:
+                role-based access control, full audit trails, single sign-on, and APIs that downstream
+                teams can build on without filing a ticket.
+              </p>
+
+              <h3 className="text-lg sm:text-xl">Fixed-price scope, full source ownership, ongoing support</h3>
+              <p>
+                We deliver on fixed-price milestones, transfer full source ownership at launch, and provide
+                ongoing support, monitoring, and feature improvements after go-live. If you are evaluating
+                <strong> custom software developers</strong> or a <strong>portal development company</strong>{" "}
+                for a critical operational platform, the fastest next step is a 30-minute architecture
+                discovery with a senior engineer.
+              </p>
+            </div>
+          </section>
+
+          <div className="mx-auto mt-12 max-w-4xl px-5 text-center sm:px-8">
             <Link
               to="/contact"
               className="btn-mint inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
