@@ -511,11 +511,7 @@ function CompanyPage() {
                   {INDUSTRIES.map((ind) => (
                     <li
                       key={ind}
-                      className={`${SANS} rounded-xl border px-4 py-3 text-sm`}
-                      style={{
-                        borderColor: "rgba(165,180,252,0.15)",
-                        color: "rgba(223,226,245,0.85)",
-                      }}
+                      className={`${SANS} rounded-xl border border-foreground/10 px-4 py-3 text-sm text-foreground/85`}
                     >
                       {ind}
                     </li>
