@@ -39,8 +39,8 @@ export const Route = createFileRoute("/company")({
 
 /* ────────────────────────── design language ────────────────────────── */
 const EASE = [0.16, 1, 0.3, 1] as const;
-const SERIF = "font-['Instrument_Serif']";
-const SANS = "font-['Work_Sans']";
+const DISPLAY = "font-['Space_Grotesk']";
+const SANS = "font-['DM_Sans']";
 
 // Midnight Indigo accent system — scoped to the company page via inline styles.
 const INDIGO_50 = "#eef0ff";
@@ -172,10 +172,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SerifH2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function DisplayH2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`${SERIF} text-balance text-4xl font-normal leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl ${className}`}
+      className={`${DISPLAY} text-balance text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl ${className}`}
     >
       {children}
     </h2>
@@ -266,11 +266,11 @@ function CompanyPage() {
                   <div>
                     <Eyebrow>Manifesto</Eyebrow>
                     <h1
-                      className={`${SERIF} mt-4 text-balance text-5xl font-normal leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[88px]`}
+                      className={`${DISPLAY} mt-4 text-balance text-5xl font-normal leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[88px]`}
                     >
                       Built to last.{" "}
-                      <em
-                        className="italic"
+                      <span
+      className="font-medium"
                         style={{
                           backgroundImage: `linear-gradient(90deg, ${INDIGO_300}, ${INDIGO_500})`,
                           WebkitBackgroundClip: "text",
@@ -279,7 +279,7 @@ function CompanyPage() {
                         }}
                       >
                         Supported for life.
-                      </em>
+                      </span>
                     </h1>
                     <p
                       className={`${SANS} mt-6 max-w-xl text-pretty text-base leading-relaxed sm:text-lg`}
@@ -318,7 +318,7 @@ function CompanyPage() {
               {/* Stat — clients */}
               <Tile className="col-span-6 lg:col-span-4" delay={1}>
                 <Eyebrow>Retention</Eyebrow>
-                <p className={`${SERIF} mt-3 text-6xl text-white sm:text-7xl`}>
+                <p className={`${DISPLAY} mt-3 text-6xl font-semibold text-white sm:text-7xl`}>
                   94<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
@@ -333,7 +333,7 @@ function CompanyPage() {
               {/* Stat — uptime */}
               <Tile className="col-span-6 lg:col-span-4" delay={2}>
                 <Eyebrow>Production uptime</Eyebrow>
-                <p className={`${SERIF} mt-3 text-6xl text-white sm:text-7xl`}>
+                <p className={`${DISPLAY} mt-3 text-6xl font-semibold text-white sm:text-7xl`}>
                   99.98<span style={{ color: INDIGO_300 }}>%</span>
                 </p>
                 <p
@@ -356,9 +356,9 @@ function CompanyPage() {
                 <Eyebrow>Company overview</Eyebrow>
                 <SerifH2 className="mt-4">
                   A boutique software company engineering the{" "}
-                  <em className="italic" style={{ color: INDIGO_300 }}>
+                  <span className="font-medium" style={{ color: INDIGO_300 }}>
                     operating backbone
-                  </em>{" "}
+                  </span>{" "}
                   of modern enterprises.
                 </SerifH2>
                 <div
@@ -386,7 +386,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Our story</Eyebrow>
-                <h3 className={`${SERIF} mt-4 text-3xl text-white sm:text-4xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white sm:text-4xl`}>
                   Founded as a deliberate third option.
                 </h3>
                 <div
@@ -411,11 +411,11 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our mission</Eyebrow>
-                <p className={`${SERIF} mt-4 text-2xl leading-snug text-white sm:text-3xl`}>
+                <p className={`${DISPLAY} mt-4 text-2xl font-medium leading-snug text-white sm:text-3xl`}>
                   To engineer enterprise software that organisations can{" "}
-                  <em className="italic" style={{ color: INDIGO_300 }}>
+                  <span className="font-medium" style={{ color: INDIGO_300 }}>
                     bet quarterly targets on
-                  </em>{" "}
+                  </span>{" "}
                   — combining architecture-first development, transparent process and lifetime
                   support to eliminate the freelancer roulette that costs businesses millions
                   every year.
@@ -424,12 +424,12 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-6">
                 <Eyebrow>Our vision</Eyebrow>
-                <p className={`${SERIF} mt-4 text-2xl leading-snug text-white sm:text-3xl`}>
+                <p className={`${DISPLAY} mt-4 text-2xl font-medium leading-snug text-white sm:text-3xl`}>
                   A future where every operator — from regional logistics firm to multinational
                   bank — has access to a{" "}
-                  <em className="italic" style={{ color: INDIGO_300 }}>
+                  <span className="font-medium" style={{ color: INDIGO_300 }}>
                     senior, accountable engineering partner
-                  </em>{" "}
+                  </span>{" "}
                   that designs business technology around their actual workflow, not around a
                   generic template.
                 </p>
@@ -445,7 +445,7 @@ function CompanyPage() {
               <div>
                 <Eyebrow>Core values</Eyebrow>
                 <SerifH2 className="mt-3">
-                  Four non-negotiables. <em className="italic" style={{ color: INDIGO_300 }}>Every engagement.</em>
+                  Four non-negotiables. <span className="font-medium" style={{ color: INDIGO_300 }}>Every engagement.</span>
                 </SerifH2>
               </div>
               <p
@@ -461,12 +461,12 @@ function CompanyPage() {
               {VALUES.map((v, i) => (
                 <Tile key={v.title} className="col-span-12 sm:col-span-6 lg:col-span-3" delay={i}>
                   <p
-                    className={`${SERIF} text-5xl italic`}
+                    className={`${DISPLAY} text-5xl font-semibold`}
                     style={{ color: INDIGO_300 }}
                   >
                     0{i + 1}
                   </p>
-                  <h3 className={`${SERIF} mt-4 text-2xl text-white`}>{v.title}</h3>
+                  <h3 className={`${DISPLAY} mt-4 text-2xl font-semibold text-white`}>{v.title}</h3>
                   <p
                     className={`${SANS} mt-3 text-sm leading-relaxed`}
                     style={{ color: "rgba(223,226,245,0.7)" }}
@@ -511,7 +511,7 @@ function CompanyPage() {
 
               <Tile className="col-span-12 lg:col-span-5">
                 <Eyebrow>Industries we serve</Eyebrow>
-                <h3 className={`${SERIF} mt-4 text-3xl text-white sm:text-4xl`}>
+                <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white sm:text-4xl`}>
                   Regulated, high-stakes, integration-heavy.
                 </h3>
                 <p
@@ -549,9 +549,9 @@ function CompanyPage() {
               <Eyebrow>Our technology stack</Eyebrow>
               <SerifH2 className="mt-3">
                 Deliberate tools.{" "}
-                <em className="italic" style={{ color: INDIGO_300 }}>
+                <span className="font-medium" style={{ color: INDIGO_300 }}>
                   Boring infrastructure, bulletproof outcomes.
-                </em>
+                </span>
               </SerifH2>
               <p
                 className={`${SANS} mt-5 text-base leading-relaxed`}
@@ -572,7 +572,7 @@ function CompanyPage() {
                   delay={i}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className={`${SERIF} text-2xl text-white`}>{s.label}</h3>
+                    <h3 className={`${DISPLAY} text-2xl font-semibold text-white`}>{s.label}</h3>
                     <span
                       className={`${SANS} text-[10px] uppercase tracking-[0.28em]`}
                       style={{ color: "rgba(165,180,252,0.6)" }}
@@ -600,9 +600,9 @@ function CompanyPage() {
                 <Eyebrow>Our development process</Eyebrow>
                 <SerifH2 className="mt-3">
                   How a single call becomes a{" "}
-                  <em className="italic" style={{ color: INDIGO_300 }}>
+                  <span className="font-medium" style={{ color: INDIGO_300 }}>
                     running platform.
-                  </em>
+                  </span>
                 </SerifH2>
               </div>
               <p
@@ -627,7 +627,7 @@ function CompanyPage() {
                   >
                     <div className="flex items-center justify-between">
                       <span
-                        className={`${SERIF} text-4xl italic`}
+                        className={`${DISPLAY} text-4xl font-semibold`}
                         style={{ color: INDIGO_300 }}
                       >
                         {step.code}
@@ -642,7 +642,7 @@ function CompanyPage() {
                         <Icon className="h-4 w-4" style={{ color: INDIGO_300 }} />
                       </span>
                     </div>
-                    <h3 className={`${SERIF} mt-5 text-2xl text-white`}>{step.title}</h3>
+                    <h3 className={`${DISPLAY} mt-5 text-2xl font-semibold text-white`}>{step.title}</h3>
                     <p
                       className={`${SANS} mt-3 text-sm leading-relaxed`}
                       style={{ color: "rgba(223,226,245,0.72)" }}
@@ -673,7 +673,7 @@ function CompanyPage() {
                       style={{ borderColor: "rgba(165,180,252,0.12)" }}
                     >
                       <dt
-                        className={`${SERIF} col-span-12 text-lg text-white sm:col-span-5 sm:text-xl`}
+                        className={`${DISPLAY} col-span-12 text-lg font-medium text-white sm:col-span-5 sm:text-xl`}
                       >
                         {w.k}
                       </dt>
@@ -694,7 +694,7 @@ function CompanyPage() {
                     <Sparkles className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Innovation &amp; digital transformation</Eyebrow>
                   </div>
-                  <h3 className={`${SERIF} mt-4 text-3xl text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
                     Practical automation. Not slogans.
                   </h3>
                   <p
@@ -715,7 +715,7 @@ function CompanyPage() {
                     <HeartHandshake className="h-4 w-4" style={{ color: INDIGO_300 }} />
                     <Eyebrow>Our commitment to clients</Eyebrow>
                   </div>
-                  <h3 className={`${SERIF} mt-4 text-3xl text-white`}>
+                  <h3 className={`${DISPLAY} mt-4 text-3xl font-semibold text-white`}>
                     We answer the phone at 3 a.m.
                   </h3>
                   <p
@@ -741,12 +741,12 @@ function CompanyPage() {
                 <div className="col-span-12 lg:col-span-8">
                   <Eyebrow>Partnership — not a project</Eyebrow>
                   <h2
-                    className={`${SERIF} mt-4 text-balance text-5xl leading-[1.02] text-white sm:text-6xl lg:text-7xl`}
+                    className={`${DISPLAY} mt-4 text-balance text-5xl font-semibold leading-[1.02] text-white sm:text-6xl lg:text-7xl`}
                   >
                     Let's map your bottleneck —{" "}
-                    <em className="italic" style={{ color: INDIGO_300 }}>
+                    <span className="font-medium" style={{ color: INDIGO_300 }}>
                       together.
-                    </em>
+                    </span>
                   </h2>
                   <p
                     className={`${SANS} mt-5 max-w-xl text-base leading-relaxed`}
