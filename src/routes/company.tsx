@@ -266,7 +266,7 @@ function CompanyPage() {
                   <div>
                     <Eyebrow>Manifesto</Eyebrow>
                     <h1
-                      className={`${DISPLAY} mt-4 text-balance text-5xl font-normal leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[88px]`}
+                      className={`${DISPLAY} mt-4 text-balance text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[88px]`}
                     >
                       Built to last.{" "}
                       <span
