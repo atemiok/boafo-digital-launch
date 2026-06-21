@@ -261,7 +261,7 @@ export function LiveOperationsSimulator() {
         </div>
 
         {/* Tri-pane: Before | Boafo Engine | After */}
-        <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6 min-h-[640px] lg:min-h-[560px]">
+        <div className="grid min-h-[720px] gap-5 lg:grid-cols-[1fr_1.1fr_1fr] lg:gap-6 lg:min-h-[620px] xl:min-h-[640px]">
           <BeforePane key={`b-${active.id}`} v={active} />
           <CenterEngine key={`c-${active.id}`} v={active} />
           <AfterPane key={`a-${active.id}`} v={active} />
@@ -362,7 +362,7 @@ function BeforePane({ v }: { v: Vertical }) {
         }}
       />
 
-      <div className="relative flex h-full flex-col">
+      <div className="relative flex h-full min-h-0 flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-destructive">
             <AlertTriangle className="h-3 w-3" />
@@ -371,20 +371,22 @@ function BeforePane({ v }: { v: Vertical }) {
           <ManualPulse />
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={v.id + "-before-copy"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="mt-5 text-pretty text-[15px] leading-relaxed text-muted-foreground"
-          >
-            {v.before}
-          </motion.p>
-        </AnimatePresence>
+        <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={v.id + "-before-copy"}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="mt-5 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-[15px]"
+            >
+              {v.before}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
-        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
+        <div className="shrink-0 grid grid-cols-3 gap-2 pt-5 sm:gap-3 sm:pt-6">
           {v.beforeStats.map((s, i) => (
             <Stat
               key={`${v.id}-bs-${i}`}
@@ -445,7 +447,7 @@ function AfterPane({ v }: { v: Vertical }) {
         style={{ background: "var(--gradient-electric)" }}
       />
 
-      <div className="relative flex h-full flex-col">
+      <div className="relative flex h-full min-h-0 flex-col">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-primary-glow">
             <Sparkles className="h-3 w-3" />
@@ -454,20 +456,22 @@ function AfterPane({ v }: { v: Vertical }) {
           <SuccessPulse />
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={v.id + "-after-copy"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="mt-5 text-pretty text-[15px] leading-relaxed text-muted-foreground"
-          >
-            {v.after}
-          </motion.p>
-        </AnimatePresence>
+        <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={v.id + "-after-copy"}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className="mt-5 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-[15px]"
+            >
+              {v.after}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
-        <div className="mt-auto grid grid-cols-3 gap-2 pt-7 sm:gap-3">
+        <div className="shrink-0 grid grid-cols-3 gap-2 pt-5 sm:gap-3 sm:pt-6">
           {v.afterStats.map((s, i) => (
             <Stat
               key={`${v.id}-as-${i}`}
@@ -559,7 +563,7 @@ function Stat({
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.45, ease: EASE, delay }}
-      className={`relative overflow-hidden rounded-2xl border ${tone} p-2.5 sm:p-3.5`}
+      className={`relative overflow-hidden rounded-2xl border ${tone} p-2 sm:p-2.5 lg:p-3`}
     >
       <motion.div
         aria-hidden
@@ -574,11 +578,11 @@ function Stat({
         animate={{ x: "100%" }}
         transition={{ duration: 1.6, delay: delay + 0.1, ease: "easeInOut" }}
       />
-      <div className={`font-mono text-[9px] uppercase tracking-[0.16em] sm:text-[10px] sm:tracking-[0.18em] ${accent}`}>◆</div>
-      <div className="mt-1 font-display text-base font-bold tracking-tight text-foreground sm:text-2xl">
+      <div className={`font-mono text-[9px] uppercase tracking-[0.14em] sm:text-[10px] sm:tracking-[0.16em] ${accent}`}>◆</div>
+      <div className="mt-0.5 break-words font-display text-sm font-bold tracking-tight text-foreground sm:text-base lg:text-lg">
         {value}
       </div>
-      <div className="mt-1 text-[9px] font-mono uppercase tracking-[0.14em] leading-tight text-muted-foreground sm:text-[10px] sm:tracking-[0.16em]">
+      <div className="mt-0.5 break-words text-[9px] font-mono uppercase leading-tight tracking-[0.12em] text-muted-foreground sm:text-[10px] sm:tracking-[0.14em]">
         {label}
       </div>
     </motion.div>
