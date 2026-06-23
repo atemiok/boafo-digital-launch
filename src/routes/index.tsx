@@ -76,11 +76,11 @@ function HomePage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main>
-        <Hero />
-        <LiveOperationsSimulator />
-        <Bento />
-        <Promise />
-        <FooterCTA />
+        <PerfBoundary id="Hero"><Hero /></PerfBoundary>
+        <PerfBoundary id="LiveOperations"><LiveOperationsSimulator /></PerfBoundary>
+        <PerfBoundary id="Bento"><Bento /></PerfBoundary>
+        <PerfBoundary id="Promise"><Promise /></PerfBoundary>
+        <PerfBoundary id="FooterCTA"><FooterCTA /></PerfBoundary>
       </main>
       <SiteFooter />
     </div>
