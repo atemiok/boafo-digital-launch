@@ -15,6 +15,7 @@ import {
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LiveOperationsSimulator } from "@/components/LiveOperationsSimulator";
+import { PerfBoundary } from "@/lib/perf-profiler";
 
 export const Route = createFileRoute("/")({
   head: () => ({
