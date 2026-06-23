@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "perf:lighthouse": "npx --yes lighthouse http://localhost:8080/ --preset=desktop --only-categories=performance --chrome-flags=\"--headless=new --no-sandbox\" --output=html --output-path=./.lighthouse/report.html --view=false"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
