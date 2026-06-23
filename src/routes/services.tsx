@@ -35,9 +35,73 @@ export const Route = createFileRoute("/services")({
       },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: "https://www.boafosolutions.com/services" },
+      { property: "og:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: "https://www.boafosolutions.com/services" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.boafosolutions.com/" },
+                { "@type": "ListItem", position: 2, name: "Services", item: "https://www.boafosolutions.com/services" },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Boafo Solutions — Services",
+              url: "https://www.boafosolutions.com/services",
+              provider: { "@id": "https://www.boafosolutions.com/#organization" },
+              itemListElement: [
+                { "@type": "Service", name: "Role-Based Access Platforms", description: "Multi-tenant RBAC web portals with row-level isolation, audit trails, and SSO for field, finance, and executive teams.", areaServed: "KE" },
+                { "@type": "Service", name: "M-Pesa & Daraja API Integration", description: "Safaricom Daraja C2B, STK Push, and B2C integration with automatic invoice matching and ERP sync.", areaServed: "KE" },
+                { "@type": "Service", name: "Property Management Software", description: "Rent automation, tenant self-service, M-Pesa receipts, and live portfolio dashboards.", areaServed: "KE" },
+                { "@type": "Service", name: "IoT Telemetry & Smart Meters", description: "Unified telemetry pipeline for solar inverters and smart meters with prepaid M-Pesa token vending.", areaServed: "KE" },
+                { "@type": "Service", name: "Customer Self-Service Portals", description: "24/7 portals for statements, requests, and account management.", areaServed: "KE" },
+                { "@type": "Service", name: "Management Reporting & Analytics", description: "Automated dashboards that surface revenue leakage and operational risk in real time.", areaServed: "KE" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "What does Boafo Solutions build?",
+                  acceptedAnswer: { "@type": "Answer", text: "Boafo Solutions builds custom web portals, M-Pesa / Daraja API integrations, property management software, IoT telemetry pipelines, and automated reporting dashboards for enterprises in Kenya and across Africa." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you integrate Safaricom M-Pesa (Daraja)?",
+                  acceptedAnswer: { "@type": "Answer", text: "Yes. We integrate Daraja C2B, STK Push, and B2C disbursements with automatic invoice matching, branded SMS/WhatsApp receipts, and ERP/Xero/QuickBooks sync." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Who owns the source code at the end of a project?",
+                  acceptedAnswer: { "@type": "Answer", text: "You do. Every Boafo engagement delivers full source ownership at launch, along with documentation and a handover." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you support the software after launch?",
+                  acceptedAnswer: { "@type": "Answer", text: "Yes — every system ships with continuous server monitoring, proactive maintenance, and dedicated lifecycle support." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Which industries do you serve?",
+                  acceptedAnswer: { "@type": "Answer", text: "Real estate, SACCOs and cooperatives, solar and utilities, logistics, retail, and professional services." },
+                },
+              ],
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: ServicesPage,
 });

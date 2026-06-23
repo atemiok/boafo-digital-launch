@@ -23,41 +23,79 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Talk to M-Pesa integration developers. Boafo Solutions — Ngong 5th Ave, Upperhill. Book a 30-minute architecture discovery. WhatsApp 0737 575 156.",
+          "Talk to M-Pesa integration developers. Boafo Solutions — Ngong 5th Ave, Upperhill, Nairobi. Book a 30-minute architecture discovery. WhatsApp 0737 575 156.",
       },
       {
         name: "keywords",
         content:
-          "contact Boafo Solutions, software company support, IT consulting contact, web development services, mobile app development inquiries, enterprise solutions team, digital transformation consultancy, custom software company, M-Pesa integration developers",
+          "contact Boafo Solutions, M-Pesa integration developers, custom software company Kenya, enterprise software Nairobi, web portal developers contact",
       },
       { property: "og:title", content: "Contact Boafo Solutions" },
       {
         property: "og:description",
         content:
-          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers.",
+          "Book a 30-minute architecture discovery with Boafo Solutions, custom software developers in Nairobi.",
       },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: "https://www.boafosolutions.com/contact" },
+      { property: "og:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://www.boafosolutions.com/contact" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Boafo Solutions",
-          url: "https://boafosolutions.com/contact",
-          telephone: "+254737575156",
-          email: "info@boafosolutions.com",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Ngong 5th Ave",
-            addressLocality: "Upperhill",
-            addressRegion: "Nairobi",
-            addressCountry: "KE",
-          },
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.boafosolutions.com/" },
+                { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.boafosolutions.com/contact" },
+              ],
+            },
+            {
+              "@type": "ContactPage",
+              "@id": "https://www.boafosolutions.com/contact#webpage",
+              url: "https://www.boafosolutions.com/contact",
+              name: "Contact Boafo Solutions",
+              about: { "@id": "https://www.boafosolutions.com/#organization" },
+              inLanguage: "en",
+            },
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://www.boafosolutions.com/#localbusiness",
+              name: "Boafo Solutions",
+              url: "https://www.boafosolutions.com/contact",
+              image: "https://www.boafosolutions.com/boafo-logo-dark.svg",
+              telephone: "+254737575156",
+              email: "info@boafosolutions.com",
+              priceRange: "$$",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Ngong 5th Avenue",
+                addressLocality: "Upperhill",
+                addressRegion: "Nairobi",
+                addressCountry: "KE",
+              },
+              geo: { "@type": "GeoCoordinates", latitude: -1.2998, longitude: 36.8148 },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  opens: "09:00",
+                  closes: "18:00",
+                },
+              ],
+              sameAs: [
+                "https://www.linkedin.com/company/boafosolutions",
+                "https://twitter.com/boafosolutions",
+              ],
+            },
+          ],
         }),
       },
     ],
