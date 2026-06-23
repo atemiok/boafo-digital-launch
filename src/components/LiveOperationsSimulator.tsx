@@ -179,6 +179,7 @@ export function LiveOperationsSimulator() {
       style={{
         background:
           "radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 60%), radial-gradient(800px 500px at 0% 100%, color-mix(in oklab, var(--color-primary-glow) 10%, transparent), transparent 60%), var(--color-surface)",
+        contain: "layout paint style",
       }}
     >
       {/* grid backdrop */}
