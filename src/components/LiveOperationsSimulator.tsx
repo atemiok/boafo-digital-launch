@@ -647,14 +647,14 @@ function FlowChart({ steps }: { steps: Step[] }) {
 
   return (
     <div className="mt-5 rounded-2xl border border-border/70 bg-background/70 p-3 backdrop-blur sm:p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <div className="inline-flex items-center gap-2">
-          <Radio className="h-3.5 w-3.5 text-primary-glow" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div className="inline-flex min-w-0 items-center gap-2">
+          <Radio className="h-3.5 w-3.5 shrink-0 text-primary-glow" />
+          <span className="truncate font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
             Live flow graph
           </span>
         </div>
-        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-glow">
+        <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-[0.14em] text-primary-glow">
           <Cpu className="h-3 w-3" />
           DAG · v3
         </span>
