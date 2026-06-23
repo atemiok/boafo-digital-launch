@@ -284,7 +284,7 @@ function CenterEngine({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.03 }}
-      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/40 bg-card/80 p-6 backdrop-blur-xl sm:p-7"
+      className="relative flex h-[520px] sm:h-[560px] lg:h-full flex-col overflow-hidden rounded-3xl border border-primary/40 bg-card/80 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 22%, transparent), 0 0 90px -20px color-mix(in oklab, var(--color-primary) 70%, transparent)",
@@ -341,7 +341,7 @@ function BeforePane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
+      className="group relative flex h-[520px] sm:h-[560px] lg:h-full flex-col overflow-hidden rounded-3xl border border-destructive/25 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-foreground) 6%, transparent), 0 0 60px -20px color-mix(in oklab, var(--color-destructive) 35%, transparent)",
@@ -436,7 +436,7 @@ function AfterPane({ v }: { v: Vertical }) {
       initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
+      className="relative flex h-[520px] sm:h-[560px] lg:h-full flex-col overflow-hidden rounded-3xl border border-primary/35 bg-card/70 p-6 backdrop-blur-xl sm:p-7"
       style={{
         boxShadow:
           "inset 0 1px 0 0 color-mix(in oklab, var(--color-primary-glow) 14%, transparent), 0 0 70px -20px color-mix(in oklab, var(--color-primary) 55%, transparent)",
