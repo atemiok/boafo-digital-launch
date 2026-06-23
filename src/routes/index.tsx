@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Boafo Solutions — custom software and web portal developers. M-Pesa integration, business automation, and property management software for the modern enterprise.",
+          "Boafo Solutions — custom software and web portal developers in Nairobi, Kenya. M-Pesa integration, business automation, and property management software for the modern enterprise.",
       },
       {
         name: "keywords",
@@ -38,30 +38,51 @@ export const Route = createFileRoute("/")({
           "Custom software, M-Pesa integration, and business automation for the modern enterprise.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://www.boafosolutions.com/" },
       { property: "og:site_name", content: "Boafo Solutions" },
+      { property: "og:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://www.boafosolutions.com/" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Boafo Solutions",
-          url: "https://boafosolutions.com",
-          description:
-            "Custom software, web portal development, and M-Pesa integration for the modern enterprise.",
-          serviceType: [
-            "Custom software development",
-            "Web portal development",
-            "M-Pesa API integration",
-            "Property management software",
-            "Business automation software",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://www.boafosolutions.com/#webpage",
+              url: "https://www.boafosolutions.com/",
+              name: "Boafo Solutions | Custom Software & Web Portal Developers",
+              isPartOf: { "@id": "https://www.boafosolutions.com/#website" },
+              about: { "@id": "https://www.boafosolutions.com/#organization" },
+              primaryImageOfPage: { "@id": "https://www.boafosolutions.com/#logo" },
+              inLanguage: "en",
+              description:
+                "Custom software, web portal development, and M-Pesa integration for the modern enterprise.",
+            },
+            {
+              "@type": "ProfessionalService",
+              "@id": "https://www.boafosolutions.com/#service",
+              name: "Boafo Solutions",
+              url: "https://www.boafosolutions.com",
+              parentOrganization: { "@id": "https://www.boafosolutions.com/#organization" },
+              description:
+                "Custom software, web portal development, and M-Pesa integration for the modern enterprise.",
+              serviceType: [
+                "Custom software development",
+                "Web portal development",
+                "M-Pesa API integration",
+                "Property management software",
+                "Business automation software",
+              ],
+              areaServed: ["KE", "Africa"],
+              email: "info@boafosolutions.com",
+              telephone: "+254737575156",
+            },
           ],
-          email: "info@boafosolutions.com",
-          telephone: "+254737575156",
         }),
       },
     ],

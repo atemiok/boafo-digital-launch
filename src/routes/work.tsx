@@ -26,9 +26,42 @@ export const Route = createFileRoute("/work")({
       },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/work" },
+      { property: "og:url", content: "https://www.boafosolutions.com/work" },
+      { property: "og:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
     ],
-    links: [{ rel: "canonical", href: "/work" }],
+    links: [{ rel: "canonical", href: "https://www.boafosolutions.com/work" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.boafosolutions.com/" },
+                { "@type": "ListItem", position: 2, name: "Work", item: "https://www.boafosolutions.com/work" },
+              ],
+            },
+            {
+              "@type": "CollectionPage",
+              "@id": "https://www.boafosolutions.com/work#webpage",
+              url: "https://www.boafosolutions.com/work",
+              name: "Work — Boafo Solutions Case Studies",
+              about: { "@id": "https://www.boafosolutions.com/#organization" },
+              inLanguage: "en",
+              hasPart: [
+                { "@type": "CreativeWork", name: "Auto-reconciled M-Pesa ledger for a 12-branch SACCO", about: "M-Pesa reconciliation, SACCO" },
+                { "@type": "CreativeWork", name: "Tenant self-service portal across 480 units", about: "Property management, STK push rent" },
+                { "@type": "CreativeWork", name: "Unified IoT telemetry & prepaid token vending", about: "IoT, solar, smart meters" },
+              ],
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: WorkPage,
 });

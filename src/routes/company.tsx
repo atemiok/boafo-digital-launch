@@ -21,7 +21,7 @@ export const Route = createFileRoute("/company")({
       {
         name: "description",
         content:
-          "Boafo Solutions is a boutique enterprise software agency. Architecture-first engineering, transparent process, and lifetime support — not freelancer roulette.",
+          "Boafo Solutions is a boutique enterprise software studio in Nairobi. Architecture-first engineering, transparent process, and lifetime support — not freelancer roulette.",
       },
       { property: "og:title", content: "Company | Boafo Solutions — Enterprise Software That Lasts" },
       {
@@ -30,9 +30,39 @@ export const Route = createFileRoute("/company")({
           "Architecture-first engineering and lifetime support for the modern enterprise. Meet the operating model behind Boafo.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/company" },
+      { property: "og:url", content: "https://www.boafosolutions.com/company" },
+      { property: "og:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://www.boafosolutions.com/boafo-logo-dark.svg" },
     ],
-    links: [{ rel: "canonical", href: "/company" }],
+    links: [{ rel: "canonical", href: "https://www.boafosolutions.com/company" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.boafosolutions.com/" },
+                { "@type": "ListItem", position: 2, name: "Company", item: "https://www.boafosolutions.com/company" },
+              ],
+            },
+            {
+              "@type": "AboutPage",
+              "@id": "https://www.boafosolutions.com/company#webpage",
+              url: "https://www.boafosolutions.com/company",
+              name: "About Boafo Solutions",
+              about: { "@id": "https://www.boafosolutions.com/#organization" },
+              inLanguage: "en",
+              description:
+                "Boafo Solutions is a boutique enterprise software studio. Architecture-first engineering, transparent process, and lifetime support.",
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: CompanyPage,
 });

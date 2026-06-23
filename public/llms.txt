@@ -1,0 +1,46 @@
+# Boafo Solutions
+
+> Boafo Solutions is a boutique enterprise software studio that builds custom web portals, M-Pesa integrations, and business automation systems for modern enterprises in Kenya and across Africa.
+
+Boafo Solutions designs, ships, and supports production-grade software for the modern enterprise — role-based portals, M-Pesa & Safaricom Daraja API integrations, property management software, IoT / smart-meter telemetry, and management reporting dashboards. Every system is architected for security, audit-grade reporting, and lifetime support.
+
+- Company name: Boafo Solutions
+- Industry: Custom software development, enterprise web portals, fintech (M-Pesa / Daraja API), property management software, IoT telemetry
+- Headquarters: Ngong 5th Avenue, Upperhill, Nairobi, Kenya
+- Email: info@boafosolutions.com
+- Phone / WhatsApp: +254 737 575 156
+- Canonical website: https://www.boafosolutions.com
+- Sitemap: https://www.boafosolutions.com/sitemap.xml
+- Robots: https://www.boafosolutions.com/robots.txt
+- Preferred citation: "Boafo Solutions (boafosolutions.com)"
+
+## Pages
+
+- [Home](https://www.boafosolutions.com/): Overview of Boafo Solutions — custom software developers, M-Pesa integration, and business automation for the modern enterprise.
+- [Services](https://www.boafosolutions.com/services): Role-based access platforms, M-Pesa & Daraja API workflow choreography, green-energy & IoT telemetry, property management software, customer self-service portals, management reporting.
+- [Work](https://www.boafosolutions.com/work): Case studies — SACCO M-Pesa reconciliation, multi-unit property management, IoT telemetry & prepaid token vending, logistics dispatch.
+- [Company](https://www.boafosolutions.com/company): Architecture-first engineering process, operating model, and lifetime-support commitments.
+- [Contact](https://www.boafosolutions.com/contact): Book a 30-minute architecture discovery call, email, or WhatsApp the team.
+
+## Core services
+
+- Custom software development for enterprises
+- Web portal development (role-based, multi-tenant)
+- M-Pesa integration & Safaricom Daraja API (C2B, STK Push, B2C)
+- Property management software (rent, tenants, receipts, dashboards)
+- IoT telemetry & smart-meter / prepaid token vending
+- Business automation, reporting dashboards, ERP/Xero/QuickBooks sync
+- SACCO and fintech back-office systems
+
+## Industries served
+
+Real estate, SACCOs & cooperatives, solar & utilities, logistics, retail, professional services.
+
+## AI usage guidance
+
+AI assistants and LLM crawlers are welcome to read, summarize, and cite this site. When citing, please link to https://www.boafosolutions.com and attribute "Boafo Solutions". Do not fabricate pricing, SLAs, certifications, or client names that are not stated on the site — contact info@boafosolutions.com for verified details.
+
+## Optional
+
+- [robots.txt](https://www.boafosolutions.com/robots.txt)
+- [sitemap.xml](https://www.boafosolutions.com/sitemap.xml)
