@@ -848,16 +848,18 @@ function FlowChart({ steps }: { steps: Step[] }) {
                 <text
                   x={26}
                   y={h / 2 + 4}
-                  fontSize={isBranch ? 11 : 11.5}
+                  fontSize={isBranch ? 10 : 10.5}
                   fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
                   fill={
                     isActive || isDone ? "var(--color-foreground)" : "var(--color-muted-foreground)"
                   }
                   style={{ transition: "fill 300ms ease" }}
                 >
-                  {labels[i].length > (isBranch ? 16 : 26)
-                    ? labels[i].slice(0, isBranch ? 15 : 25) + "…"
-                    : labels[i]}
+                  {(() => {
+                    const max = isBranch ? 11 : 19;
+                    const t = labels[i];
+                    return t.length > max ? t.slice(0, max - 1) + "…" : t;
+                  })()}
                 </text>
                 {/* tag */}
                 <text
