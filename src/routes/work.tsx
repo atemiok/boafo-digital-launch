@@ -136,6 +136,13 @@ function WorkPage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main className="pt-32 sm:pt-36">
+        <AiSummary
+          title="Boafo Solutions — Case Studies"
+          summary="Selected production systems shipped by Boafo Solutions: M-Pesa reconciliation for a 12-branch SACCO, a tenant self-service portal across 480 units, unified IoT telemetry and prepaid token vending for solar utilities, and a dispatch console for a 40-rider logistics network."
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+        />
         <section className="relative overflow-hidden pb-10">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
           <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">
