@@ -96,9 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
     ],
     scripts: [
@@ -154,8 +152,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 },
               ],
               sameAs: [
-                "https://www.linkedin.com/company/boafosolutions",
-                "https://twitter.com/boafosolutions",
+                "https://www.facebook.com/p/BOAFO-Solutions-No-CRB-Loans-61588373023479/",
+                "https://ke.linkedin.com/in/william-atemi",
               ],
             },
             {

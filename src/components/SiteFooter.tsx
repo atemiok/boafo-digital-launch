@@ -1,6 +1,38 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone } from "lucide-react";
+import { Facebook, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { BoafoLogo } from "@/components/BoafoLogo";
+
+// Email obfuscation — assembled at runtime to reduce harvesting by scrapers.
+const EMAIL_USER = "info";
+const EMAIL_DOMAIN = "boafosolutions.com";
+
+function ObfuscatedEmail() {
+  const [revealed, setRevealed] = useState(false);
+  const address = `${EMAIL_USER}\u0040${EMAIL_DOMAIN}`;
+
+  if (!revealed) {
+    return (
+      <button
+        type="button"
+        onClick={() => setRevealed(true)}
+        className="text-left hover:text-foreground transition-colors"
+        aria-label="Reveal email address"
+      >
+        {EMAIL_USER}
+        <span aria-hidden="true"> [at] </span>
+        <span className="sr-only">@</span>
+        {EMAIL_DOMAIN}
+      </button>
+    );
+  }
+
+  return (
+    <a href={`mailto:${address}`} className="hover:text-foreground transition-colors">
+      {address}
+    </a>
+  );
+}
 
 export function SiteFooter() {
   return (
@@ -13,12 +45,18 @@ export function SiteFooter() {
             modern enterprises — built to ease the everyday grind and supported
             for life.
           </p>
-          <div className="mt-5 space-y-1.5 text-sm text-muted-foreground">
+          <address className="mt-5 space-y-1.5 text-sm not-italic text-muted-foreground">
+            <p className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>
+                Ngong 5th Avenue, Upperhill
+                <br />
+                Nairobi, Kenya
+              </span>
+            </p>
             <p className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-primary" />
-              <a href="mailto:info@boafosolutions.com" className="hover:text-foreground transition-colors">
-                info@boafosolutions.com
-              </a>
+              <ObfuscatedEmail />
             </p>
             <p className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-primary" />
@@ -26,6 +64,26 @@ export function SiteFooter() {
                 0737 575 156
               </a>
             </p>
+          </address>
+          <div className="mt-5 flex items-center gap-3">
+            <a
+              href="https://www.facebook.com/p/BOAFO-Solutions-No-CRB-Loans-61588373023479/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Boafo Solutions on Facebook"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              <Facebook className="h-4 w-4" />
+            </a>
+            <a
+              href="https://ke.linkedin.com/in/william-atemi"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Boafo Solutions on LinkedIn"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
           </div>
           <p className="mt-5 max-w-md text-xs text-muted-foreground/80">
             Web portal developers · Custom software developers · M-Pesa
@@ -45,10 +103,12 @@ export function SiteFooter() {
         />
         <FooterCol
           title="Reach Us"
+          links={[{ label: "Contact form", to: "/contact" }]}
           external={[
             { label: "WhatsApp", href: "https://wa.me/254737575156" },
-            { label: "Email", href: "mailto:info@boafosolutions.com" },
             { label: "Call", href: "tel:+254737575156" },
+            { label: "Facebook", href: "https://www.facebook.com/p/BOAFO-Solutions-No-CRB-Loans-61588373023479/" },
+            { label: "LinkedIn", href: "https://ke.linkedin.com/in/william-atemi" },
           ]}
         />
       </div>
