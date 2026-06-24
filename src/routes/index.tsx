@@ -16,6 +16,13 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LiveOperationsSimulator } from "@/components/LiveOperationsSimulator";
 import { PerfBoundary } from "@/lib/perf-profiler";
+import {
+  AiSummary,
+  BOAFO_CORE_SERVICES,
+  BOAFO_INDUSTRIES,
+  BOAFO_LOCATION,
+  BOAFO_CONTACT,
+} from "@/components/AiSummary";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -81,6 +88,34 @@ export const Route = createFileRoute("/")({
               areaServed: ["KE", "Africa"],
               email: "info@boafosolutions.com",
               telephone: "+254737575156",
+              provider: { "@id": "https://www.boafosolutions.com/#organization" },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Boafo Solutions — Services",
+                itemListElement: [
+                  { "@type": "Service", name: "Custom software development", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                  { "@type": "Service", name: "Web portal development", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                  { "@type": "Service", name: "M-Pesa & Daraja API integration", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                  { "@type": "Service", name: "Property management software", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                  { "@type": "Service", name: "IoT telemetry & smart meters", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                  { "@type": "Service", name: "Business automation & reporting", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                ],
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.boafosolutions.com/" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: [
+                { "@type": "Question", name: "What does Boafo Solutions do?", acceptedAnswer: { "@type": "Answer", text: "Boafo Solutions is a custom software and web portal development company based in Nairobi, Kenya. We build M-Pesa / Daraja API integrations, property management software, IoT telemetry pipelines, SACCO platforms, and business automation systems for enterprises across Kenya and Africa." } },
+                { "@type": "Question", name: "Where is Boafo Solutions located?", acceptedAnswer: { "@type": "Answer", text: "Boafo Solutions is headquartered at Ngong 5th Avenue, Upperhill, Nairobi, Kenya, and serves clients across East Africa and globally on a remote-first delivery model." } },
+                { "@type": "Question", name: "Which industries does Boafo Solutions serve?", acceptedAnswer: { "@type": "Answer", text: "Real estate and property management, SACCOs and cooperatives, solar and utilities, logistics and distribution, retail and fintech, and professional services." } },
+                { "@type": "Question", name: "How can I contact Boafo Solutions?", acceptedAnswer: { "@type": "Answer", text: "Email info@boafosolutions.com or call / WhatsApp +254 737 575 156. You can also book a 30-minute architecture discovery call from the Contact page." } },
+              ],
             },
           ],
         }),
@@ -97,6 +132,20 @@ function HomePage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main>
+        <AiSummary
+          title="Boafo Solutions — Custom Software & Web Portal Developers"
+          summary="Boafo Solutions is a Nairobi-based custom software and web portal development company. We build M-Pesa / Safaricom Daraja API integrations, property management software, IoT telemetry, SACCO platforms, and business automation systems for enterprises across Kenya and Africa, with senior-only delivery, full source ownership, and lifetime support."
+          services={BOAFO_CORE_SERVICES}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+          faqs={[
+            { q: "What does Boafo Solutions do?", a: "We design, build, and operate custom web portals, M-Pesa integrations, property management software, IoT telemetry, and business automation systems for enterprises." },
+            { q: "Where is Boafo Solutions located?", a: "Ngong 5th Avenue, Upperhill, Nairobi, Kenya — serving clients across Kenya, East Africa, and globally." },
+            { q: "Which technologies does Boafo Solutions use?", a: "React, TanStack Start, TypeScript, Node.js, PostgreSQL, the Safaricom Daraja API, MQTT/HTTP telemetry pipelines, and cloud infrastructure on AWS and Cloudflare." },
+            { q: "Why choose Boafo Solutions?", a: "Senior-only delivery, fixed-price scope, full source ownership at launch, audit-grade reporting, and lifetime support after go-live." },
+          ]}
+        />
         <PerfBoundary id="Hero"><Hero /></PerfBoundary>
         <PerfBoundary id="LiveOperations"><LiveOperationsSimulator /></PerfBoundary>
         <PerfBoundary id="Bento"><Bento /></PerfBoundary>

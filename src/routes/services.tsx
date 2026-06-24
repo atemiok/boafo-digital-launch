@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AiSummary, BOAFO_INDUSTRIES, BOAFO_LOCATION, BOAFO_CONTACT } from "@/components/AiSummary";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -60,42 +61,29 @@ export const Route = createFileRoute("/services")({
               url: "https://www.boafosolutions.com/services",
               provider: { "@id": "https://www.boafosolutions.com/#organization" },
               itemListElement: [
-                { "@type": "Service", name: "Role-Based Access Platforms", description: "Multi-tenant RBAC web portals with row-level isolation, audit trails, and SSO for field, finance, and executive teams.", areaServed: "KE" },
-                { "@type": "Service", name: "M-Pesa & Daraja API Integration", description: "Safaricom Daraja C2B, STK Push, and B2C integration with automatic invoice matching and ERP sync.", areaServed: "KE" },
-                { "@type": "Service", name: "Property Management Software", description: "Rent automation, tenant self-service, M-Pesa receipts, and live portfolio dashboards.", areaServed: "KE" },
-                { "@type": "Service", name: "IoT Telemetry & Smart Meters", description: "Unified telemetry pipeline for solar inverters and smart meters with prepaid M-Pesa token vending.", areaServed: "KE" },
-                { "@type": "Service", name: "Customer Self-Service Portals", description: "24/7 portals for statements, requests, and account management.", areaServed: "KE" },
-                { "@type": "Service", name: "Management Reporting & Analytics", description: "Automated dashboards that surface revenue leakage and operational risk in real time.", areaServed: "KE" },
+                { "@type": "Service", name: "Role-Based Access Platforms", description: "Multi-tenant RBAC web portals with row-level isolation, audit trails, and SSO for field, finance, and executive teams.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                { "@type": "Service", name: "M-Pesa & Daraja API Integration", description: "Safaricom Daraja C2B, STK Push, and B2C integration with automatic invoice matching and ERP sync.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                { "@type": "Service", name: "Property Management Software", description: "Rent automation, tenant self-service, M-Pesa receipts, and live portfolio dashboards.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                { "@type": "Service", name: "IoT Telemetry & Smart Meters", description: "Unified telemetry pipeline for solar inverters and smart meters with prepaid M-Pesa token vending.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                { "@type": "Service", name: "Customer Self-Service Portals", description: "24/7 portals for statements, requests, and account management.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
+                { "@type": "Service", name: "Management Reporting & Analytics", description: "Automated dashboards that surface revenue leakage and operational risk in real time.", areaServed: "KE", provider: { "@id": "https://www.boafosolutions.com/#organization" } },
               ],
             },
             {
               "@type": "FAQPage",
               mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "What does Boafo Solutions build?",
-                  acceptedAnswer: { "@type": "Answer", text: "Boafo Solutions builds custom web portals, M-Pesa / Daraja API integrations, property management software, IoT telemetry pipelines, and automated reporting dashboards for enterprises in Kenya and across Africa." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Do you integrate Safaricom M-Pesa (Daraja)?",
-                  acceptedAnswer: { "@type": "Answer", text: "Yes. We integrate Daraja C2B, STK Push, and B2C disbursements with automatic invoice matching, branded SMS/WhatsApp receipts, and ERP/Xero/QuickBooks sync." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Who owns the source code at the end of a project?",
-                  acceptedAnswer: { "@type": "Answer", text: "You do. Every Boafo engagement delivers full source ownership at launch, along with documentation and a handover." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Do you support the software after launch?",
-                  acceptedAnswer: { "@type": "Answer", text: "Yes — every system ships with continuous server monitoring, proactive maintenance, and dedicated lifecycle support." },
-                },
-                {
-                  "@type": "Question",
-                  name: "Which industries do you serve?",
-                  acceptedAnswer: { "@type": "Answer", text: "Real estate, SACCOs and cooperatives, solar and utilities, logistics, retail, and professional services." },
-                },
+                { "@type": "Question", name: "What does Boafo Solutions build?", acceptedAnswer: { "@type": "Answer", text: "Custom web portals, M-Pesa / Daraja API integrations, property management software, IoT telemetry pipelines, and automated reporting dashboards for enterprises in Kenya and across Africa." } },
+                { "@type": "Question", name: "Do you integrate Safaricom M-Pesa (Daraja)?", acceptedAnswer: { "@type": "Answer", text: "Yes — Daraja C2B, STK Push, and B2C disbursements with automatic invoice matching, branded SMS/WhatsApp receipts, and ERP / Xero / QuickBooks sync." } },
+                { "@type": "Question", name: "Who owns the source code at the end of a project?", acceptedAnswer: { "@type": "Answer", text: "You do. Every Boafo engagement delivers full source ownership at launch, with documentation and a complete handover." } },
+                { "@type": "Question", name: "Do you support the software after launch?", acceptedAnswer: { "@type": "Answer", text: "Yes — every system ships with continuous server monitoring, proactive maintenance, and dedicated lifecycle support." } },
+                { "@type": "Question", name: "Which industries do you serve?", acceptedAnswer: { "@type": "Answer", text: "Real estate, SACCOs and cooperatives, solar and utilities, logistics, retail and fintech, and professional services." } },
+                { "@type": "Question", name: "How long does a typical project take?", acceptedAnswer: { "@type": "Answer", text: "Most engagements reach first production launch in under 8 weeks, delivered in two-week iterations with live demos and a fixed-price scope." } },
+                { "@type": "Question", name: "Do you build mobile apps?", acceptedAnswer: { "@type": "Answer", text: "Yes — installable PWAs and native React Native apps for iOS and Android, typically wired to the same role-based backend as the web portal." } },
+                { "@type": "Question", name: "Can you integrate with our ERP / accounting system?", acceptedAnswer: { "@type": "Answer", text: "Yes. We integrate with Xero, QuickBooks, SAP, Odoo, and custom ERPs via REST, webhooks, and direct database connectors." } },
+                { "@type": "Question", name: "Is the software hosted by Boafo or by us?", acceptedAnswer: { "@type": "Answer", text: "Your cloud, your data. We deploy to your AWS, Cloudflare, or GCP account so you retain full ownership and control." } },
+                { "@type": "Question", name: "What does a 30-minute architecture discovery include?", acceptedAnswer: { "@type": "Answer", text: "A senior engineer maps your primary bottleneck, key integrations, and the cost of doing nothing — then sends a one-page technical brief with a recommended next step." } },
+                { "@type": "Question", name: "Do you offer fixed pricing?", acceptedAnswer: { "@type": "Answer", text: "Yes. After the blueprint phase we commit to a fixed-price scope per milestone, with predictable monthly operations after launch." } },
+                { "@type": "Question", name: "Where is Boafo Solutions based?", acceptedAnswer: { "@type": "Answer", text: "Ngong 5th Avenue, Upperhill, Nairobi, Kenya — with a remote-first delivery model across East Africa and global time zones." } },
               ],
             },
           ],
@@ -197,6 +185,14 @@ function ServicesPage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main className="pt-32 sm:pt-36">
+        <AiSummary
+          title="Boafo Solutions — Services"
+          summary="Six production-grade service lines for the modern enterprise: role-based access platforms, M-Pesa & Daraja API integration, property management software, IoT telemetry & smart meters, customer self-service portals, and management reporting & analytics."
+          services={SERVICES.map((s) => s.title)}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+        />
         <section className="relative overflow-hidden pb-12">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
           <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">
