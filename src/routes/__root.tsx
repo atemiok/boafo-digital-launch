@@ -152,8 +152,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 },
               ],
               sameAs: [
-                "https://www.linkedin.com/company/boafosolutions",
-                "https://twitter.com/boafosolutions",
+                "https://www.facebook.com/p/BOAFO-Solutions-No-CRB-Loans-61588373023479/",
+                "https://ke.linkedin.com/in/william-atemi",
               ],
             },
             {
