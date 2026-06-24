@@ -261,6 +261,14 @@ function CompanyPage() {
       <SiteNav />
 
       <main className="pt-28 sm:pt-32">
+        <AiSummary
+          title="About Boafo Solutions"
+          summary="Boafo Solutions is a boutique enterprise software studio in Nairobi, Kenya. We are senior-only engineers building custom software, web portals, mobile apps, cloud infrastructure, and AI-powered automation for organisations across financial services, logistics, manufacturing, healthcare, retail, and the public sector. Architecture-first, transparent by default, and accountable for the lifetime of every system we ship."
+          services={BOAFO_CORE_SERVICES}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+        />
         {/* ───────────── HERO BENTO ───────────── */}
         <section className="px-5 sm:px-8">
           <div className="mx-auto max-w-7xl">

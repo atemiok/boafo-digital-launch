@@ -126,6 +126,19 @@ function ContactPage() {
       <SiteNav />
 
       <main className="pt-28 sm:pt-32 pb-32 lg:pb-24">
+        <AiSummary
+          title="Contact Boafo Solutions"
+          summary="Talk to a senior engineer at Boafo Solutions. We respond to new business inquiries the same business day, support tickets within 4 hours during business hours (EAT), and escalate critical production issues immediately. Book a 30-minute architecture discovery, send a detailed inquiry, or reach us by email, phone, or WhatsApp."
+          services={BOAFO_CORE_SERVICES}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+          faqs={[
+            { q: "How do I contact Boafo Solutions?", a: "Email info@boafosolutions.com, call or WhatsApp +254 737 575 156, or book a 30-minute architecture discovery from the Contact page." },
+            { q: "Where is your office?", a: "Ngong 5th Avenue, Upperhill, Nairobi, Kenya. Office hours are Monday–Friday, 09:00–18:00 EAT." },
+            { q: "How fast will you reply?", a: "Same business day for new inquiries, within 4 hours for support tickets during business hours, immediate for critical production issues." },
+          ]}
+        />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* ───── HERO HEADER ───── */}
           <motion.header
