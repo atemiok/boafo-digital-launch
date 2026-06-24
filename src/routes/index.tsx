@@ -132,6 +132,20 @@ function HomePage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main>
+        <AiSummary
+          title="Boafo Solutions — Custom Software & Web Portal Developers"
+          summary="Boafo Solutions is a Nairobi-based custom software and web portal development company. We build M-Pesa / Safaricom Daraja API integrations, property management software, IoT telemetry, SACCO platforms, and business automation systems for enterprises across Kenya and Africa, with senior-only delivery, full source ownership, and lifetime support."
+          services={BOAFO_CORE_SERVICES}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+          faqs={[
+            { q: "What does Boafo Solutions do?", a: "We design, build, and operate custom web portals, M-Pesa integrations, property management software, IoT telemetry, and business automation systems for enterprises." },
+            { q: "Where is Boafo Solutions located?", a: "Ngong 5th Avenue, Upperhill, Nairobi, Kenya — serving clients across Kenya, East Africa, and globally." },
+            { q: "Which technologies does Boafo Solutions use?", a: "React, TanStack Start, TypeScript, Node.js, PostgreSQL, the Safaricom Daraja API, MQTT/HTTP telemetry pipelines, and cloud infrastructure on AWS and Cloudflare." },
+            { q: "Why choose Boafo Solutions?", a: "Senior-only delivery, fixed-price scope, full source ownership at launch, audit-grade reporting, and lifetime support after go-live." },
+          ]}
+        />
         <PerfBoundary id="Hero"><Hero /></PerfBoundary>
         <PerfBoundary id="LiveOperations"><LiveOperationsSimulator /></PerfBoundary>
         <PerfBoundary id="Bento"><Bento /></PerfBoundary>
