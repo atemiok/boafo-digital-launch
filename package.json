@@ -13,6 +13,11 @@
     "perf:lighthouse": "npx --yes lighthouse http://localhost:8080/ --preset=desktop --only-categories=performance --chrome-flags=\"--headless=new --no-sandbox\" --output=html --output-path=./.lighthouse/report.html --view=false"
   },
   "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
+    "@fontsource/work-sans": "^5.2.8",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
