@@ -12,6 +12,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
+import { AiSummary, BOAFO_CORE_SERVICES, BOAFO_INDUSTRIES, BOAFO_LOCATION, BOAFO_CONTACT } from "@/components/AiSummary";
 
 const CALENDLY_URL =
   "https://calendly.com/boafosolutions/30min?hide_gdpr_banner=1&background_color=0b0f14&text_color=e2e8f0&primary_color=22d3ee";

@@ -185,6 +185,14 @@ function ServicesPage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <SiteNav />
       <main className="pt-32 sm:pt-36">
+        <AiSummary
+          title="Boafo Solutions — Services"
+          summary="Six production-grade service lines for the modern enterprise: role-based access platforms, M-Pesa & Daraja API integration, property management software, IoT telemetry & smart meters, customer self-service portals, and management reporting & analytics."
+          services={SERVICES.map((s) => s.title)}
+          industries={BOAFO_INDUSTRIES}
+          location={BOAFO_LOCATION}
+          contact={BOAFO_CONTACT}
+        />
         <section className="relative overflow-hidden pb-12">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
           <div className="mx-auto max-w-5xl px-5 text-center sm:px-8">

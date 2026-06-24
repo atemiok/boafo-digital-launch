@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AiSummary, BOAFO_CORE_SERVICES, BOAFO_INDUSTRIES, BOAFO_LOCATION, BOAFO_CONTACT } from "@/components/AiSummary";
 
 export const Route = createFileRoute("/company")({
   head: () => ({

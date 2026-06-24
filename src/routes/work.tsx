@@ -3,6 +3,7 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowRight, TrendingUp, Clock, Users } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AiSummary, BOAFO_INDUSTRIES, BOAFO_LOCATION, BOAFO_CONTACT } from "@/components/AiSummary";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
